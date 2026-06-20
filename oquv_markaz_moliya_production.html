@@ -1,921 +1,920 @@
 <!DOCTYPE html>
 <html lang="uz">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <meta name="theme-color" content="#3b82f6">
-    <title>O'quv Markazi Moliya</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <meta name="theme-color" content="#3b82f6">
+  <title>O'quv Markazi Moliya</title>
 
-    <!-- PWA Manifest -->
-    <link rel="manifest" href="data:application/json;base64,eyJuYW1lIjoiTydxdXYgTWFya2F6aSBNb2xpeWEiLCJzaG9ydF9uYW1lIjoiTW9saXlhIiwic3RhcnRfdXJsIjoiLiIsImRpc3BsYXkiOiJzdGFuZGFsb25lIiwiYmFja2dyb3VuZF9jb2xvciI6IiNmM2Y0ZjYiLCJ0aGVtZV9jb2xvciI6IiMzYjgyZjYiLCJpY29ucyI6W3sic3JjIjoiZGF0YTppbWFnZS9zdmcreG1sLCUzQ3N2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHZpZXdCb3g9JzAgMCAxOTIgMTkyJyBmaWxsPSIjM2I4MmY2IiUzRSUzQ3JlY3Qgd2lkdGg9IjE5MiIgaGVpZ2h0PSIxOTIiIHJ4PSIzMCIvJTNFJTNDdGV4dCB4PSI5NiIgeT0iMTMwIiBmb250LXNpemU9IjEwMCIgZmlsbD0id2hpdGUiIHRleHQtYW5jaG9yPSJtaWRkbGUiJTNF8J+UpTwvdGV4dCUzRSUzQy9zdmclM0UiLCJzaXplcyI6IjE5MngxOTIifSx7InNyYyI6ImRhdGE6aW1hZ2Uvc3ZnK3htbCwlM0NzdmcgeG1sbnM9J2h0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnJyB2aWV3Qm94PScwIDAgNTEyIDUxMicgZmlsbD0iIzNiODJmNiIlM0UlM0NyZWN0IHdpZHRoPSI1MTIiIGhlaWdodD0iNTEyIiByeD0iODAiLzIlM0UlM0N0ZXh0IHg9IjI1NiIgeT0iMzUwIiBmb250LXNpemU9IjI4MCIgZmlsbD0id2hpdGUiIHRleHQtYW5jaG9yPSJtaWRkbGUiJTNF8J+UpTwvdGV4dCUzRSUzQy9zdmclM0UiLCJzaXplcyI6IjUxMng1MTIifV19">
+  <!-- PWA Manifest -->
+  <link rel="manifest" href="data:application/json;base64,eyJuYW1lIjoiTydxdXYgTWFya2F6aSBNb2xpeWEiLCJzaG9ydF9uYW1lIjoiTW9saXlhIiwic3RhcnRfdXJsIjoiLiIsImRpc3BsYXkiOiJzdGFuZGFsb25lIiwiYmFja2dyb3VuZF9jb2xvciI6IiNmM2Y0ZjYiLCJ0aGVtZV9jb2xvciI6IiMzYjgyZjYiLCJpY29ucyI6W3sic3JjIjoiZGF0YTppbWFnZS9zdmcreG1sLCUzQ3N2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHZpZXdCb3g9JzAgMCAxOTIgMTkyJyBmaWxsPSIjM2I4MmY2IiUzRSUzQ3JlY3Qgd2lkdGg9IjE5MiIgaGVpZ2h0PSIxOTIiIHJ4PSIzMCIvJTNFJTNDdGV4dCB4PSI5NiIgeT0iMTMwIiBmb250LXNpemU9IjEwMCIgZmlsbD0id2hpdGUiIHRleHQtYW5jaG9yPSJtaWRkbGUiJTNF8J+UpTwvdGV4dCUzRSUzQy9zdmclM0UiLCJzaXplcyI6IjE5MngxOTIifSx7InNyYyI6ImRhdGE6aW1hZ2Uvc3ZnK3htbCwlM0NzdmcgeG1sbnM9J2h0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnJyB2aWV3Qm94PScwIDAgNTEyIDUxMicgZmlsbD0iIzNiODJmNiIlM0UlM0NyZWN0IHdpZHRoPSI1MTIiIGhlaWdodD0iNTEyIiByeD0iODAiLzIlM0UlM0N0ZXh0IHg9IjI1NiIgeT0iMzUwIiBmb250LXNpemU9IjI4MCIgZmlsbD0id2hpdGUiIHRleHQtYW5jaG9yPSJtaWRkbGUiJTNF8J+UpTwvdGV4dCUzRSUzQy9zdmclM0UiLCJzaXplcyI6IjUxMng1MTIifV19">
 
-    <!-- Telegram WebApp SDK -->
-    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+  <!-- Telegram WebApp SDK -->
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
 
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
 
-    <!-- Chart.js -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
 
-    <script>
-        tailwind.config = {
-            darkMode: 'class',
-            theme: {
-                extend: {
-                    colors: {
-                        primary: '#3b82f6',
-                        success: '#10b981',
-                        danger: '#ef4444',
-                        warning: '#f59e0b',
-                    }
-                }
-            }
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            primary: '#3b82f6',
+            success: '#10b981',
+            danger: '#ef4444',
+            warning: '#f59e0b',
+          }
         }
-    </script>
+      }
+    }
+  </script>
 
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
 
-        * { font-family: 'Inter', sans-serif; }
+    * { font-family: 'Inter', sans-serif; }
 
-        body { 
-            -webkit-tap-highlight-color: transparent;
-            overscroll-behavior-y: none;
-        }
+    body { 
+      -webkit-tap-highlight-color: transparent;
+      overscroll-behavior-y: none;
+    }
 
-        .glass {
-            background: rgba(255,255,255,0.8);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-        }
+    .glass {
+      background: rgba(255,255,255,0.8);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
 
-        .dark .glass {
-            background: rgba(30,41,59,0.8);
-        }
+    .dark .glass {
+      background: rgba(30,41,59,0.8);
+    }
 
-        .card-hover {
-            transition: all 0.2s ease;
-        }
+    .card-hover {
+      transition: all 0.2s ease;
+    }
 
-        .card-hover:active {
-            transform: scale(0.98);
-        }
+    .card-hover:active {
+      transform: scale(0.98);
+    }
 
-        .slide-up {
-            animation: slideUp 0.3s ease-out;
-        }
+    .slide-up {
+      animation: slideUp 0.3s ease-out;
+    }
 
-        @keyframes slideUp {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+    @keyframes slideUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
 
-        .pulse-ring {
-            animation: pulse-ring 2s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
-        }
+    .pulse-ring {
+      animation: pulse-ring 2s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
+    }
 
-        @keyframes pulse-ring {
-            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(239,68,68,0.7); }
-            70% { transform: scale(1); box-shadow: 0 0 0 10px rgba(239,68,68,0); }
-            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(239,68,68,0); }
-        }
+    @keyframes pulse-ring {
+      0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(239,68,68,0.7); }
+      70% { transform: scale(1); box-shadow: 0 0 0 10px rgba(239,68,68,0); }
+      100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(239,68,68,0); }
+    }
 
-        /* Custom scrollbar */
-        ::-webkit-scrollbar { width: 4px; }
-        ::-webkit-scrollbar-track { background: transparent; }
-        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
-        .dark ::-webkit-scrollbar-thumb { background: #475569; }
+    /* Custom scrollbar */
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+    .dark ::-webkit-scrollbar-thumb { background: #475569; }
 
-        /* Print styles */
-        @media print {
-            .no-print { display: none !important; }
-            body { background: white !important; color: black !important; }
-            .print-only { display: block !important; }
-        }
+    /* Print styles */
+    @media print {
+      .no-print { display: none !important; }
+      body { background: white !important; color: black !important; }
+      .print-only { display: block !important; }
+    }
 
-        .print-only { display: none; }
+    .print-only { display: none; }
 
-        /* Skeleton loading */
-        .skeleton {
-            background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
-            background-size: 200% 100%;
-            animation: skeleton 1.5s infinite;
-        }
+    /* Skeleton loading */
+    .skeleton {
+      background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+      background-size: 200% 100%;
+      animation: skeleton 1.5s infinite;
+    }
 
-        @keyframes skeleton {
-            0% { background-position: 200% 0; }
-            100% { background-position: -200% 0; }
-        }
-    </style>
-<base target="_blank">
+    @keyframes skeleton {
+      0% { background-position: 200% 0; }
+      100% { background-position: -200% 0; }
+    }
+  </style>
 </head>
 <body class="bg-gray-50 text-gray-900 dark:bg-gray-900 dark:text-gray-100 transition-colors duration-300 pb-28">
 
-    <!-- Offline indicator -->
-    <div id="offline-bar" class="hidden fixed top-0 left-0 right-0 bg-amber-500 text-white text-center text-xs py-1 z-50">
-        ⚠️ Offline rejim - ma'lumotlar keyin sinxronlanadi
+  <!-- Offline indicator -->
+  <div id="offline-bar" class="hidden fixed top-0 left-0 right-0 bg-amber-500 text-white text-center text-xs py-1 z-50">
+    ⚠️ Offline rejim - ma'lumotlar keyin sinxronlanadi
+  </div>
+
+  <!-- Ilova Konteyneri -->
+  <div class="max-w-lg mx-auto p-4 space-y-4">
+
+    <!-- Yuqori panel -->
+    <div class="glass sticky top-0 z-40 p-4 rounded-2xl shadow-sm border border-gray-200 dark:border-gray-700 flex justify-between items-center">
+      <div>
+        <h1 class="text-xs text-gray-400 dark:text-gray-500 font-medium tracking-wider">O'QUV MARKAZI MOLIYASI</h1>
+        <p id="user-name" class="text-base font-bold">Direktor</p>
+      </div>
+      <div class="flex items-center gap-2">
+        <button onclick="toggleTheme()" class="p-2 rounded-xl hover:bg-gray-100 dark:hover:bg-gray-700 transition">
+          <span id="theme-icon">🌙</span>
+        </button>
+        <span class="bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 text-xs px-2.5 py-1 rounded-full font-semibold">v2.0</span>
+      </div>
     </div>
 
-    <!-- Ilova Konteyneri -->
-    <div class="max-w-lg mx-auto p-4 space-y-4">
+    <!-- DASHBOARD -->
+    <div id="page-dashboard" class="space-y-4 slide-up">
+      <!-- Asosiy statistikalar -->
+      <div class="grid grid-cols-2 gap-3">
+        <div class="bg-emerald-50 dark:bg-emerald-900/20 border border-emerald-100 dark:border-emerald-800 p-4 rounded-2xl card-hover">
+          <span class="text-xs text-emerald-600 dark:text-emerald-400 font-medium block">Umumiy Tushum</span>
+          <span id="dash-income" class="text-xl font-black text-emerald-700 dark:text-emerald-300">0 so'm</span>
+          <span id="income-trend" class="text-[10px] text-emerald-500 block mt-1"></span>
+        </div>
+        <div class="bg-rose-50 dark:bg-rose-900/20 border border-rose-100 dark:border-rose-800 p-4 rounded-2xl card-hover">
+          <span class="text-xs text-rose-600 dark:text-rose-400 font-medium block">Jami Xarajatlar</span>
+          <span id="dash-expense" class="text-xl font-black text-rose-700 dark:text-rose-300">0 so'm</span>
+          <span id="expense-trend" class="text-[10px] text-rose-500 block mt-1"></span>
+        </div>
+      </div>
 
-        <!-- Yuqori panel -->
-        <div class="glass sticky top-0 z-40 p-4 rounded-2xl shadow-sm border border-gray-200 dark:border-gray-700 flex justify-between items-center">
+      <!-- Sof Foyda -->
+      <div id="dash-profit-card" class="p-5 rounded-2xl border flex justify-between items-center card-hover">
+        <div>
+          <span class="text-xs font-medium block opacity-75">Sof Foyda / Zarar</span>
+          <span id="dash-profit" class="text-3xl font-black">0 so'm</span>
+          <span id="profit-margin" class="text-xs block mt-1 opacity-75"></span>
+        </div>
+        <span id="dash-status" class="text-xs px-4 py-2 rounded-full font-bold">Hisoblanmoqda...</span>
+      </div>
+
+      <!-- Grafik -->
+      <div class="bg-white dark:bg-gray-800 p-4 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700">
+        <h3 class="text-sm font-bold mb-3">📈 Oylik dinamika</h3>
+        <canvas id="finance-chart" height="180"></canvas>
+      </div>
+
+      <!-- Zarar guruhlar -->
+      <div class="bg-white dark:bg-gray-800 p-4 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700">
+        <h3 class="text-sm font-bold text-gray-800 dark:text-gray-200 mb-3 flex items-center gap-2">
+          ⚠️ Zarar ko'rayotgan guruhlar
+        </h3>
+        <div id="dashboard-danger-groups" class="space-y-2 text-xs"></div>
+      </div>
+
+      <!-- Tezkor statistika -->
+      <div class="grid grid-cols-3 gap-2">
+        <div class="bg-white dark:bg-gray-800 p-3 rounded-xl border border-gray-100 dark:border-gray-700 text-center">
+          <span id="stat-groups" class="text-lg font-bold text-blue-600 dark:text-blue-400 block">0</span>
+          <span class="text-[10px] text-gray-500">Guruhlar</span>
+        </div>
+        <div class="bg-white dark:bg-gray-800 p-3 rounded-xl border border-gray-100 dark:border-gray-700 text-center">
+          <span id="stat-students" class="text-lg font-bold text-blue-600 dark:text-blue-400 block">0</span>
+          <span class="text-[10px] text-gray-500">O'quvchilar</span>
+        </div>
+        <div class="bg-white dark:bg-gray-800 p-3 rounded-xl border border-gray-100 dark:border-gray-700 text-center">
+          <span id="stat-avg" class="text-lg font-bold text-blue-600 dark:text-blue-400 block">0</span>
+          <span class="text-[10px] text-gray-500">O'rtacha</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- GURUHLAR -->
+    <div id="page-groups" class="space-y-4 hidden">
+      <div class="bg-white dark:bg-gray-800 p-4 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700">
+        <h2 class="text-base font-bold mb-3">➕ Yangi guruh qo'shish</h2>
+        <form id="group-form" class="space-y-3 text-sm" onsubmit="saveGroup(event)">
+          <input type="text" id="g-name" placeholder="Guruh nomi (IELTS 1)" class="w-full p-3 border dark:border-gray-600 dark:bg-gray-700 rounded-xl outline-none focus:ring-2 focus:ring-blue-500 transition" required>
+          <div class="grid grid-cols-2 gap-2">
+            <input type="number" id="g-price" placeholder="Kurs narxi (so'm)" class="w-full p-3 border dark:border-gray-600 dark:bg-gray-700 rounded-xl outline-none focus:ring-2 focus:ring-blue-500 transition" required>
+            <input type="number" id="g-percent" placeholder="O'qituvchi %" class="w-full p-3 border dark:border-gray-600 dark:bg-gray-700 rounded-xl outline-none focus:ring-2 focus:ring-blue-500 transition" max="100" required>
+          </div>
+          <div class="grid grid-cols-2 gap-2">
+            <input type="number" id="g-students" placeholder="O'quvchilar soni" class="w-full p-3 border dark:border-gray-600 dark:bg-gray-700 rounded-xl outline-none focus:ring-2 focus:ring-blue-500 transition" required>
+            <input type="number" id="g-min" placeholder="Min. o'quvchi" class="w-full p-3 border dark:border-gray-600 dark:bg-gray-700 rounded-xl outline-none focus:ring-2 focus:ring-blue-500 transition" required>
+          </div>
+          <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white p-3 rounded-xl font-bold transition active:scale-95">
+            Guruhni saqlash
+          </button>
+        </form>
+      </div>
+
+      <div class="space-y-3">
+        <div class="flex justify-between items-center">
+          <h3 class="text-sm font-bold text-gray-700 dark:text-gray-300">Guruhlar ro'yxati</h3>
+          <button onclick="exportGroups()" class="text-xs bg-gray-100 dark:bg-gray-700 px-3 py-1 rounded-lg hover:bg-gray-200 transition">
+            📥 Export
+          </button>
+        </div>
+        <div id="groups-list" class="space-y-3"></div>
+      </div>
+    </div>
+
+    <!-- KASSA -->
+    <div id="page-kassa" class="space-y-4 hidden">
+      <div class="bg-white dark:bg-gray-800 p-4 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700">
+        <h2 class="text-base font-bold mb-3">💸 Xarajat kiritish</h2>
+        <form id="expense-form" class="space-y-3 text-sm" onsubmit="saveExpense(event)">
+          <input type="number" id="e-amount" placeholder="Xarajat summasi (so'm)" class="w-full p-3 border dark:border-gray-600 dark:bg-gray-700 rounded-xl outline-none focus:ring-2 focus:ring-rose-500 transition" required>
+          <select id="e-cat" class="w-full p-3 border dark:border-gray-600 dark:bg-gray-700 rounded-xl bg-white dark:bg-gray-700 outline-none focus:ring-2 focus:ring-rose-500 transition">
+            <option value="Rent">🏢 Xona ijarasi</option>
+            <option value="Marketing">📢 Reklama va Marketing</option>
+            <option value="Taxes">📋 Soliqlar</option>
+            <option value="Utilities">⚡ Kommunal xizmatlar</option>
+            <option value="Salary">👨‍🏫 Qo'chimcha oylik</option>
+            <option value="Other">📦 Boshqa xarajatlar</option>
+          </select>
+          <input type="text" id="e-desc" placeholder="Izoh (ixtiyoriy)" class="w-full p-3 border dark:border-gray-600 dark:bg-gray-700 rounded-xl outline-none focus:ring-2 focus:ring-rose-500 transition">
+          <button type="submit" class="w-full bg-rose-600 hover:bg-rose-700 text-white p-3 rounded-xl font-bold transition active:scale-95">
+            Xarajatni qayd etish
+          </button>
+        </form>
+      </div>
+
+      <div class="bg-white dark:bg-gray-800 p-4 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700">
+        <div class="flex justify-between items-center mb-3">
+          <h3 class="text-sm font-bold">Oxirgi operatsiyalar</h3>
+          <button onclick="clearAllExpenses()" class="text-xs text-rose-500 hover:text-rose-600">Tozalash</button>
+        </div>
+        <div id="transactions-list" class="space-y-2 text-xs max-h-96 overflow-y-auto"></div>
+      </div>
+    </div>
+
+    <!-- SOZLAMALAR -->
+    <div id="page-settings" class="space-y-4 hidden">
+      <div class="bg-white dark:bg-gray-800 p-4 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 space-y-4">
+        <h2 class="text-base font-bold">⚙️ Sozlamalar</h2>
+
+        <div class="space-y-3">
+          <div class="flex justify-between items-center p-3 bg-gray-50 dark:bg-gray-700 rounded-xl">
+            <span class="text-sm">🌙 Qorong'u rejim</span>
+            <button onclick="toggleTheme()" id="theme-toggle" class="w-12 h-6 bg-gray-300 dark:bg-blue-600 rounded-full relative transition">
+              <span class="absolute left-1 top-1 w-4 h-4 bg-white rounded-full transition transform dark:translate-x-6"></span>
+            </button>
+          </div>
+
+          <div class="flex justify-between items-center p-3 bg-gray-50 dark:bg-gray-700 rounded-xl">
+            <span class="text-sm">📊 Hisobot chiqarish</span>
+            <button onclick="printReport()" class="bg-blue-600 text-white px-4 py-2 rounded-lg text-xs font-bold">Print</button>
+          </div>
+
+          <div class="flex justify-between items-center p-3 bg-gray-50 dark:bg-gray-700 rounded-xl">
+            <span class="text-sm">💾 Ma'lumotlarni eksport</span>
+            <button onclick="exportAllData()" class="bg-emerald-600 text-white px-4 py-2 rounded-lg text-xs font-bold">JSON</button>
+          </div>
+
+          <div class="p-3 bg-gray-50 dark:bg-gray-700 rounded-xl space-y-2">
+            <span class="text-sm block">📥 Ma'lumotlarni import</span>
+            <input type="file" id="import-file" accept=".json" onchange="importData(this)" class="text-xs w-full">
+          </div>
+
+          <div class="p-3 bg-rose-50 dark:bg-rose-900/20 border border-rose-100 dark:border-rose-800 rounded-xl">
+            <span class="text-sm block text-rose-700 dark:text-rose-400 font-medium mb-2">⚠️ Xavfli zona</span>
+            <button onclick="resetAllData()" class="w-full bg-rose-600 text-white p-2 rounded-lg text-xs font-bold hover:bg-rose-700 transition">
+              Barcha ma'lumotlarni o'chirish
+            </button>
+          </div>
+        </div>
+
+        <div class="text-center text-xs text-gray-400 pt-4 border-t dark:border-gray-700">
+          <p>v2.0 Production | IndexedDB + PWA</p>
+          <p id="storage-info" class="mt-1"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PRINT REPORT (hidden) -->
+  <div id="print-report" class="print-only">
+    <h1 style="text-align:center; font-size:24px; margin-bottom:20px;">O'QUV MARKAZI MOLIYAVIY HISOBOTI</h1>
+    <p style="text-align:center; color:#666;" id="print-date"></p>
+    <hr style="margin:20px 0;">
+    <div id="print-content"></div>
+  </div>
+
+  <!-- NAVIGATSIYA -->
+  <div class="fixed bottom-0 left-0 right-0 bg-white/90 dark:bg-gray-900/90 backdrop-blur-lg border-t border-gray-200 dark:border-gray-700 py-2 px-4 shadow-2xl flex justify-around max-w-lg mx-auto z-50 rounded-t-3xl no-print">
+    <button onclick="switchTab('dashboard')" class="flex flex-col items-center gap-0.5 p-2 rounded-xl transition" id="btn-dashboard">
+      <span class="text-xl">📊</span>
+      <span class="text-[10px] font-medium">Bosh sahifa</span>
+    </button>
+    <button onclick="switchTab('groups')" class="flex flex-col items-center gap-0.5 p-2 rounded-xl transition" id="btn-groups">
+      <span class="text-xl">🏫</span>
+      <span class="text-[10px] font-medium">Guruhlar</span>
+    </button>
+    <button onclick="switchTab('kassa')" class="flex flex-col items-center gap-0.5 p-2 rounded-xl transition" id="btn-kassa">
+      <span class="text-xl">💰</span>
+      <span class="text-[10px] font-medium">Kassa</span>
+    </button>
+    <button onclick="switchTab('settings')" class="flex flex-col items-center gap-0.5 p-2 rounded-xl transition" id="btn-settings">
+      <span class="text-xl">⚙️</span>
+      <span class="text-[10px] font-medium">Sozlamalar</span>
+    </button>
+  </div>
+
+  <!-- TOAST NOTIFICATION -->
+  <div id="toast" class="fixed top-20 left-1/2 transform -translate-x-1/2 bg-gray-800 dark:bg-gray-700 text-white px-6 py-3 rounded-xl shadow-xl z-50 transition-all duration-300 opacity-0 pointer-events-none translate-y-[-20px]">
+    <span id="toast-msg"></span>
+  </div>
+
+  <!-- CONFIRM MODAL -->
+  <div id="modal" class="fixed inset-0 bg-black/50 z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-white dark:bg-gray-800 rounded-2xl p-6 max-w-sm w-full shadow-2xl transform scale-95 transition-transform">
+      <h3 id="modal-title" class="text-lg font-bold mb-2">Tasdiqlash</h3>
+      <p id="modal-text" class="text-sm text-gray-600 dark:text-gray-300 mb-4"></p>
+      <div class="flex gap-2">
+        <button onclick="closeModal()" class="flex-1 py-2 rounded-xl border dark:border-gray-600 text-sm font-medium">Bekor</button>
+        <button id="modal-confirm" class="flex-1 py-2 rounded-xl bg-rose-600 text-white text-sm font-bold">O'chirish</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // =====================
+    // TELEGRAM WEBAPP
+    // =====================
+    const tg = window.Telegram?.WebApp;
+    if(tg) {
+      tg.ready();
+      tg.expand();
+      tg.enableClosingConfirmation();
+      if(tg.initDataUnsafe?.user) {
+        document.getElementById('user-name').innerText = tg.initDataUnsafe.user.first_name || 'Direktor';
+      }
+      // Set theme
+      if(tg.colorScheme === 'dark') {
+        document.documentElement.classList.add('dark');
+      }
+    }
+
+    // =====================
+    // INDEXEDDB SETUP
+    // =====================
+    const DB_NAME = 'EduMoliyaDB';
+    const DB_VERSION = 1;
+    let db;
+
+    function openDB() {
+      return new Promise((resolve, reject) => {
+        const request = indexedDB.open(DB_NAME, DB_VERSION);
+        request.onerror = () => reject(request.error);
+        request.onsuccess = () => { db = request.result; resolve(db); };
+        request.onupgradeneeded = (e) => {
+          const database = e.target.result;
+          if(!database.objectStoreNames.contains('groups')) {
+            database.createObjectStore('groups', { keyPath: 'id' });
+          }
+          if(!database.objectStoreNames.contains('expenses')) {
+            database.createObjectStore('expenses', { keyPath: 'id' });
+          }
+          if(!database.objectStoreNames.contains('history')) {
+            database.createObjectStore('history', { keyPath: 'date' });
+          }
+        };
+      });
+    }
+
+    async function saveToStore(storeName, data) {
+      if(!db) await openDB();
+      const tx = db.transaction(storeName, 'readwrite');
+      const store = tx.objectStore(storeName);
+      if(Array.isArray(data)) {
+        data.forEach(item => store.put(item));
+      } else {
+        store.put(data);
+      }
+      return tx.complete;
+    }
+
+    async function getAllFromStore(storeName) {
+      if(!db) await openDB();
+      return new Promise((resolve, reject) => {
+        const tx = db.transaction(storeName, 'readonly');
+        const store = tx.objectStore(storeName);
+        const request = store.getAll();
+        request.onsuccess = () => resolve(request.result);
+        request.onerror = () => reject(request.error);
+      });
+    }
+
+    async function deleteFromStore(storeName, id) {
+      if(!db) await openDB();
+      const tx = db.transaction(storeName, 'readwrite');
+      tx.objectStore(storeName).delete(id);
+    }
+
+    async function clearStore(storeName) {
+      if(!db) await openDB();
+      const tx = db.transaction(storeName, 'readwrite');
+      tx.objectStore(storeName).clear();
+    }
+
+    // =====================
+    // STATE MANAGEMENT
+    // =====================
+    let appData = { groups: [], expenses: [] };
+    let chartInstance = null;
+
+    async function loadData() {
+      try {
+        const groups = await getAllFromStore('groups');
+        const expenses = await getAllFromStore('expenses');
+        appData = { groups: groups || [], expenses: expenses || [] };
+      } catch(e) {
+        // Fallback to localStorage
+        const saved = localStorage.getItem('edu_moliya_db');
+        if(saved) appData = JSON.parse(saved);
+      }
+      calculateMoliya();
+    }
+
+    async function persistData() {
+      try {
+        await clearStore('groups');
+        await clearStore('expenses');
+        await saveToStore('groups', appData.groups);
+        await saveToStore('expenses', appData.expenses);
+        // Backup to localStorage
+        localStorage.setItem('edu_moliya_db', JSON.stringify(appData));
+        // Save history snapshot
+        const snapshot = {
+          date: new Date().toISOString(),
+          income: appData.groups.reduce((s,g)=>s+g.price*g.students,0),
+          expense: appData.expenses.reduce((s,e)=>s+e.amount,0) + appData.groups.reduce((s,g)=>s+(g.price*g.students*g.percent/100),0)
+        };
+        await saveToStore('history', snapshot);
+      } catch(e) {
+        localStorage.setItem('edu_moliya_db', JSON.stringify(appData));
+      }
+      calculateMoliya();
+    }
+
+    // =====================
+    // UI HELPERS
+    // =====================
+    function showToast(msg, type='success') {
+      const toast = document.getElementById('toast');
+      const toastMsg = document.getElementById('toast-msg');
+      toastMsg.innerText = msg;
+      toast.className = `fixed top-20 left-1/2 transform -translate-x-1/2 px-6 py-3 rounded-xl shadow-xl z-50 transition-all duration-300 ${type==='error'?'bg-rose-600':'bg-gray-800 dark:bg-gray-700'} text-white`;
+      toast.style.opacity = '1';
+      toast.style.transform = 'translateX(-50%) translateY(0)';
+      setTimeout(() => {
+        toast.style.opacity = '0';
+        toast.style.transform = 'translateX(-50%) translateY(-20px)';
+      }, 2500);
+    }
+
+    function showModal(title, text, onConfirm) {
+      document.getElementById('modal-title').innerText = title;
+      document.getElementById('modal-text').innerText = text;
+      document.getElementById('modal').classList.remove('hidden');
+      document.getElementById('modal-confirm').onclick = () => {
+        onConfirm();
+        closeModal();
+      };
+    }
+
+    function closeModal() {
+      document.getElementById('modal').classList.add('hidden');
+    }
+
+    function toggleTheme() {
+      document.documentElement.classList.toggle('dark');
+      const isDark = document.documentElement.classList.contains('dark');
+      document.getElementById('theme-icon').innerText = isDark ? '☀️' : '🌙';
+      localStorage.setItem('theme', isDark ? 'dark' : 'light');
+    }
+
+    // =====================
+    // NAVIGATION
+    // =====================
+    function switchTab(tabName) {
+      const pages = ['dashboard', 'groups', 'kassa', 'settings'];
+      pages.forEach(p => {
+        document.getElementById(`page-${p}`).classList.add('hidden');
+        const btn = document.getElementById(`btn-${p}`);
+        btn.classList.remove('text-blue-600', 'dark:text-blue-400', 'bg-blue-50', 'dark:bg-blue-900/20');
+        btn.classList.add('text-gray-400');
+      });
+      document.getElementById(`page-${tabName}`).classList.remove('hidden');
+      const activeBtn = document.getElementById(`btn-${tabName}`);
+      activeBtn.classList.remove('text-gray-400');
+      activeBtn.classList.add('text-blue-600', 'dark:text-blue-400', 'bg-blue-50', 'dark:bg-blue-900/20');
+
+      if(tabName === 'dashboard') renderChart();
+      if(tabName === 'settings') updateStorageInfo();
+    }
+
+    // =====================
+    // GROUPS
+    // =====================
+    function saveGroup(e) {
+      e.preventDefault();
+      const group = {
+        id: Date.now(),
+        name: document.getElementById('g-name').value,
+        price: parseFloat(document.getElementById('g-price').value),
+        percent: parseFloat(document.getElementById('g-percent').value),
+        students: parseInt(document.getElementById('g-students').value),
+        minStudents: parseInt(document.getElementById('g-min').value),
+        createdAt: new Date().toISOString()
+      };
+      appData.groups.push(group);
+      persistData();
+      document.getElementById('group-form').reset();
+      showToast("Guruh muvaffaqiyatli qo'shildi!");
+    }
+
+    function deleteGroup(id) {
+      showModal("Guruhni o'chirish", "Bu guruhni o'chirishni xohlaysizmi?", () => {
+        appData.groups = appData.groups.filter(g => g.id !== id);
+        persistData();
+        showToast("Guruh o'chirildi");
+      });
+    }
+
+    function editGroup(id) {
+      const g = appData.groups.find(x => x.id === id);
+      if(!g) return;
+      document.getElementById('g-name').value = g.name;
+      document.getElementById('g-price').value = g.price;
+      document.getElementById('g-percent').value = g.percent;
+      document.getElementById('g-students').value = g.students;
+      document.getElementById('g-min').value = g.minStudents;
+      appData.groups = appData.groups.filter(x => x.id !== id);
+      switchTab('groups');
+      showToast("Tahrirlash rejimi. O'zgartirishlarni saqlang.", 'error');
+    }
+
+    // =====================
+    // EXPENSES
+    // =====================
+    function saveExpense(e) {
+      e.preventDefault();
+      const expense = {
+        id: Date.now(),
+        amount: parseFloat(document.getElementById('e-amount').value),
+        category: document.getElementById('e-cat').value,
+        description: document.getElementById('e-desc').value || '',
+        date: new Date().toLocaleDateString('uz-UZ'),
+        timestamp: Date.now()
+      };
+      appData.expenses.push(expense);
+      persistData();
+      document.getElementById('expense-form').reset();
+      showToast("Xarajat qayd etildi!");
+    }
+
+    function deleteExpense(id) {
+      appData.expenses = appData.expenses.filter(e => e.id !== id);
+      persistData();
+      showToast("Xarajat o'chirildi");
+    }
+
+    function clearAllExpenses() {
+      showModal('Xarajatlarni tozalash', 'Barcha xarajatlar o\'chiriladi. Davom etasizmi?', () => {
+        appData.expenses = [];
+        persistData();
+        showToast('Barcha xarajatlar tozalandi');
+      });
+    }
+
+    // =====================
+    // MAIN CALCULATION
+    // =====================
+    async function calculateMoliya() {
+      let jamiTushum = 0, jamiOqituvchi = 0, jamiXarajat = 0;
+      let groupsHTML = '', dangerHTML = '';
+      let totalStudents = 0;
+
+      appData.groups.forEach(g => {
+        const daromad = g.price * g.students;
+        const oylik = (daromad * g.percent) / 100;
+        const sof = daromad - oylik;
+        const isZarar = g.students < g.minStudents;
+
+        jamiTushum += daromad;
+        jamiOqituvchi += oylik;
+        totalStudents += g.students;
+
+        groupsHTML += `
+          <div class="bg-white dark:bg-gray-800 p-4 rounded-2xl shadow-sm border ${isZarar?'border-rose-200 dark:border-rose-800 bg-rose-50/20 dark:bg-rose-900/10':'border-gray-100 dark:border-gray-700'} card-hover">
+            <div class="flex justify-between items-start">
+              <div>
+                <h4 class="font-bold text-gray-800 dark:text-gray-200">${g.name}</h4>
+                <p class="text-xs text-gray-500 dark:text-gray-400">${g.students} / ${g.minStudents} o'quvchi</p>
+              </div>
+              <div class="flex gap-1">
+                <span class="text-xs font-bold px-2 py-0.5 rounded-full ${isZarar?'bg-rose-100 dark:bg-rose-900/30 text-rose-700 dark:text-rose-400':'bg-emerald-100 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-400'}">
+                  ${isZarar?'🔴 Zararda':'🟢 Rentabel'}
+                </span>
+              </div>
+            </div>
+            <div class="mt-3 pt-3 border-t border-gray-100 dark:border-gray-700 grid grid-cols-2 gap-2 text-xs">
+              <div><span class="text-gray-400">Markaz:</span> <b class="dark:text-gray-300">${sof.toLocaleString()} so'm</b></div>
+              <div><span class="text-gray-400">O'qituvchi:</span> <b class="dark:text-gray-300">${oylik.toLocaleString()} so'm</b></div>
+            </div>
+            <div class="mt-2 flex gap-2">
+              <button onclick="editGroup(${g.id})" class="text-xs bg-gray-100 dark:bg-gray-700 px-2 py-1 rounded-lg">✏️ Tahrirlash</button>
+              <button onclick="deleteGroup(${g.id})" class="text-xs bg-rose-50 dark:bg-rose-900/20 text-rose-600 px-2 py-1 rounded-lg">🗑️ O'chirish</button>
+            </div>
+          </div>
+        `;
+
+        if(isZarar) {
+          dangerHTML += `
+            <div class="flex justify-between items-center bg-rose-50 dark:bg-rose-900/20 p-3 rounded-xl border border-rose-100 dark:border-rose-800">
+              <span class="text-rose-800 dark:text-rose-400 font-medium text-xs">📉 ${g.name}</span>
+              <span class="text-rose-600 text-xs font-bold">-${g.minStudents-g.students} ta yetishmayapti</span>
+            </div>
+          `;
+        }
+      });
+
+      appData.expenses.forEach(e => jamiXarajat += e.amount);
+      const umumiyXarajat = jamiOqituvchi + jamiXarajat;
+      const sofFoyda = jamiTushum - umumiyXarajat;
+      const margin = jamiTushum > 0 ? ((sofFoyda / jamiTushum) * 100).toFixed(1) : 0;
+
+      // Dashboard
+      document.getElementById('dash-income').innerText = jamiTushum.toLocaleString() + " so'm";
+      document.getElementById('dash-expense').innerText = umumiyXarajat.toLocaleString() + " so'm";
+      document.getElementById('dash-profit').innerText = sofFoyda.toLocaleString() + " so'm";
+      document.getElementById('profit-margin').innerText = `Marja: ${margin}%`;
+
+      const profitCard = document.getElementById('dash-profit-card');
+      const statusLabel = document.getElementById('dash-status');
+
+      if(sofFoyda >= 0) {
+        profitCard.className = "p-5 rounded-2xl border bg-emerald-600 border-emerald-700 text-white card-hover";
+        statusLabel.className = "text-xs px-4 py-2 rounded-full font-bold bg-white text-emerald-700";
+        statusLabel.innerText = "✅ Biznes Foydada";
+      } else {
+        profitCard.className = "p-5 rounded-2xl border bg-rose-600 border-rose-700 text-white card-hover pulse-ring";
+        statusLabel.className = "text-xs px-4 py-2 rounded-full font-bold bg-white text-rose-700";
+        statusLabel.innerText = "❌ Biznes Zararda";
+      }
+
+      // Stats
+      document.getElementById('stat-groups').innerText = appData.groups.length;
+      document.getElementById('stat-students').innerText = totalStudents;
+      document.getElementById('stat-avg').innerText = appData.groups.length > 0 ? Math.round(totalStudents/appData.groups.length) : 0;
+
+      // Lists
+      document.getElementById('groups-list').innerHTML = groupsHTML || '<div class="text-center text-gray-400 py-8">🏫 Hozircha guruhlar yo\'q</div>';
+      document.getElementById('dashboard-danger-groups').innerHTML = dangerHTML || '<div class="text-emerald-600 dark:text-emerald-400 text-center py-2">🟢 Hamma guruhlar yaxshi!</div>';
+
+      // Transactions
+      let txHTML = '';
+      if(jamiOqituvchi > 0) {
+        txHTML += `<div class="flex justify-between p-3 bg-gray-50 dark:bg-gray-700 rounded-lg"><span>👨‍🏫 O'qituvchilar oyligi</span><span class="text-rose-600 font-bold">-${jamiOqituvchi.toLocaleString()} so'm</span></div>`;
+      }
+      [...appData.expenses].sort((a,b)=>b.timestamp-a.timestamp).forEach(e => {
+        txHTML += `
+          <div class="flex justify-between items-center p-3 bg-gray-50 dark:bg-gray-700 rounded-lg group">
             <div>
-                <h1 class="text-xs text-gray-400 dark:text-gray-500 font-medium tracking-wider">O'QUV MARKAZI MOLIYASI</h1>
-                <p id="user-name" class="text-base font-bold">Direktor</p>
+              <span class="font-medium">${e.category} ${e.description?'- '+e.description:''}</span>
+              <span class="text-gray-400 text-[10px] block">${e.date}</span>
             </div>
             <div class="flex items-center gap-2">
-                <button onclick="toggleTheme()" class="p-2 rounded-xl hover:bg-gray-100 dark:hover:bg-gray-700 transition">
-                    <span id="theme-icon">🌙</span>
-                </button>
-                <span class="bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 text-xs px-2.5 py-1 rounded-full font-semibold">v2.0</span>
+              <span class="text-rose-600 font-bold">-${e.amount.toLocaleString()} so'm</span>
+              <button onclick="deleteExpense(${e.id})" class="opacity-0 group-hover:opacity-100 text-rose-400 hover:text-rose-600 transition">✕</button>
             </div>
-        </div>
-
-        <!-- DASHBOARD -->
-        <div id="page-dashboard" class="space-y-4 slide-up">
-            <!-- Asosiy statistikalar -->
-            <div class="grid grid-cols-2 gap-3">
-                <div class="bg-emerald-50 dark:bg-emerald-900/20 border border-emerald-100 dark:border-emerald-800 p-4 rounded-2xl card-hover">
-                    <span class="text-xs text-emerald-600 dark:text-emerald-400 font-medium block">Umumiy Tushum</span>
-                    <span id="dash-income" class="text-xl font-black text-emerald-700 dark:text-emerald-300">0 so'm</span>
-                    <span id="income-trend" class="text-[10px] text-emerald-500 block mt-1"></span>
-                </div>
-                <div class="bg-rose-50 dark:bg-rose-900/20 border border-rose-100 dark:border-rose-800 p-4 rounded-2xl card-hover">
-                    <span class="text-xs text-rose-600 dark:text-rose-400 font-medium block">Jami Xarajatlar</span>
-                    <span id="dash-expense" class="text-xl font-black text-rose-700 dark:text-rose-300">0 so'm</span>
-                    <span id="expense-trend" class="text-[10px] text-rose-500 block mt-1"></span>
-                </div>
-            </div>
-
-            <!-- Sof Foyda -->
-            <div id="dash-profit-card" class="p-5 rounded-2xl border flex justify-between items-center card-hover">
-                <div>
-                    <span class="text-xs font-medium block opacity-75">Sof Foyda / Zarar</span>
-                    <span id="dash-profit" class="text-3xl font-black">0 so'm</span>
-                    <span id="profit-margin" class="text-xs block mt-1 opacity-75"></span>
-                </div>
-                <span id="dash-status" class="text-xs px-4 py-2 rounded-full font-bold">Hisoblanmoqda...</span>
-            </div>
-
-            <!-- Grafik -->
-            <div class="bg-white dark:bg-gray-800 p-4 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700">
-                <h3 class="text-sm font-bold mb-3">📈 Oylik dinamika</h3>
-                <canvas id="finance-chart" height="180"></canvas>
-            </div>
-
-            <!-- Zarar guruhlar -->
-            <div class="bg-white dark:bg-gray-800 p-4 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700">
-                <h3 class="text-sm font-bold text-gray-800 dark:text-gray-200 mb-3 flex items-center gap-2">
-                    ⚠️ Zarar ko'rayotgan guruhlar
-                </h3>
-                <div id="dashboard-danger-groups" class="space-y-2 text-xs"></div>
-            </div>
-
-            <!-- Tezkor statistika -->
-            <div class="grid grid-cols-3 gap-2">
-                <div class="bg-white dark:bg-gray-800 p-3 rounded-xl border border-gray-100 dark:border-gray-700 text-center">
-                    <span id="stat-groups" class="text-lg font-bold text-blue-600 dark:text-blue-400 block">0</span>
-                    <span class="text-[10px] text-gray-500">Guruhlar</span>
-                </div>
-                <div class="bg-white dark:bg-gray-800 p-3 rounded-xl border border-gray-100 dark:border-gray-700 text-center">
-                    <span id="stat-students" class="text-lg font-bold text-blue-600 dark:text-blue-400 block">0</span>
-                    <span class="text-[10px] text-gray-500">O'quvchilar</span>
-                </div>
-                <div class="bg-white dark:bg-gray-800 p-3 rounded-xl border border-gray-100 dark:border-gray-700 text-center">
-                    <span id="stat-avg" class="text-lg font-bold text-blue-600 dark:text-blue-400 block">0</span>
-                    <span class="text-[10px] text-gray-500">O'rtacha</span>
-                </div>
-            </div>
-        </div>
-
-        <!-- GURUHLAR -->
-        <div id="page-groups" class="space-y-4 hidden">
-            <div class="bg-white dark:bg-gray-800 p-4 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700">
-                <h2 class="text-base font-bold mb-3">➕ Yangi guruh qo'shish</h2>
-                <form id="group-form" class="space-y-3 text-sm" onsubmit="saveGroup(event)">
-                    <input type="text" id="g-name" placeholder="Guruh nomi (IELTS 1)" class="w-full p-3 border dark:border-gray-600 dark:bg-gray-700 rounded-xl outline-none focus:ring-2 focus:ring-blue-500 transition" required>
-                    <div class="grid grid-cols-2 gap-2">
-                        <input type="number" id="g-price" placeholder="Kurs narxi (so'm)" class="w-full p-3 border dark:border-gray-600 dark:bg-gray-700 rounded-xl outline-none focus:ring-2 focus:ring-blue-500 transition" required>
-                        <input type="number" id="g-percent" placeholder="O'qituvchi %" class="w-full p-3 border dark:border-gray-600 dark:bg-gray-700 rounded-xl outline-none focus:ring-2 focus:ring-blue-500 transition" max="100" required>
-                    </div>
-                    <div class="grid grid-cols-2 gap-2">
-                        <input type="number" id="g-students" placeholder="O'quvchilar soni" class="w-full p-3 border dark:border-gray-600 dark:bg-gray-700 rounded-xl outline-none focus:ring-2 focus:ring-blue-500 transition" required>
-                        <input type="number" id="g-min" placeholder="Min. o'quvchi" class="w-full p-3 border dark:border-gray-600 dark:bg-gray-700 rounded-xl outline-none focus:ring-2 focus:ring-blue-500 transition" required>
-                    </div>
-                    <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white p-3 rounded-xl font-bold transition active:scale-95">
-                        Guruhni saqlash
-                    </button>
-                </form>
-            </div>
-
-            <div class="space-y-3">
-                <div class="flex justify-between items-center">
-                    <h3 class="text-sm font-bold text-gray-700 dark:text-gray-300">Guruhlar ro'yxati</h3>
-                    <button onclick="exportGroups()" class="text-xs bg-gray-100 dark:bg-gray-700 px-3 py-1 rounded-lg hover:bg-gray-200 transition">
-                        📥 Export
-                    </button>
-                </div>
-                <div id="groups-list" class="space-y-3"></div>
-            </div>
-        </div>
-
-        <!-- KASSA -->
-        <div id="page-kassa" class="space-y-4 hidden">
-            <div class="bg-white dark:bg-gray-800 p-4 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700">
-                <h2 class="text-base font-bold mb-3">💸 Xarajat kiritish</h2>
-                <form id="expense-form" class="space-y-3 text-sm" onsubmit="saveExpense(event)">
-                    <input type="number" id="e-amount" placeholder="Xarajat summasi (so'm)" class="w-full p-3 border dark:border-gray-600 dark:bg-gray-700 rounded-xl outline-none focus:ring-2 focus:ring-rose-500 transition" required>
-                    <select id="e-cat" class="w-full p-3 border dark:border-gray-600 dark:bg-gray-700 rounded-xl bg-white dark:bg-gray-700 outline-none focus:ring-2 focus:ring-rose-500 transition">
-                        <option value="Rent">🏢 Xona ijarasi</option>
-                        <option value="Marketing">📢 Reklama va Marketing</option>
-                        <option value="Taxes">📋 Soliqlar</option>
-                        <option value="Utilities">⚡ Kommunal xizmatlar</option>
-                        <option value="Salary">👨‍🏫 Qo'chimcha oylik</option>
-                        <option value="Other">📦 Boshqa xarajatlar</option>
-                    </select>
-                    <input type="text" id="e-desc" placeholder="Izoh (ixtiyoriy)" class="w-full p-3 border dark:border-gray-600 dark:bg-gray-700 rounded-xl outline-none focus:ring-2 focus:ring-rose-500 transition">
-                    <button type="submit" class="w-full bg-rose-600 hover:bg-rose-700 text-white p-3 rounded-xl font-bold transition active:scale-95">
-                        Xarajatni qayd etish
-                    </button>
-                </form>
-            </div>
-
-            <div class="bg-white dark:bg-gray-800 p-4 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700">
-                <div class="flex justify-between items-center mb-3">
-                    <h3 class="text-sm font-bold">Oxirgi operatsiyalar</h3>
-                    <button onclick="clearAllExpenses()" class="text-xs text-rose-500 hover:text-rose-600">Tozalash</button>
-                </div>
-                <div id="transactions-list" class="space-y-2 text-xs max-h-96 overflow-y-auto"></div>
-            </div>
-        </div>
-
-        <!-- SOZLAMALAR -->
-        <div id="page-settings" class="space-y-4 hidden">
-            <div class="bg-white dark:bg-gray-800 p-4 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 space-y-4">
-                <h2 class="text-base font-bold">⚙️ Sozlamalar</h2>
-
-                <div class="space-y-3">
-                    <div class="flex justify-between items-center p-3 bg-gray-50 dark:bg-gray-700 rounded-xl">
-                        <span class="text-sm">🌙 Qorong'u rejim</span>
-                        <button onclick="toggleTheme()" id="theme-toggle" class="w-12 h-6 bg-gray-300 dark:bg-blue-600 rounded-full relative transition">
-                            <span class="absolute left-1 top-1 w-4 h-4 bg-white rounded-full transition transform dark:translate-x-6"></span>
-                        </button>
-                    </div>
-
-                    <div class="flex justify-between items-center p-3 bg-gray-50 dark:bg-gray-700 rounded-xl">
-                        <span class="text-sm">📊 Hisobot chiqarish</span>
-                        <button onclick="printReport()" class="bg-blue-600 text-white px-4 py-2 rounded-lg text-xs font-bold">Print</button>
-                    </div>
-
-                    <div class="flex justify-between items-center p-3 bg-gray-50 dark:bg-gray-700 rounded-xl">
-                        <span class="text-sm">💾 Ma'lumotlarni eksport</span>
-                        <button onclick="exportAllData()" class="bg-emerald-600 text-white px-4 py-2 rounded-lg text-xs font-bold">JSON</button>
-                    </div>
-
-                    <div class="p-3 bg-gray-50 dark:bg-gray-700 rounded-xl space-y-2">
-                        <span class="text-sm block">📥 Ma'lumotlarni import</span>
-                        <input type="file" id="import-file" accept=".json" onchange="importData(this)" class="text-xs w-full">
-                    </div>
-
-                    <div class="p-3 bg-rose-50 dark:bg-rose-900/20 border border-rose-100 dark:border-rose-800 rounded-xl">
-                        <span class="text-sm block text-rose-700 dark:text-rose-400 font-medium mb-2">⚠️ Xavfli zona</span>
-                        <button onclick="resetAllData()" class="w-full bg-rose-600 text-white p-2 rounded-lg text-xs font-bold hover:bg-rose-700 transition">
-                            Barcha ma'lumotlarni o'chirish
-                        </button>
-                    </div>
-                </div>
-
-                <div class="text-center text-xs text-gray-400 pt-4 border-t dark:border-gray-700">
-                    <p>v2.0 Production | IndexedDB + PWA</p>
-                    <p id="storage-info" class="mt-1"></p>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- PRINT REPORT (hidden) -->
-    <div id="print-report" class="print-only">
-        <h1 style="text-align:center; font-size:24px; margin-bottom:20px;">O'QUV MARKAZI MOLIYAVIY HISOBOTI</h1>
-        <p style="text-align:center; color:#666;" id="print-date"></p>
-        <hr style="margin:20px 0;">
-        <div id="print-content"></div>
-    </div>
-
-    <!-- NAVIGATSIYA -->
-    <div class="fixed bottom-0 left-0 right-0 bg-white/90 dark:bg-gray-900/90 backdrop-blur-lg border-t border-gray-200 dark:border-gray-700 py-2 px-4 shadow-2xl flex justify-around max-w-lg mx-auto z-50 rounded-t-3xl no-print">
-        <button onclick="switchTab('dashboard')" class="flex flex-col items-center gap-0.5 p-2 rounded-xl transition" id="btn-dashboard">
-            <span class="text-xl">📊</span>
-            <span class="text-[10px] font-medium">Bosh sahifa</span>
-        </button>
-        <button onclick="switchTab('groups')" class="flex flex-col items-center gap-0.5 p-2 rounded-xl transition" id="btn-groups">
-            <span class="text-xl">🏫</span>
-            <span class="text-[10px] font-medium">Guruhlar</span>
-        </button>
-        <button onclick="switchTab('kassa')" class="flex flex-col items-center gap-0.5 p-2 rounded-xl transition" id="btn-kassa">
-            <span class="text-xl">💰</span>
-            <span class="text-[10px] font-medium">Kassa</span>
-        </button>
-        <button onclick="switchTab('settings')" class="flex flex-col items-center gap-0.5 p-2 rounded-xl transition" id="btn-settings">
-            <span class="text-xl">⚙️</span>
-            <span class="text-[10px] font-medium">Sozlamalar</span>
-        </button>
-    </div>
-
-    <!-- TOAST NOTIFICATION -->
-    <div id="toast" class="fixed top-20 left-1/2 transform -translate-x-1/2 bg-gray-800 dark:bg-gray-700 text-white px-6 py-3 rounded-xl shadow-xl z-50 transition-all duration-300 opacity-0 pointer-events-none translate-y-[-20px]">
-        <span id="toast-msg"></span>
-    </div>
-
-    <!-- CONFIRM MODAL -->
-    <div id="modal" class="fixed inset-0 bg-black/50 z-50 hidden flex items-center justify-center p-4">
-        <div class="bg-white dark:bg-gray-800 rounded-2xl p-6 max-w-sm w-full shadow-2xl transform scale-95 transition-transform">
-            <h3 id="modal-title" class="text-lg font-bold mb-2">Tasdiqlash</h3>
-            <p id="modal-text" class="text-sm text-gray-600 dark:text-gray-300 mb-4"></p>
-            <div class="flex gap-2">
-                <button onclick="closeModal()" class="flex-1 py-2 rounded-xl border dark:border-gray-600 text-sm font-medium">Bekor</button>
-                <button id="modal-confirm" class="flex-1 py-2 rounded-xl bg-rose-600 text-white text-sm font-bold">O'chirish</button>
-            </div>
-        </div>
-    </div>
-
-    <script>
-        // =====================
-        // TELEGRAM WEBAPP
-        // =====================
-        const tg = window.Telegram?.WebApp;
-        if(tg) {
-            tg.ready();
-            tg.expand();
-            tg.enableClosingConfirmation();
-            if(tg.initDataUnsafe?.user) {
-                document.getElementById('user-name').innerText = tg.initDataUnsafe.user.first_name || 'Direktor';
-            }
-            // Set theme
-            if(tg.colorScheme === 'dark') {
-                document.documentElement.classList.add('dark');
-            }
-        }
-
-        // =====================
-        // INDEXEDDB SETUP
-        // =====================
-        const DB_NAME = 'EduMoliyaDB';
-        const DB_VERSION = 1;
-        let db;
-
-        function openDB() {
-            return new Promise((resolve, reject) => {
-                const request = indexedDB.open(DB_NAME, DB_VERSION);
-                request.onerror = () => reject(request.error);
-                request.onsuccess = () => { db = request.result; resolve(db); };
-                request.onupgradeneeded = (e) => {
-                    const database = e.target.result;
-                    if(!database.objectStoreNames.contains('groups')) {
-                        database.createObjectStore('groups', { keyPath: 'id' });
-                    }
-                    if(!database.objectStoreNames.contains('expenses')) {
-                        database.createObjectStore('expenses', { keyPath: 'id' });
-                    }
-                    if(!database.objectStoreNames.contains('history')) {
-                        database.createObjectStore('history', { keyPath: 'date' });
-                    }
-                };
-            });
-        }
-
-        async function saveToStore(storeName, data) {
-            if(!db) await openDB();
-            const tx = db.transaction(storeName, 'readwrite');
-            const store = tx.objectStore(storeName);
-            if(Array.isArray(data)) {
-                data.forEach(item => store.put(item));
-            } else {
-                store.put(data);
-            }
-            return tx.complete;
-        }
-
-        async function getAllFromStore(storeName) {
-            if(!db) await openDB();
-            return new Promise((resolve, reject) => {
-                const tx = db.transaction(storeName, 'readonly');
-                const store = tx.objectStore(storeName);
-                const request = store.getAll();
-                request.onsuccess = () => resolve(request.result);
-                request.onerror = () => reject(request.error);
-            });
-        }
-
-        async function deleteFromStore(storeName, id) {
-            if(!db) await openDB();
-            const tx = db.transaction(storeName, 'readwrite');
-            tx.objectStore(storeName).delete(id);
-        }
-
-        async function clearStore(storeName) {
-            if(!db) await openDB();
-            const tx = db.transaction(storeName, 'readwrite');
-            tx.objectStore(storeName).clear();
-        }
-
-        // =====================
-        // STATE MANAGEMENT
-        // =====================
-        let appData = { groups: [], expenses: [] };
-        let chartInstance = null;
-
-        async function loadData() {
-            try {
-                const groups = await getAllFromStore('groups');
-                const expenses = await getAllFromStore('expenses');
-                appData = { groups: groups || [], expenses: expenses || [] };
-            } catch(e) {
-                // Fallback to localStorage
-                const saved = localStorage.getItem('edu_moliya_db');
-                if(saved) appData = JSON.parse(saved);
-            }
-            calculateMoliya();
-        }
-
-        async function persistData() {
-            try {
-                await clearStore('groups');
-                await clearStore('expenses');
-                await saveToStore('groups', appData.groups);
-                await saveToStore('expenses', appData.expenses);
-                // Backup to localStorage
-                localStorage.setItem('edu_moliya_db', JSON.stringify(appData));
-                // Save history snapshot
-                const snapshot = {
-                    date: new Date().toISOString(),
-                    income: appData.groups.reduce((s,g)=>s+g.price*g.students,0),
-                    expense: appData.expenses.reduce((s,e)=>s+e.amount,0) + appData.groups.reduce((s,g)=>s+(g.price*g.students*g.percent/100),0)
-                };
-                await saveToStore('history', snapshot);
-            } catch(e) {
-                localStorage.setItem('edu_moliya_db', JSON.stringify(appData));
-            }
-            calculateMoliya();
-        }
-
-        // =====================
-        // UI HELPERS
-        // =====================
-        function showToast(msg, type='success') {
-            const toast = document.getElementById('toast');
-            const toastMsg = document.getElementById('toast-msg');
-            toastMsg.innerText = msg;
-            toast.className = `fixed top-20 left-1/2 transform -translate-x-1/2 px-6 py-3 rounded-xl shadow-xl z-50 transition-all duration-300 ${type==='error'?'bg-rose-600':'bg-gray-800 dark:bg-gray-700'} text-white`;
-            toast.style.opacity = '1';
-            toast.style.transform = 'translateX(-50%) translateY(0)';
-            setTimeout(() => {
-                toast.style.opacity = '0';
-                toast.style.transform = 'translateX(-50%) translateY(-20px)';
-            }, 2500);
-        }
-
-        function showModal(title, text, onConfirm) {
-            document.getElementById('modal-title').innerText = title;
-            document.getElementById('modal-text').innerText = text;
-            document.getElementById('modal').classList.remove('hidden');
-            document.getElementById('modal-confirm').onclick = () => {
-                onConfirm();
-                closeModal();
-            };
-        }
-
-        function closeModal() {
-            document.getElementById('modal').classList.add('hidden');
-        }
-
-        function toggleTheme() {
-            document.documentElement.classList.toggle('dark');
-            const isDark = document.documentElement.classList.contains('dark');
-            document.getElementById('theme-icon').innerText = isDark ? '☀️' : '🌙';
-            localStorage.setItem('theme', isDark ? 'dark' : 'light');
-        }
-
-        // =====================
-        // NAVIGATION
-        // =====================
-        function switchTab(tabName) {
-            const pages = ['dashboard', 'groups', 'kassa', 'settings'];
-            pages.forEach(p => {
-                document.getElementById(`page-${p}`).classList.add('hidden');
-                const btn = document.getElementById(`btn-${p}`);
-                btn.classList.remove('text-blue-600', 'dark:text-blue-400', 'bg-blue-50', 'dark:bg-blue-900/20');
-                btn.classList.add('text-gray-400');
-            });
-            document.getElementById(`page-${tabName}`).classList.remove('hidden');
-            const activeBtn = document.getElementById(`btn-${tabName}`);
-            activeBtn.classList.remove('text-gray-400');
-            activeBtn.classList.add('text-blue-600', 'dark:text-blue-400', 'bg-blue-50', 'dark:bg-blue-900/20');
-
-            if(tabName === 'dashboard') renderChart();
-            if(tabName === 'settings') updateStorageInfo();
-        }
-
-        // =====================
-        // GROUPS
-        // =====================
-        function saveGroup(e) {
-            e.preventDefault();
-            const group = {
-                id: Date.now(),
-                name: document.getElementById('g-name').value,
-                price: parseFloat(document.getElementById('g-price').value),
-                percent: parseFloat(document.getElementById('g-percent').value),
-                students: parseInt(document.getElementById('g-students').value),
-                minStudents: parseInt(document.getElementById('g-min').value),
-                createdAt: new Date().toISOString()
-            };
-            appData.groups.push(group);
-            persistData();
-            document.getElementById('group-form').reset();
-            showToast('Guruh muvaffaqiyatli qo'shildi!');
-        }
-
-        function deleteGroup(id) {
-            showModal('Guruhni o'chirish', 'Bu guruhni o'chirishni xohlaysizmi?', () => {
-                appData.groups = appData.groups.filter(g => g.id !== id);
-                persistData();
-                showToast('Guruh o'chirildi');
-            });
-        }
-
-        function editGroup(id) {
-            const g = appData.groups.find(x => x.id === id);
-            if(!g) return;
-            document.getElementById('g-name').value = g.name;
-            document.getElementById('g-price').value = g.price;
-            document.getElementById('g-percent').value = g.percent;
-            document.getElementById('g-students').value = g.students;
-            document.getElementById('g-min').value = g.minStudents;
-            appData.groups = appData.groups.filter(x => x.id !== id);
-            switchTab('groups');
-            showToast('Tahrirlash rejimi. O'zgartirishlarni saqlang.', 'error');
-        }
-
-        // =====================
-        // EXPENSES
-        // =====================
-        function saveExpense(e) {
-            e.preventDefault();
-            const expense = {
-                id: Date.now(),
-                amount: parseFloat(document.getElementById('e-amount').value),
-                category: document.getElementById('e-cat').value,
-                description: document.getElementById('e-desc').value || '',
-                date: new Date().toLocaleDateString('uz-UZ'),
-                timestamp: Date.now()
-            };
-            appData.expenses.push(expense);
-            persistData();
-            document.getElementById('expense-form').reset();
-            showToast('Xarajat qayd etildi!');
-        }
-
-        function deleteExpense(id) {
-            appData.expenses = appData.expenses.filter(e => e.id !== id);
-            persistData();
-            showToast('Xarajat o'chirildi');
-        }
-
-        function clearAllExpenses() {
-            showModal('Xarajatlarni tozalash', 'Barcha xarajatlar o'chiriladi. Davom etasizmi?', () => {
-                appData.expenses = [];
-                persistData();
-                showToast('Barcha xarajatlar tozalandi');
-            });
-        }
-
-        // =====================
-        // MAIN CALCULATION
-        // =====================
-        async function calculateMoliya() {
-            let jamiTushum = 0, jamiOqituvchi = 0, jamiXarajat = 0;
-            let groupsHTML = '', dangerHTML = '';
-            let totalStudents = 0;
-
-            appData.groups.forEach(g => {
-                const daromad = g.price * g.students;
-                const oylik = (daromad * g.percent) / 100;
-                const sof = daromad - oylik;
-                const isZarar = g.students < g.minStudents;
-
-                jamiTushum += daromad;
-                jamiOqituvchi += oylik;
-                totalStudents += g.students;
-
-                groupsHTML += `
-                    <div class="bg-white dark:bg-gray-800 p-4 rounded-2xl shadow-sm border ${isZarar?'border-rose-200 dark:border-rose-800 bg-rose-50/20 dark:bg-rose-900/10':'border-gray-100 dark:border-gray-700'} card-hover">
-                        <div class="flex justify-between items-start">
-                            <div>
-                                <h4 class="font-bold text-gray-800 dark:text-gray-200">${g.name}</h4>
-                                <p class="text-xs text-gray-500 dark:text-gray-400">${g.students} / ${g.minStudents} o'quvchi</p>
-                            </div>
-                            <div class="flex gap-1">
-                                <span class="text-xs font-bold px-2 py-0.5 rounded-full ${isZarar?'bg-rose-100 dark:bg-rose-900/30 text-rose-700 dark:text-rose-400':'bg-emerald-100 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-400'}">
-                                    ${isZarar?'🔴 Zararda':'🟢 Rentabel'}
-                                </span>
-                            </div>
-                        </div>
-                        <div class="mt-3 pt-3 border-t border-gray-100 dark:border-gray-700 grid grid-cols-2 gap-2 text-xs">
-                            <div><span class="text-gray-400">Markaz:</span> <b class="dark:text-gray-300">${sof.toLocaleString()} so'm</b></div>
-                            <div><span class="text-gray-400">O'qituvchi:</span> <b class="dark:text-gray-300">${oylik.toLocaleString()} so'm</b></div>
-                        </div>
-                        <div class="mt-2 flex gap-2">
-                            <button onclick="editGroup(${g.id})" class="text-xs bg-gray-100 dark:bg-gray-700 px-2 py-1 rounded-lg">✏️ Tahrirlash</button>
-                            <button onclick="deleteGroup(${g.id})" class="text-xs bg-rose-50 dark:bg-rose-900/20 text-rose-600 px-2 py-1 rounded-lg">🗑️ O'chirish</button>
-                        </div>
-                    </div>
-                `;
-
-                if(isZarar) {
-                    dangerHTML += `
-                        <div class="flex justify-between items-center bg-rose-50 dark:bg-rose-900/20 p-3 rounded-xl border border-rose-100 dark:border-rose-800">
-                            <span class="text-rose-800 dark:text-rose-400 font-medium text-xs">📉 ${g.name}</span>
-                            <span class="text-rose-600 text-xs font-bold">-${g.minStudents-g.students} ta yetishmayapti</span>
-                        </div>
-                    `;
-                }
-            });
-
-            appData.expenses.forEach(e => jamiXarajat += e.amount);
-            const umumiyXarajat = jamiOqituvchi + jamiXarajat;
-            const sofFoyda = jamiTushum - umumiyXarajat;
-            const margin = jamiTushum > 0 ? ((sofFoyda / jamiTushum) * 100).toFixed(1) : 0;
-
-            // Dashboard
-            document.getElementById('dash-income').innerText = jamiTushum.toLocaleString() + " so'm";
-            document.getElementById('dash-expense').innerText = umumiyXarajat.toLocaleString() + " so'm";
-            document.getElementById('dash-profit').innerText = sofFoyda.toLocaleString() + " so'm";
-            document.getElementById('profit-margin').innerText = `Marja: ${margin}%`;
-
-            const profitCard = document.getElementById('dash-profit-card');
-            const statusLabel = document.getElementById('dash-status');
-
-            if(sofFoyda >= 0) {
-                profitCard.className = "p-5 rounded-2xl border bg-emerald-600 border-emerald-700 text-white card-hover";
-                statusLabel.className = "text-xs px-4 py-2 rounded-full font-bold bg-white text-emerald-700";
-                statusLabel.innerText = "✅ Biznes Foydada";
-            } else {
-                profitCard.className = "p-5 rounded-2xl border bg-rose-600 border-rose-700 text-white card-hover pulse-ring";
-                statusLabel.className = "text-xs px-4 py-2 rounded-full font-bold bg-white text-rose-700";
-                statusLabel.innerText = "❌ Biznes Zararda";
-            }
-
-            // Stats
-            document.getElementById('stat-groups').innerText = appData.groups.length;
-            document.getElementById('stat-students').innerText = totalStudents;
-            document.getElementById('stat-avg').innerText = appData.groups.length > 0 ? Math.round(totalStudents/appData.groups.length) : 0;
-
-            // Lists
-            document.getElementById('groups-list').innerHTML = groupsHTML || '<div class="text-center text-gray-400 py-8">🏫 Hozircha guruhlar yo'q</div>';
-            document.getElementById('dashboard-danger-groups').innerHTML = dangerHTML || '<div class="text-emerald-600 dark:text-emerald-400 text-center py-2">🟢 Hamma guruhlar yaxshi!</div>';
-
-            // Transactions
-            let txHTML = '';
-            if(jamiOqituvchi > 0) {
-                txHTML += `<div class="flex justify-between p-3 bg-gray-50 dark:bg-gray-700 rounded-lg"><span>👨‍🏫 O'qituvchilar oyligi</span><span class="text-rose-600 font-bold">-${jamiOqituvchi.toLocaleString()} so'm</span></div>`;
-            }
-            [...appData.expenses].sort((a,b)=>b.timestamp-a.timestamp).forEach(e => {
-                txHTML += `
-                    <div class="flex justify-between items-center p-3 bg-gray-50 dark:bg-gray-700 rounded-lg group">
-                        <div>
-                            <span class="font-medium">${e.category} ${e.description?'- '+e.description:''}</span>
-                            <span class="text-gray-400 text-[10px] block">${e.date}</span>
-                        </div>
-                        <div class="flex items-center gap-2">
-                            <span class="text-rose-600 font-bold">-${e.amount.toLocaleString()} so'm</span>
-                            <button onclick="deleteExpense(${e.id})" class="opacity-0 group-hover:opacity-100 text-rose-400 hover:text-rose-600 transition">✕</button>
-                        </div>
-                    </div>
-                `;
-            });
-            document.getElementById('transactions-list').innerHTML = txHTML || '<div class="text-center text-gray-400 py-4">💰 Xarajatlar mavjud emas</div>';
-        }
-
-        // =====================
-        // CHART
-        // =====================
-        async function renderChart() {
-            const ctx = document.getElementById('finance-chart');
-            if(!ctx) return;
-
-            try {
-                const history = await getAllFromStore('history');
-                const sorted = history.sort((a,b) => new Date(a.date) - new Date(b.date)).slice(-7);
-
-                const labels = sorted.map(h => new Date(h.date).toLocaleDateString('uz-UZ', {day:'numeric', month:'short'}));
-                const incomeData = sorted.map(h => h.income);
-                const expenseData = sorted.map(h => h.expense);
-
-                if(chartInstance) chartInstance.destroy();
-
-                chartInstance = new Chart(ctx, {
-                    type: 'line',
-                    data: {
-                        labels: labels.length ? labels : ['Bugun'],
-                        datasets: [{
-                            label: 'Tushum',
-                            data: incomeData.length ? incomeData : [0],
-                            borderColor: '#10b981',
-                            backgroundColor: 'rgba(16,185,129,0.1)',
-                            fill: true,
-                            tension: 0.4
-                        }, {
-                            label: 'Xarajat',
-                            data: expenseData.length ? expenseData : [0],
-                            borderColor: '#ef4444',
-                            backgroundColor: 'rgba(239,68,68,0.1)',
-                            fill: true,
-                            tension: 0.4
-                        }]
-                    },
-                    options: {
-                        responsive: true,
-                        maintainAspectRatio: false,
-                        plugins: { legend: { position: 'bottom', labels: { boxWidth: 12, font: {size:10} } } },
-                        scales: { y: { beginAtZero: true, grid: { display: false } }, x: { grid: { display: false } } }
-                    }
-                });
-            } catch(e) { console.log('Chart error:', e); }
-        }
-
-        // =====================
-        // EXPORT / IMPORT
-        // =====================
-        function exportGroups() {
-            const dataStr = JSON.stringify(appData.groups, null, 2);
-            const blob = new Blob([dataStr], {type: 'application/json'});
-            const url = URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = `guruhlar_${new Date().toISOString().slice(0,10)}.json`;
-            a.click();
-            showToast('Guruhlar eksport qilindi!');
-        }
-
-        function exportAllData() {
-            const exportData = {
-                version: '2.0',
-                exportedAt: new Date().toISOString(),
-                groups: appData.groups,
-                expenses: appData.expenses
-            };
-            const dataStr = JSON.stringify(exportData, null, 2);
-            const blob = new Blob([dataStr], {type: 'application/json'});
-            const url = URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = `moliya_backup_${new Date().toISOString().slice(0,10)}.json`;
-            a.click();
-            showToast('Barcha ma'lumotlar eksport qilindi!');
-        }
-
-        function importData(input) {
-            const file = input.files[0];
-            if(!file) return;
-            const reader = new FileReader();
-            reader.onload = (e) => {
-                try {
-                    const data = JSON.parse(e.target.result);
-                    if(data.groups) appData.groups = data.groups;
-                    if(data.expenses) appData.expenses = data.expenses;
-                    persistData();
-                    showToast('Ma'lumotlar import qilindi!');
-                } catch(err) {
-                    showToast('Xatolik! Noto'g'ri fayl formati', 'error');
-                }
-            };
-            reader.readAsText(file);
-            input.value = '';
-        }
-
-        // =====================
-        // PRINT REPORT
-        // =====================
-        function printReport() {
-            let jamiTushum = 0, jamiOqituvchi = 0, jamiXarajat = 0;
-            appData.groups.forEach(g => {
-                jamiTushum += g.price * g.students;
-                jamiOqituvchi += (g.price * g.students * g.percent / 100);
-            });
-            appData.expenses.forEach(e => jamiXarajat += e.amount);
-            const sof = jamiTushum - jamiOqituvchi - jamiXarajat;
-
-            let html = `
-                <div style="margin-bottom:30px;">
-                    <h2 style="color:#333; border-bottom:2px solid #3b82f6; padding-bottom:10px;">Umumiy xulosa</h2>
-                    <table style="width:100%; border-collapse:collapse; margin-top:15px;">
-                        <tr><td style="padding:10px; border:1px solid #ddd;"><b>Jami tushum:</b></td><td style="padding:10px; border:1px solid #ddd; text-align:right;">${jamiTushum.toLocaleString()} so'm</td></tr>
-                        <tr><td style="padding:10px; border:1px solid #ddd;"><b>O'qituvchilar oyligi:</b></td><td style="padding:10px; border:1px solid #ddd; text-align:right; color:#ef4444;">${jamiOqituvchi.toLocaleString()} so'm</td></tr>
-                        <tr><td style="padding:10px; border:1px solid #ddd;"><b>Boshqa xarajatlar:</b></td><td style="padding:10px; border:1px solid #ddd; text-align:right; color:#ef4444;">${jamiXarajat.toLocaleString()} so'm</td></tr>
-                        <tr style="background:#f0fdf4;"><td style="padding:10px; border:1px solid #ddd;"><b>Sof foyda:</b></td><td style="padding:10px; border:1px solid #ddd; text-align:right; color:#10b981; font-weight:bold;">${sof.toLocaleString()} so'm</td></tr>
-                    </table>
-                </div>
-                <div style="margin-bottom:30px;">
-                    <h2 style="color:#333; border-bottom:2px solid #3b82f6; padding-bottom:10px;">Guruhlar tahlili</h2>
-                    <table style="width:100%; border-collapse:collapse; margin-top:15px;">
-                        <tr style="background:#3b82f6; color:white;"><th style="padding:10px; border:1px solid #ddd;">Guruh</th><th style="padding:10px; border:1px solid #ddd;">O'quvchilar</th><th style="padding:10px; border:1px solid #ddd;">Daromad</th><th style="padding:10px; border:1px solid #ddd;">Holat</th></tr>
-            `;
-            appData.groups.forEach(g => {
-                const daromad = g.price * g.students;
-                const isZarar = g.students < g.minStudents;
-                html += `<tr><td style="padding:10px; border:1px solid #ddd;">${g.name}</td><td style="padding:10px; border:1px solid #ddd; text-align:center;">${g.students}/${g.minStudents}</td><td style="padding:10px; border:1px solid #ddd; text-align:right;">${daromad.toLocaleString()} so'm</td><td style="padding:10px; border:1px solid #ddd; text-align:center; color:${isZarar?'#ef4444':'#10b981'}; font-weight:bold;">${isZarar?'Zarar':'Foyda'}</td></tr>`;
-            });
-            html += '</table></div>';
-
-            if(appData.expenses.length > 0) {
-                html += `<div><h2 style="color:#333; border-bottom:2px solid #3b82f6; padding-bottom:10px;">Xarajatlar</h2><table style="width:100%; border-collapse:collapse; margin-top:15px;"><tr style="background:#3b82f6; color:white;"><th style="padding:10px; border:1px solid #ddd;">Sana</th><th style="padding:10px; border:1px solid #ddd;">Kategoriya</th><th style="padding:10px; border:1px solid #ddd;">Summa</th></tr>`;
-                appData.expenses.forEach(e => {
-                    html += `<tr><td style="padding:10px; border:1px solid #ddd;">${e.date}</td><td style="padding:10px; border:1px solid #ddd;">${e.category}</td><td style="padding:10px; border:1px solid #ddd; text-align:right;">${e.amount.toLocaleString()} so'm</td></tr>`;
-                });
-                html += '</table></div>';
-            }
-
-            document.getElementById('print-date').innerText = `Hisobot sanasi: ${new Date().toLocaleDateString('uz-UZ')}`;
-            document.getElementById('print-content').innerHTML = html;
-            window.print();
-        }
-
-        // =====================
-        // RESET
-        // =====================
-        function resetAllData() {
-            showModal('Barcha ma'lumotlarni o'chirish', 'Bu amal qaytarib bo'lmaydi. Ishonchingiz komilmi?', async () => {
-                appData = { groups: [], expenses: [] };
-                await clearStore('groups');
-                await clearStore('expenses');
-                await clearStore('history');
-                localStorage.removeItem('edu_moliya_db');
-                calculateMoliya();
-                showToast('Barcha ma'lumotlar tozalandi');
-            });
-        }
-
-        function updateStorageInfo() {
-            let size = 0;
-            for(let key in localStorage) {
-                if(localStorage.hasOwnProperty(key)) size += localStorage[key].length * 2;
-            }
-            document.getElementById('storage-info').innerText = `LocalStorage: ${(size/1024).toFixed(2)} KB ishlatilgan`;
-        }
-
-        // =====================
-        // OFFLINE DETECTION
-        // =====================
-        window.addEventListener('online', () => {
-            document.getElementById('offline-bar').classList.add('hidden');
-            showToast('Internet tiklandi!');
+          </div>
+        `;
+      });
+      document.getElementById('transactions-list').innerHTML = txHTML || '<div class="text-center text-gray-400 py-4">💰 Xarajatlar mavjud emas</div>';
+    }
+
+    // =====================
+    // CHART
+    // =====================
+    async function renderChart() {
+      const ctx = document.getElementById('finance-chart');
+      if(!ctx) return;
+
+      try {
+        const history = await getAllFromStore('history');
+        const sorted = history.sort((a,b) => new Date(a.date) - new Date(b.date)).slice(-7);
+
+        const labels = sorted.map(h => new Date(h.date).toLocaleDateString('uz-UZ', {day:'numeric', month:'short'}));
+        const incomeData = sorted.map(h => h.income);
+        const expenseData = sorted.map(h => h.expense);
+
+        if(chartInstance) chartInstance.destroy();
+
+        chartInstance = new Chart(ctx, {
+          type: 'line',
+          data: {
+            labels: labels.length ? labels : ['Bugun'],
+            datasets: [{
+              label: 'Tushum',
+              data: incomeData.length ? incomeData : [0],
+              borderColor: '#10b981',
+              backgroundColor: 'rgba(16,185,129,0.1)',
+              fill: true,
+              tension: 0.4
+            }, {
+              label: 'Xarajat',
+              data: expenseData.length ? expenseData : [0],
+              borderColor: '#ef4444',
+              backgroundColor: 'rgba(239,68,68,0.1)',
+              fill: true,
+              tension: 0.4
+            }]
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: { legend: { position: 'bottom', labels: { boxWidth: 12, font: {size:10} } } },
+            scales: { y: { beginAtZero: true, grid: { display: false } }, x: { grid: { display: false } } }
+          }
         });
-        window.addEventListener('offline', () => {
-            document.getElementById('offline-bar').classList.remove('hidden');
-        });
+      } catch(e) { console.log('Chart error:', e); }
+    }
 
-        // =====================
-        // SERVICE WORKER
-        // =====================
-        if('serviceWorker' in navigator) {
-            const swCode = `
-                const CACHE_NAME = 'edu-moliya-v2';
-                const urlsToCache = ['/'];
-                self.addEventListener('install', e => {
-                    e.waitUntil(caches.open(CACHE_NAME).then(cache => cache.addAll(urlsToCache)));
-                    self.skipWaiting();
-                });
-                self.addEventListener('activate', e => {
-                    e.waitUntil(caches.keys().then(names => Promise.all(names.filter(n=>n!==CACHE_NAME).map(n=>caches.delete(n)))));
-                    self.clients.claim();
-                });
-                self.addEventListener('fetch', e => {
-                    e.respondWith(caches.match(e.request).then(r => r || fetch(e.request).catch(() => caches.match('/'))));
-                });
-            `;
-            const blob = new Blob([swCode], {type: 'application/javascript'});
-            const swUrl = URL.createObjectURL(blob);
-            navigator.serviceWorker.register(swUrl).catch(() => {});
+    // =====================
+    // EXPORT / IMPORT
+    // =====================
+    function exportGroups() {
+      const dataStr = JSON.stringify(appData.groups, null, 2);
+      const blob = new Blob([dataStr], {type: 'application/json'});
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `guruhlar_${new Date().toISOString().slice(0,10)}.json`;
+      a.click();
+      showToast('Guruhlar eksport qilindi!');
+    }
+
+    function exportAllData() {
+      const exportData = {
+        version: '2.0',
+        exportedAt: new Date().toISOString(),
+        groups: appData.groups,
+        expenses: appData.expenses
+      };
+      const dataStr = JSON.stringify(exportData, null, 2);
+      const blob = new Blob([dataStr], {type: 'application/json'});
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `moliya_backup_${new Date().toISOString().slice(0,10)}.json`;
+      a.click();
+      showToast("Barcha ma'lumotlar eksport qilindi!");
+    }
+
+    function importData(input) {
+      const file = input.files[0];
+      if(!file) return;
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        try {
+          const data = JSON.parse(e.target.result);
+          if(data.groups) appData.groups = data.groups;
+          if(data.expenses) appData.expenses = data.expenses;
+          persistData();
+          showToast("Ma'lumotlar import qilindi!");
+        } catch(err) {
+          showToast("Xatolik! Noto'g'ri fayl formati", 'error');
         }
+      };
+      reader.readAsText(file);
+      input.value = '';
+    }
 
-        // =====================
-        // INIT
-        // =====================
-        (async function init() {
-            // Theme
-            const savedTheme = localStorage.getItem('theme');
-            if(savedTheme === 'dark' || (!savedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-                document.documentElement.classList.add('dark');
-                document.getElementById('theme-icon').innerText = '☀️';
-            }
+    // =====================
+    // PRINT REPORT
+    // =====================
+    function printReport() {
+      let jamiTushum = 0, jamiOqituvchi = 0, jamiXarajat = 0;
+      appData.groups.forEach(g => {
+        jamiTushum += g.price * g.students;
+        jamiOqituvchi += (g.price * g.students * g.percent / 100);
+      });
+      appData.expenses.forEach(e => jamiXarajat += e.amount);
+      const sof = jamiTushum - jamiOqituvchi - jamiXarajat;
 
-            await openDB();
-            await loadData();
-            switchTab('dashboard');
-        })();
-    </script>
+      let html = `
+        <div style="margin-bottom:30px;">
+          <h2 style="color:#333; border-bottom:2px solid #3b82f6; padding-bottom:10px;">Umumiy xulosa</h2>
+          <table style="width:100%; border-collapse:collapse; margin-top:15px;">
+            <tr><td style="padding:10px; border:1px solid #ddd;"><b>Jami tushum:</b></td><td style="padding:10px; border:1px solid #ddd; text-align:right;">${jamiTushum.toLocaleString()} so'm</td></tr>
+            <tr><td style="padding:10px; border:1px solid #ddd;"><b>O'qituvchilar oyligi:</b></td><td style="padding:10px; border:1px solid #ddd; text-align:right; color:#ef4444;">${jamiOqituvchi.toLocaleString()} so'm</td></tr>
+            <tr><td style="padding:10px; border:1px solid #ddd;"><b>Boshqa xarajatlar:</b></td><td style="padding:10px; border:1px solid #ddd; text-align:right; color:#ef4444;">${jamiXarajat.toLocaleString()} so'm</td></tr>
+            <tr style="background:#f0fdf4;"><td style="padding:10px; border:1px solid #ddd;"><b>Sof foyda:</b></td><td style="padding:10px; border:1px solid #ddd; text-align:right; color:#10b981; font-weight:bold;">${sof.toLocaleString()} so'm</td></tr>
+          </table>
+        </div>
+        <div style="margin-bottom:30px;">
+          <h2 style="color:#333; border-bottom:2px solid #3b82f6; padding-bottom:10px;">Guruhlar tahlili</h2>
+          <table style="width:100%; border-collapse:collapse; margin-top:15px;">
+            <tr style="background:#3b82f6; color:white;"><th style="padding:10px; border:1px solid #ddd;">Guruh</th><th style="padding:10px; border:1px solid #ddd;">O'quvchilar</th><th style="padding:10px; border:1px solid #ddd;">Daromad</th><th style="padding:10px; border:1px solid #ddd;">Holat</th></tr>
+      `;
+      appData.groups.forEach(g => {
+        const daromad = g.price * g.students;
+        const isZarar = g.students < g.minStudents;
+        html += `<tr><td style="padding:10px; border:1px solid #ddd;">${g.name}</td><td style="padding:10px; border:1px solid #ddd; text-align:center;">${g.students}/${g.minStudents}</td><td style="padding:10px; border:1px solid #ddd; text-align:right;">${daromad.toLocaleString()} so'm</td><td style="padding:10px; border:1px solid #ddd; text-align:center; color:${isZarar?'#ef4444':'#10b981'}; font-weight:bold;">${isZarar?'Zarar':'Foyda'}</td></tr>`;
+      });
+      html += '</table></div>';
+
+      if(appData.expenses.length > 0) {
+        html += `<div><h2 style="color:#333; border-bottom:2px solid #3b82f6; padding-bottom:10px;">Xarajatlar</h2><table style="width:100%; border-collapse:collapse; margin-top:15px;"><tr style="background:#3b82f6; color:white;"><th style="padding:10px; border:1px solid #ddd;">Sana</th><th style="padding:10px; border:1px solid #ddd;">Kategoriya</th><th style="padding:10px; border:1px solid #ddd;">Summa</th></tr>`;
+        appData.expenses.forEach(e => {
+          html += `<tr><td style="padding:10px; border:1px solid #ddd;">${e.date}</td><td style="padding:10px; border:1px solid #ddd;">${e.category}</td><td style="padding:10px; border:1px solid #ddd; text-align:right;">${e.amount.toLocaleString()} so'm</td></tr>`;
+        });
+        html += '</table></div>';
+      }
+
+      document.getElementById('print-date').innerText = `Hisobot sanasi: ${new Date().toLocaleDateString('uz-UZ')}`;
+      document.getElementById('print-content').innerHTML = html;
+      window.print();
+    }
+
+    // =====================
+    // RESET
+    // =====================
+    function resetAllData() {
+      showModal("Barcha ma'lumotlarni o'chirish", "Bu amal qaytarib bo'lmaydi. Ishonchingiz komilmi?", async () => {
+        appData = { groups: [], expenses: [] };
+        await clearStore('groups');
+        await clearStore('expenses');
+        await clearStore('history');
+        localStorage.removeItem('edu_moliya_db');
+        calculateMoliya();
+        showToast("Barcha ma'lumotlar tozalandi");
+      });
+    }
+
+    function updateStorageInfo() {
+      let size = 0;
+      for(let key in localStorage) {
+        if(localStorage.hasOwnProperty(key)) size += localStorage[key].length * 2;
+      }
+      document.getElementById('storage-info').innerText = `LocalStorage: ${(size/1024).toFixed(2)} KB ishlatilgan`;
+    }
+
+    // =====================
+    // OFFLINE DETECTION
+    // =====================
+    window.addEventListener('online', () => {
+      document.getElementById('offline-bar').classList.add('hidden');
+      showToast('Internet tiklandi!');
+    });
+    window.addEventListener('offline', () => {
+      document.getElementById('offline-bar').classList.remove('hidden');
+    });
+
+    // =====================
+    // SERVICE WORKER
+    // =====================
+    if('serviceWorker' in navigator) {
+      const swCode = `
+        const CACHE_NAME = 'edu-moliya-v2';
+        const urlsToCache = ['/'];
+        self.addEventListener('install', e => {
+          e.waitUntil(caches.open(CACHE_NAME).then(cache => cache.addAll(urlsToCache)));
+          self.skipWaiting();
+        });
+        self.addEventListener('activate', e => {
+          e.waitUntil(caches.keys().then(names => Promise.all(names.filter(n=>n!==CACHE_NAME).map(n=>caches.delete(n)))));
+          self.clients.claim();
+        });
+        self.addEventListener('fetch', e => {
+          e.respondWith(caches.match(e.request).then(r => r || fetch(e.request).catch(() => caches.match('/'))));
+        });
+      `;
+      const blob = new Blob([swCode], {type: 'application/javascript'});
+      const swUrl = URL.createObjectURL(blob);
+      navigator.serviceWorker.register(swUrl).catch(() => {});
+    }
+
+    // =====================
+    // INIT
+    // =====================
+    (async function init() {
+      // Theme
+      const savedTheme = localStorage.getItem('theme');
+      if(savedTheme === 'dark' || (!savedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        document.documentElement.classList.add('dark');
+        document.getElementById('theme-icon').innerText = '☀️';
+      }
+
+      await openDB();
+      await loadData();
+      switchTab('dashboard');
+    })();
+  </script>
 </body>
 </html>
