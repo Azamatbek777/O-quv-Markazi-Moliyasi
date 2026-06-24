@@ -1,1367 +1,1546 @@
 <!DOCTYPE html>
-<html lang="uz" dir="ltr">
+<html lang="uz">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
-    <meta name="theme-color" content="#6366f1">
-    <meta name="description" content="O'quv markazi boshqaruv tizimi - EduAdmin Pro">
-    <meta name="application-name" content="EduAdmin Pro">
-    <title>EduAdmin Pro – O'quv Markazi Boshqaruvi</title>
-    
-    <!-- Preconnect for performance -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
-    
-    <!-- Chart.js for analytics -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js" defer></script>
-    
-    <style>
-        /* CSS Custom Properties */
-        :root {
-            --brand: #6366f1;
-            --brand-dark: #4f46e5;
-            --brand-light: #e0e7ff;
-            --success: #10b981;
-            --danger: #ef4444;
-            --warn: #f59e0b;
-            --info: #06b6d4;
-            --bg: #f8fafc;
-            --surface: #ffffff;
-            --surface2: #f1f5f9;
-            --surface3: #e2e8f0;
-            --text: #0f172a;
-            --text2: #475569;
-            --text3: #94a3b8;
-            --border: #e2e8f0;
-            --shadow: 0 1px 3px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.05);
-            --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.08), 0 2px 4px -1px rgba(0,0,0,0.05);
-            --radius: 12px;
-            --radius-lg: 16px;
-            --radius-xl: 20px;
-            --transition: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <meta name="theme-color" content="#3b82f6">
+  <title>O'quv Markazi - Barcha Boshqaruv</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            primary: '#3b82f6',
+            success: '#10b981',
+            danger: '#ef4444',
+            warning: '#f59e0b',
+            info: '#06b6d4'
+          }
         }
-        
-        .dark {
-            --bg: #0f172a;
-            --surface: #1e293b;
-            --surface2: #334155;
-            --surface3: #475569;
-            --text: #f1f5f9;
-            --text2: #94a3b8;
-            --text3: #64748b;
-            --border: #334155;
-            --shadow: 0 1px 3px rgba(0,0,0,0.3), 0 1px 2px rgba(0,0,0,0.2);
-            --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.4), 0 2px 4px -1px rgba(0,0,0,0.3);
-        }
-        
-        /* Reset & Base */
-        *, *::before, *::after {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        html {
-            -webkit-tap-highlight-color: transparent;
-            -webkit-text-size-adjust: 100%;
-        }
-        
-        body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            background: var(--bg);
-            color: var(--text);
-            transition: background var(--transition), color var(--transition);
-            min-height: 100vh;
-            line-height: 1.5;
-            overflow-x: hidden;
-        }
-        
-        /* Layout */
-        .app-shell {
-            display: grid;
-            grid-template-columns: 260px 1fr;
-            grid-template-rows: 64px 1fr;
-            min-height: 100vh;
-        }
-        
-        @media (max-width: 1024px) {
-            .app-shell {
-                grid-template-columns: 200px 1fr;
-            }
-        }
-        
-        @media (max-width: 768px) {
-            .app-shell {
-                grid-template-columns: 1fr;
-                grid-template-rows: 56px 1fr 64px;
-            }
-        }
-        
-        /* Topbar */
-        .topbar {
-            grid-column: 1 / -1;
-            background: var(--surface);
-            border-bottom: 1px solid var(--border);
-            display: flex;
-            align-items: center;
-            gap: 16px;
-            padding: 0 24px;
-            z-index: 100;
-            position: sticky;
-            top: 0;
-            box-shadow: var(--shadow);
-            backdrop-filter: blur(8px);
-        }
-        
-        @media (max-width: 768px) {
-            .topbar {
-                padding: 0 16px;
-            }
-        }
-        
-        /* Sidebar */
-        .sidebar {
-            background: var(--surface);
-            border-right: 1px solid var(--border);
-            padding: 20px 12px;
-            overflow-y: auto;
-            position: sticky;
-            top: 64px;
-            height: calc(100vh - 64px);
-        }
-        
-        @media (max-width: 768px) {
-            .sidebar {
-                display: none;
-            }
-        }
-        
-        /* Main Content */
-        .main {
-            padding: 24px;
-            overflow-y: auto;
-            min-height: calc(100vh - 64px);
-        }
-        
-        @media (max-width: 768px) {
-            .main {
-                padding: 16px;
-                padding-bottom: 80px;
-            }
-        }
-        
-        /* Mobile Navigation */
-        .mobile-nav {
-            display: none;
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: var(--surface);
-            border-top: 1px solid var(--border);
-            z-index: 100;
-            padding: 4px 0 env(safe-area-inset-bottom);
-            overflow-x: auto;
-            -webkit-overflow-scrolling: touch;
-        }
-        
-        @media (max-width: 768px) {
-            .mobile-nav {
-                display: flex;
-                justify-content: space-around;
-                box-shadow: 0 -4px 12px rgba(0,0,0,0.08);
-            }
-        }
-        
-        /* Utility Classes */
-        .hidden {
-            display: none !important;
-        }
-        
-        .visually-hidden {
-            position: absolute;
-            width: 1px;
-            height: 1px;
-            padding: 0;
-            margin: -1px;
-            overflow: hidden;
-            clip: rect(0, 0, 0, 0);
-            border: 0;
-        }
-        
-        /* Animations */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(8px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        
-        @keyframes slideIn {
-            from { transform: translateX(-20px); opacity: 0; }
-            to { transform: translateX(0); opacity: 1; }
-        }
-        
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-        }
-        
-        .fade-in {
-            animation: fadeIn 0.3s ease;
-        }
-        
-        /* Page System */
-        .page {
-            display: none;
-            animation: fadeIn 0.3s ease;
-        }
-        
-        .page.active {
-            display: block;
-        }
-        
-        /* Card Components */
-        .card {
-            background: var(--surface);
-            border-radius: var(--radius-lg);
-            border: 1px solid var(--border);
-            padding: 24px;
-            box-shadow: var(--shadow);
-            transition: box-shadow var(--transition);
-        }
-        
-        .card:hover {
-            box-shadow: var(--shadow-md);
-        }
-        
-        /* Button Styles */
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            padding: 10px 20px;
-            border-radius: var(--radius);
-            font-size: 14px;
-            font-weight: 600;
-            cursor: pointer;
-            border: none;
-            transition: all var(--transition);
-            white-space: nowrap;
-            user-select: none;
-            -webkit-user-select: none;
-        }
-        
-        .btn:active {
-            transform: scale(0.97);
-        }
-        
-        .btn:disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
-        }
-        
-        .btn-primary {
-            background: var(--brand);
-            color: white;
-        }
-        
-        .btn-primary:hover:not(:disabled) {
-            background: var(--brand-dark);
-        }
-        
-        .btn-success {
-            background: var(--success);
-            color: white;
-        }
-        
-        .btn-success:hover:not(:disabled) {
-            background: #059669;
-        }
-        
-        .btn-danger {
-            background: var(--danger);
-            color: white;
-        }
-        
-        .btn-danger:hover:not(:disabled) {
-            background: #dc2626;
-        }
-        
-        .btn-ghost {
-            background: var(--surface2);
-            color: var(--text);
-            border: 1px solid var(--border);
-        }
-        
-        .btn-ghost:hover:not(:disabled) {
-            background: var(--surface3);
-        }
-        
-        /* Form Styles */
-        .form-group {
-            display: flex;
-            flex-direction: column;
-            gap: 6px;
-            margin-bottom: 16px;
-        }
-        
-        .form-label {
-            font-size: 13px;
-            font-weight: 600;
-            color: var(--text2);
-        }
-        
-        .form-input,
-        .form-select,
-        .form-textarea {
-            width: 100%;
-            padding: 10px 12px;
-            border: 1px solid var(--border);
-            border-radius: var(--radius);
-            background: var(--surface);
-            color: var(--text);
-            font-size: 14px;
-            font-family: inherit;
-            transition: all var(--transition);
-            outline: none;
-        }
-        
-        .form-input:focus,
-        .form-select:focus,
-        .form-textarea:focus {
-            border-color: var(--brand);
-            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
-        }
-        
-        /* Responsive Grid */
-        .grid {
-            display: grid;
-            gap: 20px;
-        }
-        
-        .grid-2 {
-            grid-template-columns: repeat(2, 1fr);
-        }
-        
-        .grid-3 {
-            grid-template-columns: repeat(3, 1fr);
-        }
-        
-        .grid-4 {
-            grid-template-columns: repeat(4, 1fr);
-        }
-        
-        @media (max-width: 1024px) {
-            .grid-4 { grid-template-columns: repeat(2, 1fr); }
-        }
-        
-        @media (max-width: 768px) {
-            .grid-2,
-            .grid-3,
-            .grid-4 {
-                grid-template-columns: 1fr;
-            }
-        }
-        
-        /* Table Styles */
-        .table-container {
-            overflow-x: auto;
-            -webkit-overflow-scrolling: touch;
-        }
-        
-        .table {
-            width: 100%;
-            border-collapse: collapse;
-            font-size: 14px;
-        }
-        
-        .table th {
-            padding: 12px;
-            text-align: left;
-            font-size: 12px;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            color: var(--text2);
-            border-bottom: 2px solid var(--border);
-            background: var(--surface2);
-        }
-        
-        .table td {
-            padding: 12px;
-            border-bottom: 1px solid var(--border);
-        }
-        
-        .table tr:hover td {
-            background: var(--surface2);
-        }
-        
-        /* Print Styles */
-        @media print {
-            .sidebar,
-            .topbar,
-            .mobile-nav,
-            .no-print {
-                display: none !important;
-            }
-            
-            .main {
-                padding: 0 !important;
-            }
-            
-            .page:not(.active) {
-                display: none !important;
-            }
-        }
-    </style>
+      }
+    }
+  </script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+    * { font-family: 'Inter', sans-serif; box-sizing: border-box; }
+    body { -webkit-tap-highlight-color: transparent; overscroll-behavior-y: none; }
+    .glass { background: rgba(255,255,255,0.85); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
+    .dark .glass { background: rgba(30,41,59,0.85); }
+    .card-hover { transition: all 0.2s ease; }
+    .card-hover:active { transform: scale(0.98); }
+    .slide-up { animation: slideUp 0.3s ease-out; }
+    @keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+    .pulse-ring { animation: pulse-ring 2s cubic-bezier(0.215, 0.61, 0.355, 1) infinite; }
+    @keyframes pulse-ring { 0% { box-shadow: 0 0 0 0 rgba(239,68,68,0.5); } 70% { box-shadow: 0 0 0 10px rgba(239,68,68,0); } 100% { box-shadow: 0 0 0 0 rgba(239,68,68,0); } }
+    ::-webkit-scrollbar { width: 4px; } ::-webkit-scrollbar-track { background: transparent; } ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; } .dark ::-webkit-scrollbar-thumb { background: #475569; }
+    .chart-box { position: relative; width: 100%; height: 220px; }
+    .chart-box canvas { position: absolute !important; left:0; top:0; width: 100% !important; height: 100% !important; }
+    .tab-pill { transition: all .15s ease; }
+    .tag { display:inline-block; font-size:10px; font-weight:700; padding:2px 8px; border-radius:9999px; }
+    .status-dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; }
+    .status-active { background: #10b981; }
+    .status-inactive { background: #ef4444; }
+    .status-pending { background: #f59e0b; }
+    .input-field { width:100%; padding:0.75rem; border:1px solid #e5e7eb; border-radius:0.75rem; outline:none; transition:all 0.2s; font-size:0.875rem; }
+    .dark .input-field { background:#374151; border-color:#4b5563; color:#f3f4f6; }
+    .input-field:focus { ring:2px; ring-color:#3b82f6; }
+    .btn-primary { background:#3b82f6; color:white; padding:0.75rem; border-radius:0.75rem; font-weight:700; transition:all 0.2s; width:100%; border:none; cursor:pointer; }
+    .btn-primary:hover { background:#2563eb; } .btn-primary:active { transform:scale(0.95); }
+    .btn-danger { background:#ef4444; color:white; padding:0.75rem; border-radius:0.75rem; font-weight:700; transition:all 0.2s; width:100%; border:none; cursor:pointer; }
+    .btn-danger:hover { background:#dc2626; } .btn-danger:active { transform:scale(0.95); }
+    .btn-success { background:#10b981; color:white; padding:0.75rem; border-radius:0.75rem; font-weight:700; transition:all 0.2s; width:100%; border:none; cursor:pointer; }
+    .btn-success:hover { background:#059669; } .btn-success:active { transform:scale(0.95); }
+    .btn-secondary { background:#e5e7eb; color:#1f2937; padding:0.75rem; border-radius:0.75rem; font-weight:700; transition:all 0.2s; border:none; cursor:pointer; }
+    .dark .btn-secondary { background:#374151; color:#f3f4f6; }
+    .section-card { background:white; padding:1rem; border-radius:1rem; box-shadow:0 1px 3px rgba(0,0,0,0.1); border:1px solid #f3f4f6; }
+    .dark .section-card { background:#1f2937; border-color:#374151; }
+    @media print { .no-print { display: none !important; } body { background: white !important; color: black !important; } .print-only { display: block !important; } }
+    .print-only { display: none; }
+    .attendance-present { background: #10b981 !important; color: white !important; }
+    .attendance-absent { background: #ef4444 !important; color: white !important; }
+    .attendance-late { background: #f59e0b !important; color: white !important; }
+    .attendance-excused { background: #3b82f6 !important; color: white !important; }
+  </style>
 </head>
-<body>
-    <div class="app-shell">
-        <!-- Topbar -->
-        <header class="topbar" role="banner">
-            <div class="logo">
-                <strong style="color: var(--brand);">Edu</strong><span>Admin Pro</span>
-            </div>
-            
-            <div class="topbar-search">
-                <span class="search-icon" aria-hidden="true">🔍</span>
-                <input 
-                    type="search" 
-                    id="global-search" 
-                    placeholder="Qidirish... (o'quvchi, guruh, xodim)" 
-                    aria-label="Global qidiruv"
-                    oninput="globalSearch(this.value)"
-                >
-            </div>
-            
-            <div class="topbar-user">
-                <button 
-                    class="icon-btn" 
-                    onclick="toggleTheme()" 
-                    id="theme-btn" 
-                    title="Mavzuni o'zgartirish"
-                    aria-label="Mavzuni o'zgartirish"
-                >
-                    🌙
-                </button>
-                
-                <div class="avatar" id="topbar-avatar" role="img" aria-label="Foydalanuvchi avatari">A</div>
-                
-                <div class="user-info">
-                    <div class="user-name" id="topbar-name">Admin</div>
-                    <div class="user-role" id="topbar-role">Direktor</div>
-                </div>
-            </div>
-        </header>
-        
-        <!-- Sidebar -->
-        <aside class="sidebar" role="navigation" aria-label="Asosiy menyu">
-            <!-- Sidebar content will be dynamically generated -->
-        </aside>
-        
-        <!-- Main Content -->
-        <main class="main" role="main">
-            <!-- Dashboard Page -->
-            <div class="page active fade-in" id="page-dashboard" role="tabpanel" aria-labelledby="nav-dashboard">
-                <h1 class="page-title">Dashboard</h1>
-                <!-- Dashboard content -->
-            </div>
-            
-            <!-- Students Page -->
-            <div class="page" id="page-students" role="tabpanel" aria-labelledby="nav-students">
-                <h1 class="page-title">O'quvchilar</h1>
-                <!-- Students content -->
-            </div>
-            
-            <!-- Other pages... -->
-        </main>
+<body class="bg-gray-50 text-gray-900 dark:bg-gray-900 dark:text-gray-100 transition-colors duration-300 pb-28">
+
+  <div id="offline-bar" class="hidden fixed top-0 left-0 right-0 bg-amber-500 text-white text-center text-xs py-1 z-50">⚠️ Offline rejim - ma'lumotlar keyin sinxronlanadi</div>
+
+  <div class="max-w-lg mx-auto p-4 space-y-4">
+
+    <!-- HEADER -->
+    <div class="glass sticky top-0 z-40 p-4 rounded-2xl shadow-sm border border-gray-200 dark:border-gray-700 flex justify-between items-center">
+      <div>
+        <h1 class="text-xs text-gray-400 dark:text-gray-500 font-medium tracking-wider">O'QUV MARKAZI BOSHQARUVI</h1>
+        <p id="user-name" class="text-base font-bold">Direktor</p>
+      </div>
+      <div class="flex items-center gap-2">
+        <button onclick="toggleTheme()" class="p-2 rounded-xl hover:bg-gray-100 dark:hover:bg-gray-700 transition">
+          <span id="theme-icon">🌙</span>
+        </button>
+        <span class="bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 text-xs px-2.5 py-1 rounded-full font-semibold">v4.2</span>
+      </div>
     </div>
-    
-    <!-- Mobile Navigation -->
-    <nav class="mobile-nav" role="navigation" aria-label="Mobil menyu">
-        <!-- Mobile nav items -->
-    </nav>
-    
-    <!-- Toast Notification -->
-    <div id="toast" role="alert" aria-live="polite"></div>
-    
-    <!-- Modal -->
-    <div class="modal-overlay" id="modal" role="dialog" aria-modal="true" aria-hidden="true">
-        <!-- Modal content -->
+
+    <!-- ===== DASHBOARD ===== -->
+    <div id="page-dashboard" class="space-y-4 slide-up">
+      <div class="grid grid-cols-2 gap-3">
+        <div class="bg-emerald-50 dark:bg-emerald-900/20 border border-emerald-100 dark:border-emerald-800 p-4 rounded-2xl card-hover">
+          <span class="text-xs text-emerald-600 dark:text-emerald-400 font-medium block">Umumiy Tushum</span>
+          <span id="dash-income" class="text-xl font-black text-emerald-700 dark:text-emerald-300">0 so'm</span>
+        </div>
+        <div class="bg-rose-50 dark:bg-rose-900/20 border border-rose-100 dark:border-rose-800 p-4 rounded-2xl card-hover">
+          <span class="text-xs text-rose-600 dark:text-rose-400 font-medium block">Jami Xarajatlar</span>
+          <span id="dash-expense" class="text-xl font-black text-rose-700 dark:text-rose-300">0 so'm</span>
+        </div>
+      </div>
+
+      <div id="dash-profit-card" class="p-5 rounded-2xl border flex justify-between items-center card-hover">
+        <div>
+          <span class="text-xs font-medium block opacity-75">Sof Foyda / Zarar</span>
+          <span id="dash-profit" class="text-3xl font-black">0 so'm</span>
+          <span id="profit-margin" class="text-xs block mt-1 opacity-75"></span>
+        </div>
+        <span id="dash-status" class="text-xs px-4 py-2 rounded-full font-bold">Hisoblanmoqda...</span>
+      </div>
+
+      <div class="grid grid-cols-4 gap-2">
+        <div class="bg-white dark:bg-gray-800 p-3 rounded-xl border border-gray-100 dark:border-gray-700 text-center card-hover cursor-pointer" onclick="switchTab('groups')">
+          <span id="stat-groups" class="text-lg font-bold text-blue-600 dark:text-blue-400 block">0</span>
+          <span class="text-[10px] text-gray-500">Guruhlar</span>
+        </div>
+        <div class="bg-white dark:bg-gray-800 p-3 rounded-xl border border-gray-100 dark:border-gray-700 text-center card-hover cursor-pointer" onclick="switchTab('students')">
+          <span id="stat-students" class="text-lg font-bold text-emerald-600 dark:text-emerald-400 block">0</span>
+          <span class="text-[10px] text-gray-500">O'quvchilar</span>
+        </div>
+        <div class="bg-white dark:bg-gray-800 p-3 rounded-xl border border-gray-100 dark:border-gray-700 text-center card-hover cursor-pointer" onclick="switchTab('staff')">
+          <span id="stat-staff" class="text-lg font-bold text-purple-600 dark:text-purple-400 block">0</span>
+          <span class="text-[10px] text-gray-500">Xodimlar</span>
+        </div>
+        <div class="bg-white dark:bg-gray-800 p-3 rounded-xl border border-gray-100 dark:border-gray-700 text-center card-hover cursor-pointer" onclick="switchTab('attendance')">
+          <span id="stat-attendance" class="text-lg font-bold text-amber-600 dark:text-amber-400 block">0%</span>
+          <span class="text-[10px] text-gray-500">Davomat</span>
+        </div>
+      </div>
+
+      <div class="section-card">
+        <h3 class="text-sm font-bold mb-3">📈 Moliyaviy dinamika</h3>
+        <div class="chart-box"><canvas id="finance-chart"></canvas></div>
+      </div>
+
+      <div class="section-card">
+        <h3 class="text-sm font-bold mb-3">📚 Fanlar bo'yicha taqsimot</h3>
+        <div class="chart-box" style="height:200px"><canvas id="category-chart"></canvas></div>
+      </div>
+
+      <div class="section-card">
+        <h3 class="text-sm font-bold text-gray-800 dark:text-gray-200 mb-3 flex items-center gap-2">⚠️ Zarar ko'rayotgan guruhlar</h3>
+        <div id="dashboard-danger-groups" class="space-y-2 text-xs"></div>
+      </div>
+
+      <div class="section-card">
+        <h3 class="text-sm font-bold mb-3">💰 To'lov kechiktirgan o'quvchilar</h3>
+        <div id="dashboard-debtors" class="space-y-2 text-xs"></div>
+      </div>
     </div>
-    
-    <script>
-        'use strict';
-        
-        // Database Configuration
-        const DB_CONFIG = {
-            name: 'EduAdminDB',
-            version: 3,
-            stores: {
-                groups: { keyPath: 'id', autoIncrement: true },
-                students: { keyPath: 'id', autoIncrement: true },
-                staff: { keyPath: 'id', autoIncrement: true },
-                expenses: { keyPath: 'id', autoIncrement: true },
-                payments: { keyPath: 'id', autoIncrement: true },
-                attendance: { keyPath: 'id', autoIncrement: true },
-                history: { keyPath: 'id', autoIncrement: true },
-                config: { keyPath: 'id' }
-            }
+
+    <!-- ===== STUDENTS ===== -->
+    <div id="page-students" class="space-y-4 hidden">
+      <div class="section-card">
+        <h2 id="student-form-title" class="text-base font-bold mb-3">➕ Yangi o'quvchi qo'shish</h2>
+        <div class="space-y-3 text-sm">
+          <input type="hidden" id="s-edit-id" value="">
+          <div class="grid grid-cols-2 gap-2">
+            <input type="text" id="s-name" placeholder="F.I.O" class="input-field">
+            <input type="tel" id="s-phone" placeholder="Telefon raqam" class="input-field">
+          </div>
+          <div class="grid grid-cols-2 gap-2">
+            <select id="s-group" class="input-field"><option value="">Guruh tanlang</option></select>
+            <select id="s-status" class="input-field">
+              <option value="active">Faol</option>
+              <option value="inactive">Chiqib ketgan</option>
+              <option value="pending">Kutilmoqda</option>
+            </select>
+          </div>
+          <div class="grid grid-cols-2 gap-2">
+            <input type="date" id="s-start" class="input-field">
+            <input type="number" id="s-fee" placeholder="Oylik to'lov (so'm)" class="input-field">
+          </div>
+          <input type="text" id="s-parent" placeholder="Ota-ona F.I.O va telefon" class="input-field">
+          <textarea id="s-notes" placeholder="Qo'shimcha izohlar" class="input-field" rows="2"></textarea>
+          <div class="flex gap-2">
+            <button type="button" id="s-submit-btn" onclick="saveStudent()" class="flex-1 btn-primary">Saqlash</button>
+            <button type="button" id="s-cancel-btn" onclick="cancelEditStudent()" class="hidden px-4 btn-secondary text-sm">Bekor</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="space-y-3">
+        <div class="flex justify-between items-center gap-2">
+          <input id="student-search" oninput="renderStudents()" type="text" placeholder="🔍 Qidirish (F.I.O yoki telefon)" class="flex-1 p-2.5 text-sm border dark:border-gray-600 dark:bg-gray-700 rounded-xl outline-none focus:ring-2 focus:ring-blue-500">
+          <button onclick="exportStudents()" class="text-xs bg-gray-100 dark:bg-gray-700 px-3 py-2.5 rounded-xl hover:bg-gray-200 transition whitespace-nowrap">📥 Export</button>
+        </div>
+        <select id="student-filter-group" onchange="renderStudents()" class="w-full p-2.5 text-sm border dark:border-gray-600 dark:bg-gray-700 rounded-xl outline-none">
+          <option value="">Barcha guruhlar</option>
+        </select>
+        <select id="student-filter-status" onchange="renderStudents()" class="w-full p-2.5 text-sm border dark:border-gray-600 dark:bg-gray-700 rounded-xl outline-none">
+          <option value="">Barcha holatlar</option>
+          <option value="active">Faol</option>
+          <option value="inactive">Chiqib ketgan</option>
+          <option value="pending">Kutilmoqda</option>
+        </select>
+        <div id="students-list" class="space-y-3"></div>
+      </div>
+    </div>
+
+    <!-- ===== GROUPS ===== -->
+    <div id="page-groups" class="space-y-4 hidden">
+      <div class="section-card">
+        <h2 id="group-form-title" class="text-base font-bold mb-3">➕ Yangi guruh qo'shish</h2>
+        <div class="space-y-3 text-sm">
+          <input type="hidden" id="g-edit-id" value="">
+          <div class="grid grid-cols-2 gap-2">
+            <input type="text" id="g-name" placeholder="Guruh nomi (IELTS 1)" class="input-field">
+            <select id="g-category" class="input-field">
+              <option value="IELTS">IELTS</option>
+              <option value="Matematika">Matematika</option>
+              <option value="Fizika">Fizika</option>
+              <option value="Kimyo">Kimyo</option>
+              <option value="Ingliz tili">Ingliz tili</option>
+              <option value="Rus tili">Rus tili</option>
+              <option value="Matematika (DTM)">DTM Matematika</option>
+              <option value="Fizika (DTM)">DTM Fizika</option>
+              <option value="Ona tili">Ona tili</option>
+              <option value="Tarix">Tarix</option>
+              <option value="Boshqa">Boshqa</option>
+            </select>
+          </div>
+          <div class="grid grid-cols-2 gap-2">
+            <input type="number" min="0" id="g-price" placeholder="Kurs narxi (so'm)" class="input-field">
+            <input type="number" min="0" max="100" id="g-percent" placeholder="O'qituvchi %" class="input-field">
+          </div>
+          <div class="grid grid-cols-2 gap-2">
+            <input type="number" min="0" id="g-max" placeholder="Maks. o'quvchi" class="input-field">
+            <input type="number" min="0" id="g-min" placeholder="Min. rentabel o'quvchi" class="input-field">
+          </div>
+          <select id="g-teacher" class="input-field"><option value="">O'qituvchi tanlang</option></select>
+          <div class="grid grid-cols-2 gap-2">
+            <input type="time" id="g-time" class="input-field">
+            <select id="g-days" class="input-field">
+              <option value="Du-Cho-Ju">Du-Cho-Ju</option>
+              <option value="Se-Pa-Sha">Se-Pa-Sha</option>
+              <option value="Har kuni">Har kuni</option>
+              <option value="Shanba">Shanba</option>
+              <option value="Yakshanba">Yakshanba</option>
+            </select>
+          </div>
+          <div class="flex gap-2">
+            <button type="button" id="g-submit-btn" onclick="saveGroup()" class="flex-1 btn-primary">Guruhni saqlash</button>
+            <button type="button" id="g-cancel-btn" onclick="cancelEditGroup()" class="hidden px-4 btn-secondary text-sm">Bekor</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="space-y-3">
+        <div class="flex justify-between items-center gap-2">
+          <input id="group-search" oninput="renderGroups()" type="text" placeholder="🔍 Qidirish (nomi yoki fan)" class="flex-1 p-2.5 text-sm border dark:border-gray-600 dark:bg-gray-700 rounded-xl outline-none focus:ring-2 focus:ring-blue-500">
+          <button onclick="exportGroups()" class="text-xs bg-gray-100 dark:bg-gray-700 px-3 py-2.5 rounded-xl hover:bg-gray-200 transition whitespace-nowrap">📥 Export</button>
+        </div>
+        <select id="group-filter-cat" onchange="renderGroups()" class="w-full p-2.5 text-sm border dark:border-gray-600 dark:bg-gray-700 rounded-xl outline-none">
+          <option value="">Barcha fanlar</option>
+        </select>
+        <div id="groups-list" class="space-y-3"></div>
+      </div>
+    </div>
+
+    <!-- ===== ATTENDANCE ===== -->
+    <div id="page-attendance" class="space-y-4 hidden">
+      <div class="section-card">
+        <h2 class="text-base font-bold mb-3">📋 Davomat olish</h2>
+        <div class="space-y-3 text-sm">
+          <select id="att-group" onchange="loadAttendance()" class="input-field"><option value="">Guruh tanlang</option></select>
+          <input type="date" id="att-date" onchange="loadAttendance()" class="input-field">
+          <div id="attendance-list" class="space-y-2"></div>
+          <button onclick="saveAttendance()" class="w-full btn-primary">Davomatni saqlash</button>
+        </div>
+      </div>
+
+      <div class="section-card">
+        <h3 class="text-sm font-bold mb-3">📊 Davomat statistikasi</h3>
+        <div class="chart-box" style="height:180px"><canvas id="attendance-chart"></canvas></div>
+        <div id="attendance-stats" class="mt-3 space-y-2 text-xs"></div>
+      </div>
+    </div>
+
+    <!-- ===== PAYMENTS ===== -->
+    <div id="page-payments" class="space-y-4 hidden">
+      <div class="section-card">
+        <h2 class="text-base font-bold mb-3">💰 To'lov qabul qilish</h2>
+        <div class="space-y-3 text-sm">
+          <select id="pay-student" class="input-field"><option value="">O'quvchi tanlang</option></select>
+          <div class="grid grid-cols-2 gap-2">
+            <input type="number" id="pay-amount" placeholder="Summa (so'm)" class="input-field">
+            <select id="pay-month" class="input-field">
+              <option value="Yanvar">Yanvar</option><option value="Fevral">Fevral</option><option value="Mart">Mart</option>
+              <option value="Aprel">Aprel</option><option value="May">May</option><option value="Iyun">Iyun</option>
+              <option value="Iyul">Iyul</option><option value="Avgust">Avgust</option><option value="Sentabr">Sentabr</option>
+              <option value="Oktabr">Oktabr</option><option value="Noyabr">Noyabr</option><option value="Dekabr">Dekabr</option>
+            </select>
+          </div>
+          <select id="pay-type" class="input-field">
+            <option value="cash">Naqd</option>
+            <option value="card">Karta</option>
+            <option value="transfer">O'tkazma</option>
+          </select>
+          <input type="text" id="pay-desc" placeholder="Izoh (ixtiyoriy)" class="input-field">
+          <button onclick="savePayment()" class="w-full btn-success">To'lovni qayd etish</button>
+        </div>
+      </div>
+
+      <div class="section-card">
+        <div class="flex justify-between items-center mb-3">
+          <h3 class="text-sm font-bold">Oxirgi to'lovlar</h3>
+          <button onclick="clearAllPayments()" class="text-xs text-rose-500 hover:text-rose-600">Tozalash</button>
+        </div>
+        <div id="payments-list" class="space-y-2 text-xs max-h-96 overflow-y-auto"></div>
+      </div>
+
+      <div class="section-card">
+        <h3 class="text-sm font-bold mb-3">📊 To'lovlar statistikasi</h3>
+        <div class="chart-box" style="height:180px"><canvas id="payment-chart"></canvas></div>
+      </div>
+    </div>
+
+    <!-- ===== STAFF ===== -->
+    <div id="page-staff" class="space-y-4 hidden">
+      <div class="section-card">
+        <h2 id="staff-form-title" class="text-base font-bold mb-3">➕ Yangi xodim qo'shish</h2>
+        <div class="space-y-3 text-sm">
+          <input type="hidden" id="st-edit-id" value="">
+          <div class="grid grid-cols-2 gap-2">
+            <input type="text" id="st-name" placeholder="F.I.O" class="input-field">
+            <input type="tel" id="st-phone" placeholder="Telefon raqam" class="input-field">
+          </div>
+          <div class="grid grid-cols-2 gap-2">
+            <select id="st-role" class="input-field">
+              <option value="teacher">O'qituvchi</option>
+              <option value="admin">Administrator</option>
+              <option value="director">Direktor</option>
+              <option value="cleaner">Tozalovchi</option>
+              <option value="guard">Qorovul</option>
+              <option value="other">Boshqa</option>
+            </select>
+            <input type="number" id="st-salary" placeholder="Oylik maosh (so'm)" class="input-field">
+          </div>
+          <select id="st-status" class="input-field">
+            <option value="active">Faol</option>
+            <option value="inactive">Faol emas</option>
+          </select>
+          <input type="date" id="st-start" class="input-field">
+          <textarea id="st-notes" placeholder="Qo'shimcha izohlar" class="input-field" rows="2"></textarea>
+          <div class="flex gap-2">
+            <button type="button" id="st-submit-btn" onclick="saveStaff()" class="flex-1 btn-primary">Xodimni saqlash</button>
+            <button type="button" id="st-cancel-btn" onclick="cancelEditStaff()" class="hidden px-4 btn-secondary text-sm">Bekor</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="space-y-3">
+        <div class="flex justify-between items-center gap-2">
+          <input id="staff-search" oninput="renderStaff()" type="text" placeholder="🔍 Qidirish (F.I.O)" class="flex-1 p-2.5 text-sm border dark:border-gray-600 dark:bg-gray-700 rounded-xl outline-none focus:ring-2 focus:ring-blue-500">
+          <button onclick="exportStaff()" class="text-xs bg-gray-100 dark:bg-gray-700 px-3 py-2.5 rounded-xl hover:bg-gray-200 transition whitespace-nowrap">📥 Export</button>
+        </div>
+        <select id="staff-filter-role" onchange="renderStaff()" class="w-full p-2.5 text-sm border dark:border-gray-600 dark:bg-gray-700 rounded-xl outline-none">
+          <option value="">Barcha lavozimlar</option>
+          <option value="teacher">O'qituvchi</option>
+          <option value="admin">Administrator</option>
+          <option value="director">Direktor</option>
+          <option value="cleaner">Tozalovchi</option>
+          <option value="guard">Qorovul</option>
+          <option value="other">Boshqa</option>
+        </select>
+        <div id="staff-list" class="space-y-3"></div>
+      </div>
+    </div>
+
+    <!-- ===== KASSA ===== -->
+    <div id="page-kassa" class="space-y-4 hidden">
+      <div class="section-card">
+        <h2 class="text-base font-bold mb-3">💸 Xarajat kiritish</h2>
+        <div class="space-y-3 text-sm">
+          <input type="number" min="0" id="e-amount" placeholder="Xarajat summasi (so'm)" class="input-field">
+          <select id="e-cat" class="input-field">
+            <option value="Rent">Xona ijarasi</option>
+            <option value="Marketing">Reklama va Marketing</option>
+            <option value="Taxes">Soliqlar</option>
+            <option value="Utilities">Kommunal xizmatlar</option>
+            <option value="Salary">Xodimlar maoshi</option>
+            <option value="Supplies">O'quv materiallari</option>
+            <option value="Repair">Ta'mirlash</option>
+            <option value="Other">Boshqa xarajatlar</option>
+          </select>
+          <input type="text" id="e-desc" placeholder="Izoh (ixtiyoriy)" class="input-field">
+          <button type="button" onclick="saveExpense()" class="w-full btn-danger">Xarajatni qayd etish</button>
+        </div>
+      </div>
+
+      <div class="section-card">
+        <div class="flex justify-between items-center mb-3">
+          <h3 class="text-sm font-bold">Oxirgi operatsiyalar</h3>
+          <button onclick="clearAllExpenses()" class="text-xs text-rose-500 hover:text-rose-600">Tozalash</button>
+        </div>
+        <div id="transactions-list" class="space-y-2 text-xs max-h-96 overflow-y-auto"></div>
+      </div>
+    </div>
+
+    <!-- ===== REPORTS ===== -->
+    <div id="page-reports" class="space-y-4 hidden">
+      <div class="section-card">
+        <h2 class="text-base font-bold mb-3">📊 Hisobotlar</h2>
+        <div class="space-y-3">
+          <button onclick="printReport('financial')" class="w-full p-3 bg-blue-50 dark:bg-blue-900/20 border border-blue-100 dark:border-blue-800 rounded-xl text-left card-hover">
+            <div class="flex items-center gap-3"><span class="text-2xl">💰</span><div><div class="font-bold text-sm">Moliyaviy hisobot</div><div class="text-xs text-gray-500">Tushum, xarajat, sof foyda</div></div></div>
+          </button>
+          <button onclick="printReport('students')" class="w-full p-3 bg-emerald-50 dark:bg-emerald-900/20 border border-emerald-100 dark:border-emerald-800 rounded-xl text-left card-hover">
+            <div class="flex items-center gap-3"><span class="text-2xl">👨‍🎓</span><div><div class="font-bold text-sm">O'quvchilar hisoboti</div><div class="text-xs text-gray-500">Barcha o'quvchilar ro'yxati</div></div></div>
+          </button>
+          <button onclick="printReport('attendance')" class="w-full p-3 bg-amber-50 dark:bg-amber-900/20 border border-amber-100 dark:border-amber-800 rounded-xl text-left card-hover">
+            <div class="flex items-center gap-3"><span class="text-2xl">📋</span><div><div class="font-bold text-sm">Davomat hisoboti</div><div class="text-xs text-gray-500">Davomat statistikasi</div></div></div>
+          </button>
+          <button onclick="printReport('payments')" class="w-full p-3 bg-purple-50 dark:bg-purple-900/20 border border-purple-100 dark:border-purple-800 rounded-xl text-left card-hover">
+            <div class="flex items-center gap-3"><span class="text-2xl">💳</span><div><div class="font-bold text-sm">To'lovlar hisoboti</div><div class="text-xs text-gray-500">Barcha to'lovlar tarixi</div></div></div>
+          </button>
+          <button onclick="printReport('staff')" class="w-full p-3 bg-cyan-50 dark:bg-cyan-900/20 border border-cyan-100 dark:border-cyan-800 rounded-xl text-left card-hover">
+            <div class="flex items-center gap-3"><span class="text-2xl">👥</span><div><div class="font-bold text-sm">Xodimlar hisoboti</div><div class="text-xs text-gray-500">Xodimlar ro'yxati va maoshlar</div></div></div>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== SETTINGS ===== -->
+    <div id="page-settings" class="space-y-4 hidden">
+      <div class="section-card space-y-4">
+        <h2 class="text-base font-bold">⚙️ Sozlamalar</h2>
+        <div class="space-y-3">
+          <div class="flex justify-between items-center p-3 bg-gray-50 dark:bg-gray-700 rounded-xl">
+            <span class="text-sm">Qorong'u rejim</span>
+            <button onclick="toggleTheme()" class="w-12 h-6 bg-gray-300 dark:bg-blue-600 rounded-full relative transition">
+              <span class="absolute left-1 top-1 w-4 h-4 bg-white rounded-full transition transform dark:translate-x-6"></span>
+            </button>
+          </div>
+          <div class="flex justify-between items-center p-3 bg-gray-50 dark:bg-gray-700 rounded-xl">
+            <span class="text-sm">Hisobot chiqarish</span>
+            <button onclick="printReport('financial')" class="bg-blue-600 text-white px-4 py-2 rounded-lg text-xs font-bold">Print</button>
+          </div>
+          <div class="flex justify-between items-center p-3 bg-gray-50 dark:bg-gray-700 rounded-xl">
+            <span class="text-sm">Ma'lumotlarni eksport</span>
+            <button onclick="exportAllData()" class="bg-emerald-600 text-white px-4 py-2 rounded-lg text-xs font-bold">JSON</button>
+          </div>
+          <div class="p-3 bg-gray-50 dark:bg-gray-700 rounded-xl space-y-2">
+            <span class="text-sm block">Ma'lumotlarni import</span>
+            <input type="file" id="import-file" accept=".json" onchange="importData(this)" class="text-xs w-full">
+          </div>
+          <div class="p-3 bg-rose-50 dark:bg-rose-900/20 border border-rose-100 dark:border-rose-800 rounded-xl">
+            <span class="text-sm block text-rose-700 dark:text-rose-400 font-medium mb-2">Xavfli zona</span>
+            <button onclick="resetAllData()" class="w-full bg-rose-600 text-white p-2 rounded-lg text-xs font-bold hover:bg-rose-700 transition">Barcha ma'lumotlarni o'chirish</button>
+          </div>
+        </div>
+        <div class="text-center text-xs text-gray-400 pt-4 border-t dark:border-gray-700">
+          <p>v4.2 Production | IndexedDB + PWA</p>
+          <p id="storage-info" class="mt-1"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PRINT REPORT -->
+  <div id="print-report" class="print-only">
+    <h1 style="text-align:center; font-size:24px; margin-bottom:20px;">O'QUV MARKAZI HISOBOTI</h1>
+    <p style="text-align:center; color:#666;" id="print-date"></p>
+    <hr style="margin:20px 0;">
+    <div id="print-content"></div>
+  </div>
+
+  <!-- BOTTOM NAV -->
+  <div class="fixed bottom-0 left-0 right-0 bg-white/90 dark:bg-gray-900/90 backdrop-blur-lg border-t border-gray-200 dark:border-gray-700 py-2 px-4 shadow-2xl flex justify-around max-w-lg mx-auto z-50 rounded-t-3xl no-print overflow-x-auto">
+    <button onclick="switchTab('dashboard')" class="tab-pill flex flex-col items-center gap-0.5 p-2 rounded-xl min-w-[60px]" id="btn-dashboard"><span class="text-xl">📊</span><span class="text-[10px] font-medium">Bosh</span></button>
+    <button onclick="switchTab('students')" class="tab-pill flex flex-col items-center gap-0.5 p-2 rounded-xl min-w-[60px]" id="btn-students"><span class="text-xl">👨‍🎓</span><span class="text-[10px] font-medium">O'quvchilar</span></button>
+    <button onclick="switchTab('groups')" class="tab-pill flex flex-col items-center gap-0.5 p-2 rounded-xl min-w-[60px]" id="btn-groups"><span class="text-xl">🏫</span><span class="text-[10px] font-medium">Guruhlar</span></button>
+    <button onclick="switchTab('attendance')" class="tab-pill flex flex-col items-center gap-0.5 p-2 rounded-xl min-w-[60px]" id="btn-attendance"><span class="text-xl">📋</span><span class="text-[10px] font-medium">Davomat</span></button>
+    <button onclick="switchTab('payments')" class="tab-pill flex flex-col items-center gap-0.5 p-2 rounded-xl min-w-[60px]" id="btn-payments"><span class="text-xl">💰</span><span class="text-[10px] font-medium">To'lov</span></button>
+    <button onclick="switchTab('staff')" class="tab-pill flex flex-col items-center gap-0.5 p-2 rounded-xl min-w-[60px]" id="btn-staff"><span class="text-xl">👥</span><span class="text-[10px] font-medium">Xodimlar</span></button>
+    <button onclick="switchTab('kassa')" class="tab-pill flex flex-col items-center gap-0.5 p-2 rounded-xl min-w-[60px]" id="btn-kassa"><span class="text-xl">💸</span><span class="text-[10px] font-medium">Kassa</span></button>
+    <button onclick="switchTab('reports')" class="tab-pill flex flex-col items-center gap-0.5 p-2 rounded-xl min-w-[60px]" id="btn-reports"><span class="text-xl">📈</span><span class="text-[10px] font-medium">Hisobot</span></button>
+    <button onclick="switchTab('settings')" class="tab-pill flex flex-col items-center gap-0.5 p-2 rounded-xl min-w-[60px]" id="btn-settings"><span class="text-xl">⚙️</span><span class="text-[10px] font-medium">Sozlamalar</span></button>
+  </div>
+
+  <!-- TOAST -->
+  <div id="toast" class="fixed top-20 left-1/2 transform -translate-x-1/2 bg-gray-800 dark:bg-gray-700 text-white px-6 py-3 rounded-xl shadow-xl z-50 transition-all duration-300 opacity-0 pointer-events-none translate-y-[-20px]">
+    <span id="toast-msg"></span>
+  </div>
+
+  <!-- MODAL -->
+  <div id="modal" class="fixed inset-0 bg-black/50 z-50 hidden flex items-center justify-center p-4" style="backdrop-filter:blur(4px);">
+    <div class="bg-white dark:bg-gray-800 rounded-2xl p-6 max-w-sm w-full shadow-2xl">
+      <h3 id="modal-title" class="text-lg font-bold mb-2">Tasdiqlash</h3>
+      <p id="modal-text" class="text-sm text-gray-600 dark:text-gray-300 mb-4"></p>
+      <div class="flex gap-2">
+        <button onclick="closeModal()" class="flex-1 py-2 rounded-xl border dark:border-gray-600 text-sm font-medium">Bekor</button>
+        <button id="modal-confirm" class="flex-1 py-2 rounded-xl bg-rose-600 text-white text-sm font-bold">O'chirish</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // ===================== TELEGRAM =====================
+    const tg = window.Telegram?.WebApp;
+    if (tg) {
+      try { tg.ready(); tg.expand(); tg.enableClosingConfirmation(); } catch (e) {}
+      if (tg.initDataUnsafe?.user) document.getElementById('user-name').innerText = tg.initDataUnsafe.user.first_name || 'Direktor';
+      if (tg.colorScheme === 'dark') document.documentElement.classList.add('dark');
+    }
+
+    // ===================== INDEXEDDB =====================
+    const DB_NAME = 'EduCenterDB';
+    const DB_VERSION = 1;
+    let db;
+
+    function openDB() {
+      return new Promise((resolve, reject) => {
+        const request = indexedDB.open(DB_NAME, DB_VERSION);
+        request.onerror = () => reject(request.error);
+        request.onsuccess = () => { db = request.result; resolve(db); };
+        request.onupgradeneeded = (e) => {
+          const database = e.target.result;
+          if (!database.objectStoreNames.contains('groups')) database.createObjectStore('groups', { keyPath: 'id' });
+          if (!database.objectStoreNames.contains('students')) database.createObjectStore('students', { keyPath: 'id' });
+          if (!database.objectStoreNames.contains('staff')) database.createObjectStore('staff', { keyPath: 'id' });
+          if (!database.objectStoreNames.contains('expenses')) database.createObjectStore('expenses', { keyPath: 'id' });
+          if (!database.objectStoreNames.contains('payments')) database.createObjectStore('payments', { keyPath: 'id' });
+          if (!database.objectStoreNames.contains('attendance')) database.createObjectStore('attendance', { keyPath: 'id' });
+          if (!database.objectStoreNames.contains('history')) database.createObjectStore('history', { keyPath: 'day' });
         };
-        
-        // Main Application Class
-        class EduAdmin {
-            constructor() {
-                this.db = null;
-                this.data = {
-                    groups: [],
-                    students: [],
-                    staff: [],
-                    expenses: [],
-                    payments: [],
-                    attendance: []
-                };
-                this.config = {
-                    centerName: "O'quv Markazi",
-                    directorName: 'Direktor',
-                    phone: '',
-                    address: ''
-                };
-                this.currentPage = 'dashboard';
-                
-                this.init();
-            }
-            
-            async init() {
-                try {
-                    await this.openDatabase();
-                    await this.loadData();
-                    this.setupEventListeners();
-                    this.renderNavigation();
-                    this.navigateTo('dashboard');
-                    this.checkOnlineStatus();
-                } catch (error) {
-                    console.error('Initialization failed:', error);
-                    this.showToast('Ilova yuklashda xatolik', 'error');
-                }
-            }
-            
-            async openDatabase() {
-                return new Promise((resolve, reject) => {
-                    const request = indexedDB.open(DB_CONFIG.name, DB_CONFIG.version);
-                    
-                    request.onerror = () => reject(request.error);
-                    
-                    request.onsuccess = (event) => {
-                        this.db = event.target.result;
-                        resolve(this.db);
-                    };
-                    
-                    request.onupgradeneeded = (event) => {
-                        const db = event.target.result;
-                        
-                        Object.entries(DB_CONFIG.stores).forEach(([name, config]) => {
-                            if (!db.objectStoreNames.contains(name)) {
-                                db.createObjectStore(name, config);
-                            }
-                        });
-                        
-                        // Create indexes for better query performance
-                        const studentStore = event.target.transaction.objectStore('students');
-                        if (!studentStore.indexNames.contains('groupId')) {
-                            studentStore.createIndex('groupId', 'groupId', { unique: false });
-                        }
-                        if (!studentStore.indexNames.contains('status')) {
-                            studentStore.createIndex('status', 'status', { unique: false });
-                        }
-                        
-                        const paymentStore = event.target.transaction.objectStore('payments');
-                        if (!paymentStore.indexNames.contains('studentId')) {
-                            paymentStore.createIndex('studentId', 'studentId', { unique: false });
-                        }
-                        
-                        const attendanceStore = event.target.transaction.objectStore('attendance');
-                        if (!attendanceStore.indexNames.contains('date')) {
-                            attendanceStore.createIndex('date', 'date', { unique: false });
-                        }
-                    };
-                });
-            }
-            
-            async loadData() {
-                const storeNames = ['groups', 'students', 'staff', 'expenses', 'payments', 'attendance', 'config'];
-                
-                for (const storeName of storeNames) {
-                    try {
-                        const data = await this.getAllFromStore(storeName);
-                        if (storeName === 'config') {
-                            if (data.length > 0) {
-                                Object.assign(this.config, data[0]);
-                            }
-                        } else {
-                            this.data[storeName] = data;
-                        }
-                    } catch (error) {
-                        console.warn(`Failed to load ${storeName}:`, error);
-                        // Fallback to localStorage
-                        const cached = localStorage.getItem(`edu_${storeName}`);
-                        if (cached) {
-                            try {
-                                if (storeName === 'config') {
-                                    Object.assign(this.config, JSON.parse(cached));
-                                } else {
-                                    this.data[storeName] = JSON.parse(cached);
-                                }
-                            } catch (e) {}
-                        }
-                    }
-                }
-            }
-            
-            async getAllFromStore(storeName) {
-                return new Promise((resolve, reject) => {
-                    const transaction = this.db.transaction(storeName, 'readonly');
-                    const store = transaction.objectStore(storeName);
-                    const request = store.getAll();
-                    
-                    request.onsuccess = () => resolve(request.result || []);
-                    request.onerror = () => reject(request.error);
-                });
-            }
-            
-            async saveToStore(storeName, data) {
-                return new Promise((resolve, reject) => {
-                    const transaction = this.db.transaction(storeName, 'readwrite');
-                    const store = transaction.objectStore(storeName);
-                    
-                    if (Array.isArray(data)) {
-                        // Clear store first for batch operations
-                        store.clear();
-                        data.forEach(item => store.add(item));
-                    } else {
-                        store.put(data);
-                    }
-                    
-                    transaction.oncomplete = () => resolve();
-                    transaction.onerror = () => reject(transaction.error);
-                });
-            }
-            
-            setupEventListeners() {
-                // Theme toggle
-                const themeBtn = document.getElementById('theme-btn');
-                if (themeBtn) {
-                    themeBtn.addEventListener('click', () => this.toggleTheme());
-                }
-                
-                // Online/Offline detection
-                window.addEventListener('online', () => this.handleOnlineStatus(true));
-                window.addEventListener('offline', () => this.handleOnlineStatus(false));
-                
-                // Keyboard shortcuts
-                document.addEventListener('keydown', (e) => {
-                    if (e.ctrlKey || e.metaKey) {
-                        switch(e.key) {
-                            case 's':
-                                e.preventDefault();
-                                this.saveCurrentData();
-                                break;
-                            case 'f':
-                                e.preventDefault();
-                                document.getElementById('global-search')?.focus();
-                                break;
-                        }
-                    }
-                });
-            }
-            
-            renderNavigation() {
-                const navItems = [
-                    { id: 'dashboard', icon: '📊', label: 'Dashboard', section: 'Asosiy' },
-                    { id: 'students', icon: '👨‍🎓', label: "O'quvchilar", section: 'Asosiy' },
-                    { id: 'groups', icon: '🏫', label: 'Guruhlar', section: 'Asosiy' },
-                    { id: 'attendance', icon: '📋', label: 'Davomat', section: 'Operatsiyalar' },
-                    { id: 'payments', icon: '💰', label: "To'lovlar", section: 'Operatsiyalar' },
-                    { id: 'kassa', icon: '💸', label: 'Kassa', section: 'Operatsiyalar' },
-                    { id: 'staff', icon: '👥', label: 'Xodimlar', section: 'Boshqaruv' },
-                    { id: 'reports', icon: '📈', label: 'Hisobotlar', section: 'Boshqaruv' },
-                    { id: 'settings', icon: '⚙️', label: 'Sozlamalar', section: 'Boshqaruv' }
-                ];
-                
-                // Render sidebar
-                const sidebar = document.querySelector('.sidebar');
-                if (sidebar) {
-                    let currentSection = '';
-                    let html = '';
-                    
-                    navItems.forEach((item, index) => {
-                        if (item.section !== currentSection) {
-                            currentSection = item.section;
-                            html += `<div class="nav-section">${currentSection}</div>`;
-                        }
-                        
-                        html += `
-                            <button 
-                                class="nav-item" 
-                                id="nav-${item.id}"
-                                onclick="app.navigateTo('${item.id}')"
-                                aria-current="${this.currentPage === item.id ? 'page' : 'false'}"
-                            >
-                                <span class="nav-icon" aria-hidden="true">${item.icon}</span>
-                                <span>${item.label}</span>
-                            </button>
-                        `;
-                    });
-                    
-                    sidebar.innerHTML = html;
-                }
-                
-                // Render mobile nav
-                const mobileNav = document.querySelector('.mobile-nav');
-                if (mobileNav) {
-                    const mobileItems = navItems.slice(0, 8); // Limit for mobile
-                    
-                    mobileNav.innerHTML = mobileItems.map(item => `
-                        <button 
-                            class="mob-btn ${this.currentPage === item.id ? 'active' : ''}"
-                            id="mn-${item.id}"
-                            onclick="app.navigateTo('${item.id}')"
-                            aria-label="${item.label}"
-                        >
-                            <span class="ico" aria-hidden="true">${item.icon}</span>
-                            <span>${item.label}</span>
-                        </button>
-                    `).join('');
-                }
-            }
-            
-            navigateTo(pageName) {
-                // Validate page exists
-                const validPages = ['dashboard', 'students', 'groups', 'attendance', 'payments', 'kassa', 'staff', 'reports', 'settings'];
-                if (!validPages.includes(pageName)) {
-                    console.error(`Invalid page: ${pageName}`);
-                    return;
-                }
-                
-                // Hide all pages
-                document.querySelectorAll('.page').forEach(page => {
-                    page.classList.remove('active');
-                    page.setAttribute('aria-hidden', 'true');
-                });
-                
-                // Show target page
-                const targetPage = document.getElementById(`page-${pageName}`);
-                if (targetPage) {
-                    targetPage.classList.add('active');
-                    targetPage.setAttribute('aria-hidden', 'false');
-                }
-                
-                // Update navigation
-                document.querySelectorAll('.nav-item, .mob-btn').forEach(btn => {
-                    btn.classList.remove('active');
-                    btn.setAttribute('aria-current', 'false');
-                });
-                
-                const activeNav = document.getElementById(`nav-${pageName}`);
-                const activeMobNav = document.getElementById(`mn-${pageName}`);
-                
-                if (activeNav) {
-                    activeNav.classList.add('active');
-                    activeNav.setAttribute('aria-current', 'page');
-                }
-                
-                if (activeMobNav) {
-                    activeMobNav.classList.add('active');
-                }
-                
-                this.currentPage = pageName;
-                
-                // Page-specific initialization
-                this.initPageContent(pageName);
-            }
-            
-            initPageContent(pageName) {
-                switch(pageName) {
-                    case 'dashboard':
-                        this.renderDashboard();
-                        break;
-                    case 'students':
-                        this.renderStudents();
-                        break;
-                    case 'groups':
-                        this.renderGroups();
-                        break;
-                    case 'payments':
-                        this.renderPayments();
-                        break;
-                    // Add other cases as needed
-                }
-            }
-            
-            renderDashboard() {
-                const dashboard = document.getElementById('page-dashboard');
-                if (!dashboard) return;
-                
-                const totals = this.calculateTotals();
-                const activeStudents = this.data.students.filter(s => s.status === 'active').length;
-                const today = new Date().toISOString().split('T')[0];
-                const todayAttendance = this.data.attendance.filter(a => a.date === today);
-                const attendanceRate = todayAttendance.length > 0 
-                    ? Math.round((todayAttendance.filter(a => a.status === 'present').length / todayAttendance.length) * 100)
-                    : 0;
-                
-                dashboard.innerHTML = `
-                    <div class="grid grid-4">
-                        <div class="stat-card">
-                            <div class="label">Tushum</div>
-                            <div class="value" style="color: var(--success);">${this.formatMoney(totals.income)}</div>
-                            <div class="sub">so'm</div>
-                        </div>
-                        <div class="stat-card">
-                            <div class="label">Xarajat</div>
-                            <div class="value" style="color: var(--danger);">${this.formatMoney(totals.expense)}</div>
-                            <div class="sub">so'm</div>
-                        </div>
-                        <div class="stat-card">
-                            <div class="label">O'quvchilar</div>
-                            <div class="value" style="color: var(--brand);">${activeStudents}</div>
-                            <div class="sub">faol</div>
-                        </div>
-                        <div class="stat-card">
-                            <div class="label">Davomat</div>
-                            <div class="value" style="color: var(--warn);">${attendanceRate}%</div>
-                            <div class="sub">bugun</div>
-                        </div>
-                    </div>
-                    
-                    <div class="grid grid-2">
-                        <div class="card">
-                            <h3>📈 Moliyaviy dinamika</h3>
-                            <canvas id="chart-finance" height="200"></canvas>
-                        </div>
-                        <div class="card">
-                            <h3>⚠️ Muhim ko'rsatkichlar</h3>
-                            <div id="key-metrics"></div>
-                        </div>
-                    </div>
-                `;
-                
-                this.renderFinanceChart();
-                this.renderKeyMetrics(totals);
-            }
-            
-            calculateTotals() {
-                const income = this.data.payments.reduce((sum, p) => sum + (p.amount || 0), 0);
-                const expenses = this.data.expenses.reduce((sum, e) => sum + (e.amount || 0), 0);
-                
-                let teacherPay = 0;
-                let staffSalaries = 0;
-                
-                this.data.groups.forEach(group => {
-                    const studentCount = this.data.students.filter(s => 
-                        s.groupId === group.id && s.status === 'active'
-                    ).length;
-                    teacherPay += (group.price * studentCount * (group.percent || 0)) / 100;
-                });
-                
-                staffSalaries = this.data.staff
-                    .filter(s => s.status === 'active')
-                    .reduce((sum, s) => sum + (s.salary || 0), 0);
-                
-                const totalExpense = teacherPay + staffSalaries + expenses;
-                
-                return {
-                    income,
-                    teacherPay,
-                    staffSalaries,
-                    expenses,
-                    expense: totalExpense,
-                    profit: income - totalExpense
-                };
-            }
-            
-            renderFinanceChart() {
-                const ctx = document.getElementById('chart-finance');
-                if (!ctx) return;
-                
-                // Chart implementation using Chart.js
-                new Chart(ctx, {
-                    type: 'line',
-                    data: {
-                        labels: ['Yan', 'Fev', 'Mar', 'Apr', 'May', 'Iyun'],
-                        datasets: [{
-                            label: 'Tushum',
-                            data: [12, 19, 3, 5, 2, 3],
-                            borderColor: '#10b981',
-                            tension: 0.4
-                        }, {
-                            label: 'Xarajat',
-                            data: [8, 11, 5, 8, 2, 5],
-                            borderColor: '#ef4444',
-                            tension: 0.4
-                        }]
-                    },
-                    options: {
-                        responsive: true,
-                        maintainAspectRatio: false
-                    }
-                });
-            }
-            
-            renderKeyMetrics(totals) {
-                const container = document.getElementById('key-metrics');
-                if (!container) return;
-                
-                const debtors = this.getDebtors();
-                
-                container.innerHTML = `
-                    <div class="alert ${totals.profit >= 0 ? 'alert-success' : 'alert-danger'}">
-                        <strong>Sof foyda:</strong> ${this.formatMoney(totals.profit)} so'm
-                    </div>
-                    <div class="alert alert-warn">
-                        <strong>Qarzdor o'quvchilar:</strong> ${debtors.length} ta
-                    </div>
-                    <div class="alert alert-info">
-                        <strong>Umumiy qarz:</strong> ${this.formatMoney(debtors.reduce((sum, d) => sum + d.debt, 0))} so'm
-                    </div>
-                `;
-            }
-            
-            getDebtors() {
-                return this.data.students
-                    .filter(s => s.status === 'active')
-                    .map(student => {
-                        const paid = this.data.payments
-                            .filter(p => p.studentId === student.id)
-                            .reduce((sum, p) => sum + p.amount, 0);
-                        
-                        return {
-                            ...student,
-                            paid,
-                            debt: (student.fee || 0) - paid
-                        };
-                    })
-                    .filter(s => s.debt > 0)
-                    .sort((a, b) => b.debt - a.debt);
-            }
-            
-            renderStudents() {
-                const container = document.getElementById('page-students');
-                if (!container) return;
-                
-                const searchQuery = document.getElementById('st-search')?.value?.toLowerCase() || '';
-                const groupFilter = document.getElementById('st-fg')?.value || '';
-                const statusFilter = document.getElementById('st-fs')?.value || '';
-                
-                const filteredStudents = this.data.students.filter(student => {
-                    const matchesSearch = !searchQuery || 
-                        student.name.toLowerCase().includes(searchQuery) ||
-                        (student.phone || '').includes(searchQuery);
-                    
-                    const matchesGroup = !groupFilter || 
-                        String(student.groupId) === String(groupFilter);
-                    
-                    const matchesStatus = !statusFilter || 
-                        student.status === statusFilter;
-                    
-                    return matchesSearch && matchesGroup && matchesStatus;
-                });
-                
-                container.innerHTML = `
-                    <div class="grid grid-2">
-                        <div class="card">
-                            <h3>${this.editingStudent ? '✏️ O\'quvchini tahrirlash' : '➕ Yangi o\'quvchi qo\'shish'}</h3>
-                            <form id="student-form" onsubmit="app.saveStudent(event)">
-                                <!-- Form fields -->
-                                <div class="form-group">
-                                    <label class="form-label" for="sf-name">F.I.O *</label>
-                                    <input 
-                                        type="text" 
-                                        id="sf-name" 
-                                        class="form-input" 
-                                        required 
-                                        placeholder="Ism Familiya"
-                                        value="${this.editingStudent?.name || ''}"
-                                    >
-                                </div>
-                                
-                                <div class="form-group">
-                                    <label class="form-label" for="sf-phone">Telefon *</label>
-                                    <input 
-                                        type="tel" 
-                                        id="sf-phone" 
-                                        class="form-input" 
-                                        required 
-                                        placeholder="+998901234567"
-                                        value="${this.editingStudent?.phone || ''}"
-                                    >
-                                </div>
-                                
-                                <div class="form-group">
-                                    <label class="form-label" for="sf-group">Guruh *</label>
-                                    <select id="sf-group" class="form-select" required>
-                                        <option value="">Guruh tanlang</option>
-                                        ${this.data.groups.map(g => `
-                                            <option value="${g.id}" ${this.editingStudent?.groupId === g.id ? 'selected' : ''}>
-                                                ${this.escapeHtml(g.name)}
-                                            </option>
-                                        `).join('')}
-                                    </select>
-                                </div>
-                                
-                                <button type="submit" class="btn btn-primary btn-full">
-                                    💾 ${this.editingStudent ? 'Yangilash' : 'Saqlash'}
-                                </button>
-                                
-                                ${this.editingStudent ? `
-                                    <button type="button" class="btn btn-ghost btn-full" onclick="app.cancelEdit('student')">
-                                        ✕ Bekor qilish
-                                    </button>
-                                ` : ''}
-                            </form>
-                        </div>
-                        
-                        <div class="card">
-                            <h3>O'quvchilar ro'yxati (${filteredStudents.length})</h3>
-                            
-                            <div class="search-row">
-                                <input 
-                                    type="search" 
-                                    id="st-search" 
-                                    class="form-input" 
-                                    placeholder="Qidirish..."
-                                    oninput="app.renderStudents()"
-                                >
-                                
-                                <select id="st-fg" class="form-select" onchange="app.renderStudents()">
-                                    <option value="">Barcha guruhlar</option>
-                                    ${this.data.groups.map(g => `
-                                        <option value="${g.id}">${this.escapeHtml(g.name)}</option>
-                                    `).join('')}
-                                </select>
-                                
-                                <select id="st-fs" class="form-select" onchange="app.renderStudents()">
-                                    <option value="">Barcha holatlar</option>
-                                    <option value="active">Faol</option>
-                                    <option value="inactive">Chiqib ketgan</option>
-                                    <option value="pending">Kutilmoqda</option>
-                                </select>
-                            </div>
-                            
-                            <div class="table-container">
-                                <table class="table">
-                                    <thead>
-                                        <tr>
-                                            <th>#</th>
-                                            <th>F.I.O</th>
-                                            <th>Telefon</th>
-                                            <th>Guruh</th>
-                                            <th>Holat</th>
-                                            <th>Amallar</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        ${filteredStudents.length === 0 ? `
-                                            <tr>
-                                                <td colspan="6" style="text-align: center; padding: 40px;">
-                                                    O'quvchilar topilmadi
-                                                </td>
-                                            </tr>
-                                        ` : filteredStudents.map((student, index) => {
-                                            const group = this.data.groups.find(g => g.id === student.groupId);
-                                            const statusBadge = this.getStatusBadge(student.status);
-                                            
-                                            return `
-                                                <tr>
-                                                    <td>${index + 1}</td>
-                                                    <td>
-                                                        <strong>${this.escapeHtml(student.name)}</strong>
-                                                    </td>
-                                                    <td>${this.escapeHtml(student.phone || '')}</td>
-                                                    <td>${group ? this.escapeHtml(group.name) : '-'}</td>
-                                                    <td><span class="badge ${statusBadge.class}">${statusBadge.label}</span></td>
-                                                    <td>
-                                                        <div class="btn-group">
-                                                            <button 
-                                                                class="btn btn-sm btn-ghost" 
-                                                                onclick="app.editStudent(${student.id})"
-                                                                title="Tahrirlash"
-                                                            >
-                                                                ✏️
-                                                            </button>
-                                                            <button 
-                                                                class="btn btn-sm btn-ghost" 
-                                                                onclick="app.deleteStudent(${student.id})"
-                                                                title="O'chirish"
-                                                                style="color: var(--danger);"
-                                                            >
-                                                                🗑️
-                                                            </button>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                            `;
-                                        }).join('')}
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                `;
-            }
-            
-            async saveStudent(event) {
-                event.preventDefault();
-                
-                const formData = {
-                    name: document.getElementById('sf-name')?.value?.trim(),
-                    phone: document.getElementById('sf-phone')?.value?.trim(),
-                    groupId: document.getElementById('sf-group')?.value,
-                    status: document.getElementById('sf-status')?.value || 'active',
-                    fee: parseFloat(document.getElementById('sf-fee')?.value) || 0
-                };
-                
-                // Validation
-                if (!formData.name || !formData.phone || !formData.groupId) {
-                    this.showToast("F.I.O, telefon va guruh majburiy maydonlar", 'error');
-                    return;
-                }
-                
-                // Phone validation
-                const phoneRegex = /^\+998[0-9]{9}$/;
-                if (!phoneRegex.test(formData.phone)) {
-                    this.showToast("Telefon raqami noto'g'ri formatda (+998XXXXXXXXX)", 'error');
-                    return;
-                }
-                
-                try {
-                    if (this.editingStudent) {
-                        // Update existing student
-                        Object.assign(this.editingStudent, formData);
-                        await this.saveToStore('students', this.editingStudent);
-                        this.showToast("O'quvchi ma'lumotlari yangilandi ✅");
-                    } else {
-                        // Create new student
-                        const newStudent = {
-                            ...formData,
-                            id: Date.now(),
-                            createdAt: new Date().toISOString(),
-                            updatedAt: new Date().toISOString()
-                        };
-                        
-                        this.data.students.push(newStudent);
-                        await this.saveToStore('students', newStudent);
-                        this.showToast("Yangi o'quvchi qo'shildi ✅");
-                    }
-                    
-                    this.editingStudent = null;
-                    this.renderStudents();
-                    this.cacheData('students');
-                    
-                } catch (error) {
-                    console.error('Failed to save student:', error);
-                    this.showToast("Ma'lumotlarni saqlashda xatolik", 'error');
-                }
-            }
-            
-            editStudent(id) {
-                this.editingStudent = this.data.students.find(s => s.id === id);
-                if (!this.editingStudent) {
-                    this.showToast("O'quvchi topilmadi", 'error');
-                    return;
-                }
-                
-                this.navigateTo('students');
-                setTimeout(() => this.renderStudents(), 50);
-            }
-            
-            async deleteStudent(id) {
-                const student = this.data.students.find(s => s.id === id);
-                if (!student) return;
-                
-                this.showConfirm(
-                    "O'quvchini o'chirish",
-                    `${student.name} o'quvchisini o'chirishni xohlaysizmi? Bu amal qaytarib bo'lmaydi.`,
-                    async () => {
-                        try {
-                            // Delete related records
-                            this.data.students = this.data.students.filter(s => s.id !== id);
-                            this.data.payments = this.data.payments.filter(p => p.studentId !== id);
-                            this.data.attendance = this.data.attendance.filter(a => a.studentId !== id);
-                            
-                            await Promise.all([
-                                this.saveToStore('students', this.data.students),
-                                this.saveToStore('payments', this.data.payments),
-                                this.saveToStore('attendance', this.data.attendance)
-                            ]);
-                            
-                            this.cacheData('students');
-                            this.cacheData('payments');
-                            this.cacheData('attendance');
-                            
-                            this.renderStudents();
-                            this.showToast("O'quvchi o'chirildi 🗑️");
-                            
-                        } catch (error) {
-                            console.error('Failed to delete student:', error);
-                            this.showToast("O'chirishda xatolik yuz berdi", 'error');
-                        }
-                    }
-                );
-            }
-            
-            cancelEdit(type) {
-                if (type === 'student') {
-                    this.editingStudent = null;
-                    this.renderStudents();
-                }
-            }
-            
-            getStatusBadge(status) {
-                const badges = {
-                    active: { label: 'Faol', class: 'badge-green' },
-                    inactive: { label: 'Chiqib ketgan', class: 'badge-red' },
-                    pending: { label: 'Kutilmoqda', class: 'badge-amber' }
-                };
-                
-                return badges[status] || { label: status, class: 'badge-gray' };
-            }
-            
-            toggleTheme() {
-                const isDark = document.documentElement.classList.toggle('dark');
-                localStorage.setItem('theme', isDark ? 'dark' : 'light');
-                
-                const themeBtn = document.getElementById('theme-btn');
-                if (themeBtn) {
-                    themeBtn.textContent = isDark ? '☀️' : '🌙';
-                }
-                
-                const darkToggle = document.getElementById('dark-toggle');
-                if (darkToggle) {
-                    darkToggle.classList.toggle('on', isDark);
-                }
-            }
-            
-            handleOnlineStatus(online) {
-                if (online) {
-                    this.showToast('Internet tiklandi 🌐');
-                    this.syncData();
-                } else {
-                    this.showToast('Offline rejim — ma\'lumotlar mahalliy saqlanadi', 'warning');
-                }
-            }
-            
-            async syncData() {
-                // Implement data synchronization logic when online
-                try {
-                    const unsyncedData = localStorage.getItem('unsynced_changes');
-                    if (unsyncedData) {
-                        const changes = JSON.parse(unsyncedData);
-                        // Process unsynchronized changes
-                        localStorage.removeItem('unsynced_changes');
-                        this.showToast("Ma'lumotlar sinxronlashtirildi 🔄");
-                    }
-                } catch (error) {
-                    console.error('Sync failed:', error);
-                }
-            }
-            
-            checkOnlineStatus() {
-                const theme = localStorage.getItem('theme');
-                if (theme === 'dark' || (!theme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-                    this.toggleTheme();
-                }
-                
-                if (!navigator.onLine) {
-                    this.handleOnlineStatus(false);
-                }
-            }
-            
-            cacheData(storeName) {
-                try {
-                    localStorage.setItem(`edu_${storeName}`, JSON.stringify(this.data[storeName]));
-                } catch (error) {
-                    console.warn(`Failed to cache ${storeName}:`, error);
-                }
-            }
-            
-            showToast(message, type = 'success') {
-                const toast = document.getElementById('toast');
-                if (!toast) return;
-                
-                toast.textContent = message;
-                toast.className = `show ${type}`;
-                
-                clearTimeout(this.toastTimer);
-                this.toastTimer = setTimeout(() => {
-                    toast.className = '';
-                }, 3000);
-            }
-            
-            showConfirm(title, message, onConfirm) {
-                const modal = document.getElementById('modal');
-                if (!modal) return;
-                
-                modal.innerHTML = `
-                    <div class="modal-box">
-                        <h3 class="modal-title">${title}</h3>
-                        <p class="modal-text">${message}</p>
-                        <div class="modal-actions">
-                            <button class="btn btn-ghost" onclick="app.closeModal()">Bekor</button>
-                            <button class="btn btn-danger" id="modal-confirm">Tasdiqlash</button>
-                        </div>
-                    </div>
-                `;
-                
-                modal.classList.add('open');
-                modal.setAttribute('aria-hidden', 'false');
-                
-                document.getElementById('modal-confirm').addEventListener('click', () => {
-                    this.closeModal();
-                    if (typeof onConfirm === 'function') {
-                        onConfirm();
-                    }
-                });
-            }
-            
-            closeModal() {
-                const modal = document.getElementById('modal');
-                if (modal) {
-                    modal.classList.remove('open');
-                    modal.setAttribute('aria-hidden', 'true');
-                }
-            }
-            
-            formatMoney(amount) {
-                return Math.round(amount || 0).toLocaleString('uz-UZ');
-            }
-            
-            escapeHtml(text) {
-                const div = document.createElement('div');
-                div.textContent = text;
-                return div.innerHTML;
-            }
-            
-            saveCurrentData() {
-                try {
-                    Object.keys(this.data).forEach(key => {
-                        this.cacheData(key);
-                    });
-                    this.showToast("Ma'lumotlar saqlandi 💾");
-                } catch (error) {
-                    this.showToast("Saqlashda xatolik", 'error');
-                }
-            }
+      });
+    }
+
+    async function saveToStore(storeName, data) {
+      if (!db) await openDB();
+      return new Promise((resolve, reject) => {
+        const tx = db.transaction(storeName, 'readwrite');
+        const store = tx.objectStore(storeName);
+        const items = Array.isArray(data) ? data : [data];
+        items.forEach(item => store.put(item));
+        tx.oncomplete = () => resolve();
+        tx.onerror = () => reject(tx.error);
+      });
+    }
+
+    async function getAllFromStore(storeName) {
+      if (!db) await openDB();
+      return new Promise((resolve, reject) => {
+        const tx = db.transaction(storeName, 'readonly');
+        const request = tx.objectStore(storeName).getAll();
+        request.onsuccess = () => resolve(request.result || []);
+        request.onerror = () => reject(request.error);
+      });
+    }
+
+    async function clearStore(storeName) {
+      if (!db) await openDB();
+      return new Promise((resolve, reject) => {
+        const tx = db.transaction(storeName, 'readwrite');
+        tx.objectStore(storeName).clear();
+        tx.oncomplete = () => resolve();
+        tx.onerror = () => reject(tx.error);
+      });
+    }
+
+    // ===================== STATE =====================
+    let appData = { groups: [], students: [], staff: [], expenses: [], payments: [], attendance: [] };
+    let chartInstance = null, categoryChartInstance = null, attendanceChartInstance = null, paymentChartInstance = null;
+    const CATEGORY_COLORS = {
+      'IELTS': '#3b82f6', 'Matematika': '#f59e0b', 'Fizika': '#8b5cf6', 'Kimyo': '#10b981',
+      'Ingliz tili': '#ec4899', 'Rus tili': '#06b6d4', 'Matematika (DTM)': '#f97316',
+      'Fizika (DTM)': '#a855f7', 'Ona tili': '#14b8a6', 'Tarix': '#d946ef', 'Boshqa': '#64748b'
+    };
+    const ROLE_ICONS = { teacher: '👨‍🏫', admin: '👩‍💼', director: '👔', cleaner: '🧹', guard: '🛡️', other: '📦' };
+    const ROLE_LABELS = { teacher: "O'qituvchi", admin: 'Administrator', director: 'Direktor', cleaner: 'Tozalovchi', guard: 'Qorovul', other: 'Boshqa' };
+    const STATUS_LABELS = { active: 'Faol', inactive: 'Faol emas', pending: 'Kutilmoqda' };
+    const ATTENDANCE_TYPES = { present: 'Keldi', absent: 'Kelmadi', late: 'Kechikdi', excused: 'Sababli' };
+
+    async function loadData() {
+      try {
+        const groups = await getAllFromStore('groups');
+        const students = await getAllFromStore('students');
+        const staff = await getAllFromStore('staff');
+        const expenses = await getAllFromStore('expenses');
+        const payments = await getAllFromStore('payments');
+        const attendance = await getAllFromStore('attendance');
+        appData = { groups: groups || [], students: students || [], staff: staff || [], expenses: expenses || [], payments: payments || [], attendance: attendance || [] };
+      } catch (e) {
+        const saved = localStorage.getItem('edu_center_db');
+        if (saved) { try { appData = JSON.parse(saved); } catch (parseErr) {} }
+      }
+      populateFilters();
+      renderAll();
+    }
+
+    async function persistData() {
+      try {
+        for (const store of ['groups', 'students', 'staff', 'expenses', 'payments', 'attendance']) {
+          await clearStore(store);
+          await saveToStore(store, appData[store]);
         }
-        
-        // Initialize the application
-        const app = new EduAdmin();
-        
-        // Global functions for HTML onclick handlers
-        function goto(page) { app.navigateTo(page); }
-        function toggleTheme() { app.toggleTheme(); }
-        function globalSearch(query) { app.globalSearch(query); }
-    </script>
+        localStorage.setItem('edu_center_db', JSON.stringify(appData));
+        const totals = computeTotals();
+        const today = new Date().toISOString().slice(0, 10);
+        await saveToStore('history', { day: today, date: new Date().toISOString(), income: totals.jamiTushum, expense: totals.umumiyXarajat });
+      } catch (e) {
+        localStorage.setItem('edu_center_db', JSON.stringify(appData));
+      }
+      populateFilters();
+      renderAll();
+    }
+
+    // ===================== UI HELPERS =====================
+    function showToast(msg, type = 'success') {
+      const toast = document.getElementById('toast');
+      const toastMsg = document.getElementById('toast-msg');
+      if (!toast || !toastMsg) return;
+      toastMsg.innerText = msg;
+      const bgClass = type === 'error' ? 'bg-rose-600' : 'bg-gray-800 dark:bg-gray-700';
+      toast.className = `fixed top-20 left-1/2 transform -translate-x-1/2 px-6 py-3 rounded-xl shadow-xl z-50 transition-all duration-300 text-white ${bgClass}`;
+      toast.style.opacity = '1';
+      toast.style.transform = 'translateX(-50%) translateY(0)';
+      clearTimeout(toast._timeout);
+      toast._timeout = setTimeout(() => {
+        toast.style.opacity = '0';
+        toast.style.transform = 'translateX(-50%) translateY(-20px)';
+      }, 2500);
+    }
+
+    function showModal(title, text, onConfirm) {
+      const modal = document.getElementById('modal');
+      const modalTitle = document.getElementById('modal-title');
+      const modalText = document.getElementById('modal-text');
+      const modalConfirm = document.getElementById('modal-confirm');
+      if (!modal || !modalTitle || !modalText || !modalConfirm) return;
+      modalTitle.innerText = title;
+      modalText.innerText = text;
+      modal.classList.remove('hidden');
+      modalConfirm.onclick = () => { onConfirm(); closeModal(); };
+    }
+    function closeModal() {
+      const modal = document.getElementById('modal');
+      if (modal) modal.classList.add('hidden');
+    }
+
+    function toggleTheme() {
+      document.documentElement.classList.toggle('dark');
+      const isDark = document.documentElement.classList.contains('dark');
+      const themeIcon = document.getElementById('theme-icon');
+      if (themeIcon) themeIcon.innerText = isDark ? '☀️' : '🌙';
+      localStorage.setItem('theme', isDark ? 'dark' : 'light');
+    }
+
+    // ===================== NAVIGATION =====================
+    function switchTab(tabName) {
+      const pages = ['dashboard', 'students', 'groups', 'attendance', 'payments', 'staff', 'kassa', 'reports', 'settings'];
+      pages.forEach(p => {
+        const page = document.getElementById(`page-${p}`);
+        if (page) page.classList.add('hidden');
+        const btn = document.getElementById(`btn-${p}`);
+        if (btn) {
+          btn.classList.remove('text-blue-600', 'dark:text-blue-400', 'bg-blue-50', 'dark:bg-blue-900/20');
+          btn.classList.add('text-gray-400');
+        }
+      });
+      const targetPage = document.getElementById(`page-${tabName}`);
+      if (targetPage) targetPage.classList.remove('hidden');
+      const activeBtn = document.getElementById(`btn-${tabName}`);
+      if (activeBtn) {
+        activeBtn.classList.remove('text-gray-400');
+        activeBtn.classList.add('text-blue-600', 'dark:text-blue-400', 'bg-blue-50', 'dark:bg-blue-900/20');
+      }
+      if (tabName === 'dashboard') { renderChart(); renderCategoryChart(); }
+      if (tabName === 'attendance') { loadAttendance(); renderAttendanceChart(); }
+      if (tabName === 'payments') { renderPaymentChart(); }
+      if (tabName === 'settings') updateStorageInfo();
+      if (tabName === 'students') populateStudentGroups();
+      if (tabName === 'groups') populateGroupTeachers();
+      if (tabName === 'payments') populatePaymentStudents();
+      if (tabName === 'attendance') populateAttendanceGroups();
+    }
+
+    // ===================== POPULATE FILTERS =====================
+    function populateFilters() {
+      populateCategoryFilter();
+      populateStudentGroups();
+      populateGroupTeachers();
+      populatePaymentStudents();
+      populateAttendanceGroups();
+    }
+
+    function populateCategoryFilter() {
+      const sel = document.getElementById('group-filter-cat');
+      if (!sel) return;
+      const current = sel.value;
+      const cats = [...new Set(appData.groups.map(g => g.category || 'Boshqa'))].sort();
+      sel.innerHTML = '<option value="">Barcha fanlar</option>' + cats.map(c => `<option value="${c}">${c}</option>`).join('');
+      sel.value = current && cats.includes(current) ? current : '';
+    }
+
+    function populateStudentGroups() {
+      const sel = document.getElementById('s-group');
+      const filter = document.getElementById('student-filter-group');
+      if (sel) {
+        const current = sel.value;
+        sel.innerHTML = '<option value="">Guruh tanlang</option>' + appData.groups.map(g => `<option value="${g.id}">${g.name} (${g.category})</option>`).join('');
+        sel.value = current;
+      }
+      if (filter) {
+        const current = filter.value;
+        filter.innerHTML = '<option value="">Barcha guruhlar</option>' + appData.groups.map(g => `<option value="${g.id}">${g.name}</option>`).join('');
+        filter.value = current;
+      }
+    }
+
+    function populateGroupTeachers() {
+      const sel = document.getElementById('g-teacher');
+      if (!sel) return;
+      const teachers = appData.staff.filter(s => s.role === 'teacher' && s.status === 'active');
+      sel.innerHTML = '<option value="">O\'qituvchi tanlang</option>' + teachers.map(t => `<option value="${t.id}">${t.name}</option>`).join('');
+    }
+
+    function populatePaymentStudents() {
+      const sel = document.getElementById('pay-student');
+      if (!sel) return;
+      const activeStudents = appData.students.filter(s => s.status === 'active');
+      sel.innerHTML = '<option value="">O\'quvchi tanlang</option>' + activeStudents.map(s => {
+        const group = appData.groups.find(g => g.id == s.groupId);
+        return `<option value="${s.id}">${s.name} ${group ? '(' + group.name + ')' : ''}</option>`;
+      }).join('');
+    }
+
+    function populateAttendanceGroups() {
+      const sel = document.getElementById('att-group');
+      if (!sel) return;
+      sel.innerHTML = '<option value="">Guruh tanlang</option>' + appData.groups.map(g => `<option value="${g.id}">${g.name} (${g.category})</option>`).join('');
+    }
+
+    // ===================== STUDENTS =====================
+    function saveStudent() {
+      const editId = document.getElementById('s-edit-id')?.value;
+      const name = document.getElementById('s-name')?.value?.trim() || '';
+      const phone = document.getElementById('s-phone')?.value?.trim() || '';
+      const groupId = document.getElementById('s-group')?.value || '';
+      const status = document.getElementById('s-status')?.value || 'active';
+      const startDate = document.getElementById('s-start')?.value || '';
+      const fee = parseFloat(document.getElementById('s-fee')?.value) || 0;
+      const parent = document.getElementById('s-parent')?.value?.trim() || '';
+      const notes = document.getElementById('s-notes')?.value?.trim() || '';
+
+      if (!name || !phone || !groupId) { showToast("Iltimos, barcha majburiy maydonlarni to'ldiring", 'error'); return; }
+
+      if (editId) {
+        const s = appData.students.find(x => String(x.id) === String(editId));
+        if (s) Object.assign(s, { name, phone, groupId, status, startDate, fee, parent, notes });
+        showToast("O'quvchi yangilandi!");
+      } else {
+        appData.students.push({ id: Date.now(), name, phone, groupId, status, startDate, fee, parent, notes, createdAt: new Date().toISOString() });
+        showToast("O'quvchi muvaffaqiyatli qo'shildi!");
+      }
+      persistData();
+      clearStudentInputs();
+      cancelEditStudent();
+    }
+
+    function clearStudentInputs() {
+      ['s-name', 's-phone', 's-start', 's-fee', 's-parent', 's-notes'].forEach(id => { const el = document.getElementById(id); if (el) el.value = ''; });
+      const g = document.getElementById('s-group'); if (g) g.selectedIndex = 0;
+      const st = document.getElementById('s-status'); if (st) st.selectedIndex = 0;
+    }
+
+    function deleteStudent(id) {
+      showModal("O'quvchini o'chirish", "Bu o'quvchini o'chirishni xohlaysizmi?", () => {
+        appData.students = appData.students.filter(s => s.id !== id);
+        appData.payments = appData.payments.filter(p => p.studentId !== id);
+        appData.attendance = appData.attendance.filter(a => a.studentId !== id);
+        persistData();
+        showToast("O'quvchi o'chirildi");
+      });
+    }
+
+    function editStudent(id) {
+      const s = appData.students.find(x => x.id === id);
+      if (!s) return;
+      document.getElementById('s-edit-id').value = s.id;
+      document.getElementById('s-name').value = s.name;
+      document.getElementById('s-phone').value = s.phone;
+      document.getElementById('s-group').value = s.groupId;
+      document.getElementById('s-status').value = s.status || 'active';
+      document.getElementById('s-start').value = s.startDate || '';
+      document.getElementById('s-fee').value = s.fee || '';
+      document.getElementById('s-parent').value = s.parent || '';
+      document.getElementById('s-notes').value = s.notes || '';
+      const formTitle = document.getElementById('student-form-title');
+      if (formTitle) formTitle.innerText = `✏️ "${s.name}" ni tahrirlash`;
+      const submitBtn = document.getElementById('s-submit-btn');
+      if (submitBtn) submitBtn.innerText = "Saqlash";
+      const cancelBtn = document.getElementById('s-cancel-btn');
+      if (cancelBtn) cancelBtn.classList.remove('hidden');
+      switchTab('students');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function cancelEditStudent() {
+      document.getElementById('s-edit-id').value = '';
+      clearStudentInputs();
+      const formTitle = document.getElementById('student-form-title');
+      if (formTitle) formTitle.innerText = "➕ Yangi o'quvchi qo'shish";
+      const submitBtn = document.getElementById('s-submit-btn');
+      if (submitBtn) submitBtn.innerText = "Saqlash";
+      const cancelBtn = document.getElementById('s-cancel-btn');
+      if (cancelBtn) cancelBtn.classList.add('hidden');
+    }
+
+    function getFilteredStudents() {
+      const q = (document.getElementById('student-search')?.value || '').toLowerCase().trim();
+      const groupFilter = document.getElementById('student-filter-group')?.value || '';
+      const statusFilter = document.getElementById('student-filter-status')?.value || '';
+      return appData.students.filter(s => {
+        const matchQ = !q || s.name.toLowerCase().includes(q) || s.phone.includes(q);
+        const matchGroup = !groupFilter || String(s.groupId) === String(groupFilter);
+        const matchStatus = !statusFilter || s.status === statusFilter;
+        return matchQ && matchGroup && matchStatus;
+      });
+    }
+
+    function renderStudents() {
+      const listEl = document.getElementById('students-list');
+      if (!listEl) return;
+      const filtered = getFilteredStudents();
+      let html = '';
+      filtered.forEach(s => {
+        const group = appData.groups.find(g => g.id == s.groupId);
+        const payments = appData.payments.filter(p => p.studentId == s.id);
+        const totalPaid = payments.reduce((sum, p) => sum + p.amount, 0);
+        const statusColor = s.status === 'active' ? 'bg-emerald-100 text-emerald-700' : s.status === 'inactive' ? 'bg-gray-100 text-gray-600' : 'bg-amber-100 text-amber-700';
+        html += `
+          <div class="bg-white dark:bg-gray-800 p-4 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 card-hover">
+            <div class="flex justify-between items-start">
+              <div class="flex-1">
+                <div class="flex items-center gap-2">
+                  <h4 class="font-bold text-gray-800 dark:text-gray-200">${s.name}</h4>
+                  <span class="tag ${statusColor}">${STATUS_LABELS[s.status] || s.status}</span>
+                </div>
+                <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">📞 ${s.phone}</p>
+                <p class="text-xs text-gray-500 dark:text-gray-400">🏫 ${group ? group.name + ' (' + group.category + ')' : 'Guruh yo\'q'}</p>
+                ${s.parent ? `<p class="text-xs text-gray-500 dark:text-gray-400">👨‍👩‍👧 ${s.parent}</p>` : ''}
+                ${s.fee ? `<p class="text-xs text-gray-500 dark:text-gray-400">💰 Oylik: ${s.fee.toLocaleString()} so'm</p>` : ''}
+              </div>
+              <div class="text-right">
+                <div class="text-xs font-bold ${totalPaid >= (s.fee || 0) ? 'text-emerald-600' : 'text-rose-600'}">
+                  ${totalPaid.toLocaleString()} / ${(s.fee || 0).toLocaleString()} so'm
+                </div>
+                <div class="text-[10px] text-gray-400">To'langan</div>
+              </div>
+            </div>
+            <div class="mt-2 flex gap-2">
+              <button onclick="editStudent(${s.id})" class="text-xs bg-gray-100 dark:bg-gray-700 px-2 py-1 rounded-lg">✏️ Tahrirlash</button>
+              <button onclick="deleteStudent(${s.id})" class="text-xs bg-rose-50 dark:bg-rose-900/20 text-rose-600 px-2 py-1 rounded-lg">🗑️ O'chirish</button>
+            </div>
+          </div>`;
+      });
+      listEl.innerHTML = html || '<div class="text-center text-gray-400 py-8">👨‍🎓 Mos o\'quvchi topilmadi</div>';
+    }
+
+    function exportStudents() {
+      const blob = new Blob([JSON.stringify(appData.students, null, 2)], { type: 'application/json' });
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = `oquvchilar_${new Date().toISOString().slice(0, 10)}.json`;
+      a.click();
+      showToast('O\'quvchilar eksport qilindi!');
+    }
+
+    // ===================== GROUPS =====================
+    function saveGroup() {
+      const editId = document.getElementById('g-edit-id')?.value;
+      const name = document.getElementById('g-name')?.value?.trim() || '';
+      const category = document.getElementById('g-category')?.value || 'Boshqa';
+      const price = parseFloat(document.getElementById('g-price')?.value) || 0;
+      const percent = Math.min(100, Math.max(0, parseFloat(document.getElementById('g-percent')?.value) || 0));
+      const maxStudents = parseInt(document.getElementById('g-max')?.value) || 0;
+      const minStudents = parseInt(document.getElementById('g-min')?.value) || 0;
+      const teacherId = document.getElementById('g-teacher')?.value || '';
+      const time = document.getElementById('g-time')?.value || '';
+      const days = document.getElementById('g-days')?.value || 'Du-Cho-Ju';
+
+      if (!name || price <= 0) { showToast("Iltimos, barcha maydonlarni to'g'ri to'ldiring", 'error'); return; }
+
+      if (editId) {
+        const g = appData.groups.find(x => String(x.id) === String(editId));
+        if (g) Object.assign(g, { name, category, price, percent, maxStudents, minStudents, teacherId, time, days });
+        showToast("Guruh yangilandi!");
+      } else {
+        appData.groups.push({ id: Date.now(), name, category, price, percent, maxStudents, minStudents, teacherId, time, days, createdAt: new Date().toISOString() });
+        showToast("Guruh muvaffaqiyatli qo'shildi!");
+      }
+      persistData();
+      clearGroupInputs();
+      cancelEditGroup();
+    }
+
+    function clearGroupInputs() {
+      ['g-name', 'g-price', 'g-percent', 'g-max', 'g-min', 'g-time'].forEach(id => { const el = document.getElementById(id); if (el) el.value = ''; });
+      const cat = document.getElementById('g-category'); if (cat) cat.selectedIndex = 0;
+      const teach = document.getElementById('g-teacher'); if (teach) teach.selectedIndex = 0;
+      const days = document.getElementById('g-days'); if (days) days.selectedIndex = 0;
+    }
+
+    function deleteGroup(id) {
+      showModal("Guruhni o'chirish", "Bu guruhni o'chirishni xohlaysizmi? Barcha o'quvchilar va ma'lumotlar ham o'chiriladi.", () => {
+        appData.groups = appData.groups.filter(g => g.id !== id);
+        appData.students = appData.students.filter(s => s.groupId != id);
+        persistData();
+        showToast("Guruh o'chirildi");
+      });
+    }
+
+    function editGroup(id) {
+      const g = appData.groups.find(x => x.id === id);
+      if (!g) return;
+      document.getElementById('g-edit-id').value = g.id;
+      document.getElementById('g-name').value = g.name;
+      document.getElementById('g-category').value = g.category || 'Boshqa';
+      document.getElementById('g-price').value = g.price;
+      document.getElementById('g-percent').value = g.percent;
+      document.getElementById('g-max').value = g.maxStudents || '';
+      document.getElementById('g-min').value = g.minStudents || '';
+      document.getElementById('g-teacher').value = g.teacherId || '';
+      document.getElementById('g-time').value = g.time || '';
+      document.getElementById('g-days').value = g.days || 'Du-Cho-Ju';
+      const formTitle = document.getElementById('group-form-title');
+      if (formTitle) formTitle.innerText = `✏️ "${g.name}" guruhini tahrirlash`;
+      const submitBtn = document.getElementById('g-submit-btn');
+      if (submitBtn) submitBtn.innerText = "Saqlash";
+      const cancelBtn = document.getElementById('g-cancel-btn');
+      if (cancelBtn) cancelBtn.classList.remove('hidden');
+      switchTab('groups');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function cancelEditGroup() {
+      document.getElementById('g-edit-id').value = '';
+      clearGroupInputs();
+      const formTitle = document.getElementById('group-form-title');
+      if (formTitle) formTitle.innerText = "➕ Yangi guruh qo'shish";
+      const submitBtn = document.getElementById('g-submit-btn');
+      if (submitBtn) submitBtn.innerText = "Guruhni saqlash";
+      const cancelBtn = document.getElementById('g-cancel-btn');
+      if (cancelBtn) cancelBtn.classList.add('hidden');
+    }
+
+    function getFilteredGroups() {
+      const q = (document.getElementById('group-search')?.value || '').toLowerCase().trim();
+      const cat = document.getElementById('group-filter-cat')?.value || '';
+      return appData.groups.filter(g => {
+        const matchQ = !q || g.name.toLowerCase().includes(q) || (g.category || '').toLowerCase().includes(q);
+        const matchCat = !cat || g.category === cat;
+        return matchQ && matchCat;
+      });
+    }
+
+    function renderGroups() {
+      const listEl = document.getElementById('groups-list');
+      if (!listEl) return;
+      const filtered = getFilteredGroups();
+      let html = '';
+      filtered.forEach(g => {
+        const studentsInGroup = appData.students.filter(s => s.groupId == g.id && s.status === 'active').length;
+        const teacher = appData.staff.find(s => s.id == g.teacherId);
+        const isFull = g.maxStudents > 0 && studentsInGroup >= g.maxStudents;
+        const isZarar = g.minStudents > 0 && studentsInGroup < g.minStudents;
+        const daromad = g.price * studentsInGroup;
+        const oylik = (daromad * g.percent) / 100;
+        const sof = daromad - oylik;
+        const color = CATEGORY_COLORS[g.category] || '#64748b';
+        html += `
+          <div class="bg-white dark:bg-gray-800 p-4 rounded-2xl shadow-sm border ${isZarar ? 'border-rose-200 dark:border-rose-800 bg-rose-50/20 dark:bg-rose-900/10' : 'border-gray-100 dark:border-gray-700'} card-hover">
+            <div class="flex justify-between items-start">
+              <div>
+                <div class="flex items-center gap-2">
+                  <h4 class="font-bold text-gray-800 dark:text-gray-200">${g.name}</h4>
+                  <span class="tag" style="background:${color}22; color:${color}">${g.category || 'Boshqa'}</span>
+                  ${isFull ? '<span class="tag bg-amber-100 text-amber-700">To\'la</span>' : ''}
+                </div>
+                <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">${studentsInGroup} / ${g.maxStudents || '∞'} o'quvchi · ${g.price.toLocaleString()} so'm</p>
+                ${teacher ? `<p class="text-xs text-gray-500 dark:text-gray-400">👨‍🏫 ${teacher.name}</p>` : ''}
+                ${g.time ? `<p class="text-xs text-gray-500 dark:text-gray-400">🕐 ${g.time} · ${g.days || ''}</p>` : ''}
+              </div>
+              <span class="text-xs font-bold px-2 py-0.5 rounded-full whitespace-nowrap ${isZarar ? 'bg-rose-100 dark:bg-rose-900/30 text-rose-700 dark:text-rose-400' : 'bg-emerald-100 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-400'}">
+                ${isZarar ? '🔴 Zararda' : '🟢 Rentabel'}
+              </span>
+            </div>
+            <div class="mt-3 pt-3 border-t border-gray-100 dark:border-gray-700 grid grid-cols-3 gap-2 text-xs">
+              <div><span class="text-gray-400 block">Daromad</span><b class="dark:text-gray-300">${daromad.toLocaleString()}</b></div>
+              <div><span class="text-gray-400 block">O'qituvchi</span><b class="dark:text-gray-300">${oylik.toLocaleString()}</b></div>
+              <div><span class="text-gray-400 block">Markaz</span><b class="dark:text-gray-300">${sof.toLocaleString()}</b></div>
+            </div>
+            <div class="mt-2 flex gap-2">
+              <button onclick="editGroup(${g.id})" class="text-xs bg-gray-100 dark:bg-gray-700 px-2 py-1 rounded-lg">✏️ Tahrirlash</button>
+              <button onclick="deleteGroup(${g.id})" class="text-xs bg-rose-50 dark:bg-rose-900/20 text-rose-600 px-2 py-1 rounded-lg">🗑️ O'chirish</button>
+            </div>
+          </div>`;
+      });
+      listEl.innerHTML = html || '<div class="text-center text-gray-400 py-8">🏫 Mos guruh topilmadi</div>';
+    }
+
+    function exportGroups() {
+      const blob = new Blob([JSON.stringify(appData.groups, null, 2)], { type: 'application/json' });
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = `guruhlar_${new Date().toISOString().slice(0, 10)}.json`;
+      a.click();
+      showToast('Guruhlar eksport qilindi!');
+    }
+
+    // ===================== STAFF =====================
+    function saveStaff() {
+      const editId = document.getElementById('st-edit-id')?.value;
+      const name = document.getElementById('st-name')?.value?.trim() || '';
+      const phone = document.getElementById('st-phone')?.value?.trim() || '';
+      const role = document.getElementById('st-role')?.value || 'teacher';
+      const salary = parseFloat(document.getElementById('st-salary')?.value) || 0;
+      const status = document.getElementById('st-status')?.value || 'active';
+      const startDate = document.getElementById('st-start')?.value || '';
+      const notes = document.getElementById('st-notes')?.value?.trim() || '';
+
+      if (!name || !phone) { showToast("Iltimos, F.I.O va telefon raqamni kiriting", 'error'); return; }
+
+      if (editId) {
+        const s = appData.staff.find(x => String(x.id) === String(editId));
+        if (s) Object.assign(s, { name, phone, role, salary, status, startDate, notes });
+        showToast("Xodim yangilandi!");
+      } else {
+        appData.staff.push({ id: Date.now(), name, phone, role, salary, status, startDate, notes, createdAt: new Date().toISOString() });
+        showToast("Xodim muvaffaqiyatli qo'shildi!");
+      }
+      persistData();
+      clearStaffInputs();
+      cancelEditStaff();
+    }
+
+    function clearStaffInputs() {
+      ['st-name', 'st-phone', 'st-salary', 'st-start', 'st-notes'].forEach(id => { const el = document.getElementById(id); if (el) el.value = ''; });
+      const role = document.getElementById('st-role'); if (role) role.selectedIndex = 0;
+      const status = document.getElementById('st-status'); if (status) status.selectedIndex = 0;
+    }
+
+    function deleteStaff(id) {
+      showModal("Xodimni o'chirish", "Bu xodimni o'chirishni xohlaysizmi?", () => {
+        appData.staff = appData.staff.filter(s => s.id !== id);
+        appData.groups.forEach(g => { if (g.teacherId == id) g.teacherId = ''; });
+        persistData();
+        showToast("Xodim o'chirildi");
+      });
+    }
+
+    function editStaff(id) {
+      const s = appData.staff.find(x => x.id === id);
+      if (!s) return;
+      document.getElementById('st-edit-id').value = s.id;
+      document.getElementById('st-name').value = s.name;
+      document.getElementById('st-phone').value = s.phone;
+      document.getElementById('st-role').value = s.role || 'teacher';
+      document.getElementById('st-salary').value = s.salary || '';
+      document.getElementById('st-status').value = s.status || 'active';
+      document.getElementById('st-start').value = s.startDate || '';
+      document.getElementById('st-notes').value = s.notes || '';
+      const formTitle = document.getElementById('staff-form-title');
+      if (formTitle) formTitle.innerText = `✏️ "${s.name}" ni tahrirlash`;
+      const submitBtn = document.getElementById('st-submit-btn');
+      if (submitBtn) submitBtn.innerText = "Saqlash";
+      const cancelBtn = document.getElementById('st-cancel-btn');
+      if (cancelBtn) cancelBtn.classList.remove('hidden');
+      switchTab('staff');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function cancelEditStaff() {
+      document.getElementById('st-edit-id').value = '';
+      clearStaffInputs();
+      const formTitle = document.getElementById('staff-form-title');
+      if (formTitle) formTitle.innerText = "➕ Yangi xodim qo'shish";
+      const submitBtn = document.getElementById('st-submit-btn');
+      if (submitBtn) submitBtn.innerText = "Xodimni saqlash";
+      const cancelBtn = document.getElementById('st-cancel-btn');
+      if (cancelBtn) cancelBtn.classList.add('hidden');
+    }
+
+    function getFilteredStaff() {
+      const q = (document.getElementById('staff-search')?.value || '').toLowerCase().trim();
+      const roleFilter = document.getElementById('staff-filter-role')?.value || '';
+      return appData.staff.filter(s => {
+        const matchQ = !q || s.name.toLowerCase().includes(q) || s.phone.includes(q);
+        const matchRole = !roleFilter || s.role === roleFilter;
+        return matchQ && matchRole;
+      });
+    }
+
+    function renderStaff() {
+      const listEl = document.getElementById('staff-list');
+      if (!listEl) return;
+      const filtered = getFilteredStaff();
+      let html = '';
+      filtered.forEach(s => {
+        const statusColor = s.status === 'active' ? 'bg-emerald-100 text-emerald-700' : 'bg-gray-100 text-gray-600';
+        html += `
+          <div class="bg-white dark:bg-gray-800 p-4 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 card-hover">
+            <div class="flex justify-between items-start">
+              <div class="flex-1">
+                <div class="flex items-center gap-2">
+                  <h4 class="font-bold text-gray-800 dark:text-gray-200">${s.name}</h4>
+                  <span class="tag ${statusColor}">${STATUS_LABELS[s.status] || s.status}</span>
+                </div>
+                <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">📞 ${s.phone}</p>
+                <p class="text-xs text-gray-500 dark:text-gray-400">${ROLE_ICONS[s.role] || '📦'} ${ROLE_LABELS[s.role] || s.role}</p>
+                ${s.salary ? `<p class="text-xs text-gray-500 dark:text-gray-400">💰 ${s.salary.toLocaleString()} so'm/oy</p>` : ''}
+                ${s.startDate ? `<p class="text-xs text-gray-500 dark:text-gray-400">📅 ${s.startDate}</p>` : ''}
+              </div>
+            </div>
+            <div class="mt-2 flex gap-2">
+              <button onclick="editStaff(${s.id})" class="text-xs bg-gray-100 dark:bg-gray-700 px-2 py-1 rounded-lg">✏️ Tahrirlash</button>
+              <button onclick="deleteStaff(${s.id})" class="text-xs bg-rose-50 dark:bg-rose-900/20 text-rose-600 px-2 py-1 rounded-lg">🗑️ O'chirish</button>
+            </div>
+          </div>`;
+      });
+      listEl.innerHTML = html || '<div class="text-center text-gray-400 py-8">👥 Mos xodim topilmadi</div>';
+    }
+
+    function exportStaff() {
+      const blob = new Blob([JSON.stringify(appData.staff, null, 2)], { type: 'application/json' });
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = `xodimlar_${new Date().toISOString().slice(0, 10)}.json`;
+      a.click();
+      showToast('Xodimlar eksport qilindi!');
+    }
+
+    // ===================== ATTENDANCE =====================
+    function loadAttendance() {
+      const listEl = document.getElementById('attendance-list');
+      if (!listEl) return;
+      const groupId = document.getElementById('att-group')?.value;
+      const date = document.getElementById('att-date')?.value;
+      if (!groupId || !date) { listEl.innerHTML = ''; return; }
+
+      const studentsInGroup = appData.students.filter(s => s.groupId == groupId && s.status === 'active');
+      if (studentsInGroup.length === 0) {
+        listEl.innerHTML = '<div class="text-center text-gray-400 py-4">Bu guruhda faol o\'quvchilar yo\'q</div>';
+        return;
+      }
+
+      let html = '';
+      studentsInGroup.forEach(s => {
+        const existing = appData.attendance.find(a => a.studentId == s.id && a.date === date && a.groupId == groupId);
+        const status = existing ? existing.status : 'present';
+        html += `
+          <div class="flex items-center justify-between p-3 bg-gray-50 dark:bg-gray-700 rounded-lg" data-student="${s.id}">
+            <span class="font-medium text-sm">${s.name}</span>
+            <div class="flex gap-1">
+              <button onclick="setAttendance(${s.id}, 'present')" class="att-btn px-3 py-1 rounded-lg text-xs font-bold transition ${status === 'present' ? 'attendance-present' : 'bg-gray-200 dark:bg-gray-600'}" data-status="present">Keldi</button>
+              <button onclick="setAttendance(${s.id}, 'absent')" class="att-btn px-3 py-1 rounded-lg text-xs font-bold transition ${status === 'absent' ? 'attendance-absent' : 'bg-gray-200 dark:bg-gray-600'}" data-status="absent">Kelmadi</button>
+              <button onclick="setAttendance(${s.id}, 'late')" class="att-btn px-3 py-1 rounded-lg text-xs font-bold transition ${status === 'late' ? 'attendance-late' : 'bg-gray-200 dark:bg-gray-600'}" data-status="late">Kechikdi</button>
+              <button onclick="setAttendance(${s.id}, 'excused')" class="att-btn px-3 py-1 rounded-lg text-xs font-bold transition ${status === 'excused' ? 'attendance-excused' : 'bg-gray-200 dark:bg-gray-600'}" data-status="excused">Sababli</button>
+            </div>
+          </div>`;
+      });
+      listEl.innerHTML = html;
+    }
+
+    function setAttendance(studentId, status) {
+      const groupId = document.getElementById('att-group')?.value;
+      const date = document.getElementById('att-date')?.value;
+      if (!groupId || !date) return;
+
+      const existingIndex = appData.attendance.findIndex(a => a.studentId == studentId && a.date === date && a.groupId == groupId);
+      if (existingIndex >= 0) {
+        appData.attendance[existingIndex].status = status;
+      } else {
+        appData.attendance.push({ id: Date.now() + Math.random(), studentId, groupId, date, status, timestamp: Date.now() });
+      }
+
+      const row = document.querySelector(`#attendance-list [data-student="${studentId}"]`);
+      if (row) {
+        row.querySelectorAll('.att-btn').forEach(btn => {
+          btn.className = 'att-btn px-3 py-1 rounded-lg text-xs font-bold transition bg-gray-200 dark:bg-gray-600';
+        });
+        const activeBtn = row.querySelector(`[data-status="${status}"]`);
+        if (activeBtn) {
+          activeBtn.classList.remove('bg-gray-200', 'dark:bg-gray-600');
+          activeBtn.classList.add(`attendance-${status}`);
+        }
+      }
+    }
+
+    function saveAttendance() {
+      persistData();
+      showToast("Davomat saqlandi!");
+      renderAttendanceChart();
+      renderAttendanceStats();
+    }
+
+    function renderAttendanceStats() {
+      const statsEl = document.getElementById('attendance-stats');
+      if (!statsEl) return;
+      const groupId = document.getElementById('att-group')?.value;
+      if (!groupId) { statsEl.innerHTML = ''; return; }
+      const groupAttendance = appData.attendance.filter(a => a.groupId == groupId);
+      const present = groupAttendance.filter(a => a.status === 'present').length;
+      const absent = groupAttendance.filter(a => a.status === 'absent').length;
+      const late = groupAttendance.filter(a => a.status === 'late').length;
+      const excused = groupAttendance.filter(a => a.status === 'excused').length;
+      statsEl.innerHTML = `
+        <div class="grid grid-cols-4 gap-2 text-center">
+          <div class="bg-emerald-50 dark:bg-emerald-900/20 p-2 rounded-lg"><div class="font-bold text-emerald-600">${present}</div><div class="text-[10px]">Keldi</div></div>
+          <div class="bg-rose-50 dark:bg-rose-900/20 p-2 rounded-lg"><div class="font-bold text-rose-600">${absent}</div><div class="text-[10px]">Kelmadi</div></div>
+          <div class="bg-amber-50 dark:bg-amber-900/20 p-2 rounded-lg"><div class="font-bold text-amber-600">${late}</div><div class="text-[10px]">Kechikdi</div></div>
+          <div class="bg-blue-50 dark:bg-blue-900/20 p-2 rounded-lg"><div class="font-bold text-blue-600">${excused}</div><div class="text-[10px]">Sababli</div></div>
+        </div>`;
+    }
+
+    function renderAttendanceChart() {
+      const ctx = document.getElementById('attendance-chart');
+      if (!ctx) return;
+      const last7Days = [];
+      for (let i = 6; i >= 0; i--) { const d = new Date(); d.setDate(d.getDate() - i); last7Days.push(d.toISOString().slice(0, 10)); }
+      const presentData = last7Days.map(day => appData.attendance.filter(a => a.date === day && a.status === 'present').length);
+      const absentData = last7Days.map(day => appData.attendance.filter(a => a.date === day && a.status === 'absent').length);
+      const labels = last7Days.map(d => new Date(d).toLocaleDateString('uz-UZ', { day: 'numeric', month: 'short' }));
+
+      if (attendanceChartInstance) { attendanceChartInstance.destroy(); attendanceChartInstance = null; }
+      attendanceChartInstance = new Chart(ctx, {
+        type: 'bar',
+        data: { labels, datasets: [{ label: 'Keldi', data: presentData, backgroundColor: '#10b981', borderRadius: 4 }, { label: 'Kelmadi', data: absentData, backgroundColor: '#ef4444', borderRadius: 4 }] },
+        options: { responsive: true, maintainAspectRatio: false, animation: false, plugins: { legend: { position: 'bottom', labels: { boxWidth: 12, font: { size: 10 } } } }, scales: { y: { beginAtZero: true, grid: { display: false } }, x: { grid: { display: false } } } }
+      });
+    }
+
+    // ===================== PAYMENTS =====================
+    function savePayment() {
+      const studentId = document.getElementById('pay-student')?.value;
+      const amount = parseFloat(document.getElementById('pay-amount')?.value) || 0;
+      const month = document.getElementById('pay-month')?.value || 'Yanvar';
+      const type = document.getElementById('pay-type')?.value || 'cash';
+      const desc = document.getElementById('pay-desc')?.value?.trim() || '';
+      if (!studentId || amount <= 0) { showToast("Iltimos, o'quvchi va summani kiriting", 'error'); return; }
+      appData.payments.push({ id: Date.now(), studentId, amount, month, type, description: desc, date: new Date().toLocaleDateString('uz-UZ'), timestamp: Date.now() });
+      persistData();
+      document.getElementById('pay-amount').value = '';
+      document.getElementById('pay-desc').value = '';
+      showToast("To'lov qayd etildi!");
+    }
+
+    function deletePayment(id) {
+      appData.payments = appData.payments.filter(p => p.id !== id);
+      persistData();
+      showToast("To'lov o'chirildi");
+    }
+
+    function clearAllPayments() {
+      showModal("To'lovlarni tozalash", "Barcha to'lovlar o'chiriladi. Davom etasizmi?", () => {
+        appData.payments = [];
+        persistData();
+        showToast('Barcha to\'lovlar tozalandi');
+      });
+    }
+
+    function renderPayments() {
+      const listEl = document.getElementById('payments-list');
+      if (!listEl) return;
+      let html = '';
+      [...appData.payments].sort((a, b) => b.timestamp - a.timestamp).forEach(p => {
+        const student = appData.students.find(s => s.id == p.studentId);
+        const typeIcon = p.type === 'cash' ? '💵' : p.type === 'card' ? '💳' : '🏦';
+        html += `
+          <div class="flex justify-between items-center p-3 bg-gray-50 dark:bg-gray-700 rounded-lg group">
+            <div><span class="font-medium">${student ? student.name : 'Noma\'lum'} ${typeIcon}</span><span class="text-gray-400 text-[10px] block">${p.month} · ${p.date} ${p.description ? '· ' + p.description : ''}</span></div>
+            <div class="flex items-center gap-2"><span class="text-emerald-600 font-bold">+${p.amount.toLocaleString()} so'm</span><button onclick="deletePayment(${p.id})" class="opacity-60 hover:opacity-100 text-rose-400 hover:text-rose-600 transition">✕</button></div>
+          </div>`;
+      });
+      listEl.innerHTML = html || '<div class="text-center text-gray-400 py-4">💰 To\'lovlar mavjud emas</div>';
+    }
+
+    function renderPaymentChart() {
+      const ctx = document.getElementById('payment-chart');
+      if (!ctx) return;
+      const byMonth = {};
+      appData.payments.forEach(p => { byMonth[p.month] = (byMonth[p.month] || 0) + p.amount; });
+      const months = ['Yanvar','Fevral','Mart','Aprel','May','Iyun','Iyul','Avgust','Sentabr','Oktabr','Noyabr','Dekabr'];
+      const labels = months.filter(m => byMonth[m]);
+      const data = labels.map(m => byMonth[m]);
+      if (paymentChartInstance) { paymentChartInstance.destroy(); paymentChartInstance = null; }
+      paymentChartInstance = new Chart(ctx, {
+        type: 'bar',
+        data: { labels: labels.length ? labels : ['Ma\'lumot yo\'q'], datasets: [{ label: "To'lovlar", data: data.length ? data : [0], backgroundColor: '#10b981', borderRadius: 6 }] },
+        options: { responsive: true, maintainAspectRatio: false, animation: false, plugins: { legend: { display: false } }, scales: { y: { beginAtZero: true, grid: { display: false } }, x: { grid: { display: false } } } }
+      });
+    }
+
+    // ===================== EXPENSES =====================
+    function saveExpense() {
+      const amount = parseFloat(document.getElementById('e-amount')?.value) || 0;
+      if (amount <= 0) { showToast("To'g'ri summa kiriting", 'error'); return; }
+      appData.expenses.push({ id: Date.now(), amount, category: document.getElementById('e-cat')?.value || 'Other', description: document.getElementById('e-desc')?.value?.trim() || '', date: new Date().toLocaleDateString('uz-UZ'), timestamp: Date.now() });
+      persistData();
+      document.getElementById('e-amount').value = '';
+      document.getElementById('e-desc').value = '';
+      document.getElementById('e-cat').selectedIndex = 0;
+      showToast("Xarajat qayd etildi!");
+    }
+
+    function deleteExpense(id) {
+      appData.expenses = appData.expenses.filter(e => e.id !== id);
+      persistData();
+      showToast("Xarajat o'chirildi");
+    }
+
+    function clearAllExpenses() {
+      showModal('Xarajatlarni tozalash', "Barcha xarajatlar o'chiriladi. Davom etasizmi?", () => {
+        appData.expenses = [];
+        persistData();
+        showToast('Barcha xarajatlar tozalandi');
+      });
+    }
+
+    function renderExpenses() {
+      const listEl = document.getElementById('transactions-list');
+      if (!listEl) return;
+      let html = '';
+      const totals = computeTotals();
+      if (totals.jamiOqituvchi > 0) {
+        html += `<div class="flex justify-between p-3 bg-gray-50 dark:bg-gray-700 rounded-lg"><span>👨‍🏫 O'qituvchilar oyligi (jami)</span><span class="text-rose-600 font-bold">-${totals.jamiOqituvchi.toLocaleString()} so'm</span></div>`;
+      }
+      [...appData.expenses].sort((a, b) => b.timestamp - a.timestamp).forEach(e => {
+        html += `
+          <div class="flex justify-between items-center p-3 bg-gray-50 dark:bg-gray-700 rounded-lg group">
+            <div><span class="font-medium">${e.category} ${e.description ? '- ' + e.description : ''}</span><span class="text-gray-400 text-[10px] block">${e.date}</span></div>
+            <div class="flex items-center gap-2"><span class="text-rose-600 font-bold">-${e.amount.toLocaleString()} so'm</span><button onclick="deleteExpense(${e.id})" class="opacity-60 hover:opacity-100 text-rose-400 hover:text-rose-600 transition">✕</button></div>
+          </div>`;
+      });
+      listEl.innerHTML = html || '<div class="text-center text-gray-400 py-4">💰 Xarajatlar mavjud emas</div>';
+    }
+
+    // ===================== CALCULATIONS =====================
+    function computeTotals() {
+      let jamiTushum = 0, jamiOqituvchi = 0, jamiXarajat = 0;
+      appData.students.filter(s => s.status === 'active').forEach(s => {
+        const group = appData.groups.find(g => g.id == s.groupId);
+        if (group) {
+          const daromad = group.price;
+          jamiTushum += daromad;
+          jamiOqituvchi += (daromad * group.percent) / 100;
+        }
+      });
+      const paymentIncome = appData.payments.reduce((sum, p) => sum + p.amount, 0);
+      jamiTushum = Math.max(jamiTushum, paymentIncome);
+      const staffSalaries = appData.staff.filter(s => s.status === 'active').reduce((sum, s) => sum + (s.salary || 0), 0);
+      appData.expenses.forEach(e => jamiXarajat += e.amount);
+      const umumiyXarajat = jamiOqituvchi + jamiXarajat + staffSalaries;
+      const sofFoyda = jamiTushum - umumiyXarajat;
+      return { jamiTushum, jamiOqituvchi, jamiXarajat, staffSalaries, umumiyXarajat, sofFoyda };
+    }
+
+    function getDebtors() {
+      return appData.students.filter(s => s.status === 'active').map(s => {
+        const payments = appData.payments.filter(p => p.studentId == s.id);
+        const totalPaid = payments.reduce((sum, p) => sum + p.amount, 0);
+        const debt = (s.fee || 0) - totalPaid;
+        return { ...s, totalPaid, debt };
+      }).filter(s => s.debt > 0);
+    }
+
+    // ===================== RENDER ALL =====================
+    function renderAll() {
+      const totals = computeTotals();
+      const margin = totals.jamiTushum > 0 ? ((totals.sofFoyda / totals.jamiTushum) * 100).toFixed(1) : 0;
+
+      document.getElementById('dash-income').innerText = totals.jamiTushum.toLocaleString() + " so'm";
+      document.getElementById('dash-expense').innerText = totals.umumiyXarajat.toLocaleString() + " so'm";
+      document.getElementById('dash-profit').innerText = totals.sofFoyda.toLocaleString() + " so'm";
+      document.getElementById('profit-margin').innerText = `Marja: ${margin}%`;
+
+      const profitCard = document.getElementById('dash-profit-card');
+      const statusLabel = document.getElementById('dash-status');
+      if (totals.sofFoyda >= 0) {
+        profitCard.className = "p-5 rounded-2xl border bg-emerald-600 border-emerald-700 text-white card-hover";
+        statusLabel.className = "text-xs px-4 py-2 rounded-full font-bold bg-white text-emerald-700";
+        statusLabel.innerText = "✅ Biznes Foydada";
+      } else {
+        profitCard.className = "p-5 rounded-2xl border bg-rose-600 border-rose-700 text-white card-hover pulse-ring";
+        statusLabel.className = "text-xs px-4 py-2 rounded-full font-bold bg-white text-rose-700";
+        statusLabel.innerText = "❌ Biznes Zararda";
+      }
+
+      document.getElementById('stat-groups').innerText = appData.groups.length;
+      document.getElementById('stat-students').innerText = appData.students.filter(s => s.status === 'active').length;
+      document.getElementById('stat-staff').innerText = appData.staff.filter(s => s.status === 'active').length;
+
+      const today = new Date().toISOString().slice(0, 10);
+      const todayAttendance = appData.attendance.filter(a => a.date === today);
+      const presentToday = todayAttendance.filter(a => a.status === 'present').length;
+      const totalToday = todayAttendance.length;
+      document.getElementById('stat-attendance').innerText = (totalToday > 0 ? Math.round((presentToday / totalToday) * 100) : 0) + '%';
+
+      let dangerHTML = '';
+      appData.groups.forEach(g => {
+        const studentsInGroup = appData.students.filter(s => s.groupId == g.id && s.status === 'active').length;
+        if (g.minStudents > 0 && studentsInGroup < g.minStudents) {
+          dangerHTML += `<div class="flex justify-between items-center bg-rose-50 dark:bg-rose-900/20 p-3 rounded-xl border border-rose-100 dark:border-rose-800"><span class="text-rose-800 dark:text-rose-400 font-medium text-xs">📉 ${g.name} <span class="opacity-60">(${g.category || ''})</span></span><span class="text-rose-600 text-xs font-bold">-${g.minStudents - studentsInGroup} ta yetishmayapti</span></div>`;
+        }
+      });
+      document.getElementById('dashboard-danger-groups').innerHTML = dangerHTML || '<div class="text-emerald-600 dark:text-emerald-400 text-center py-2">🟢 Hamma guruhlar yaxshi!</div>';
+
+      const debtors = getDebtors();
+      let debtHTML = '';
+      debtors.slice(0, 5).forEach(s => {
+        const group = appData.groups.find(g => g.id == s.groupId);
+        debtHTML += `<div class="flex justify-between items-center bg-amber-50 dark:bg-amber-900/20 p-3 rounded-xl border border-amber-100 dark:border-amber-800"><span class="text-amber-800 dark:text-amber-400 font-medium text-xs">💳 ${s.name} <span class="opacity-60">${group ? group.name : ''}</span></span><span class="text-amber-600 text-xs font-bold">${s.debt.toLocaleString()} so'm qarz</span></div>`;
+      });
+      document.getElementById('dashboard-debtors').innerHTML = debtHTML || '<div class="text-emerald-600 dark:text-emerald-400 text-center py-2">🟢 Hamma to\'lovlar o\'z vaqtida!</div>';
+
+      renderStudents();
+      renderGroups();
+      renderStaff();
+      renderPayments();
+      renderExpenses();
+      if (document.getElementById('attendance-stats')) renderAttendanceStats();
+    }
+
+    async function renderChart() {
+      const ctx = document.getElementById('finance-chart');
+      if (!ctx) return;
+      let history = [];
+      try { history = await getAllFromStore('history'); } catch (e) { history = []; }
+      const sorted = (history || []).sort((a, b) => (a.day || '').localeCompare(b.day || '')).slice(-14);
+      const labels = sorted.map(h => { try { return new Date(h.date).toLocaleDateString('uz-UZ', { day: 'numeric', month: 'short' }); } catch (e) { return h.day || ''; } });
+      const incomeData = sorted.map(h => h.income || 0);
+      const expenseData = sorted.map(h => h.expense || 0);
+      if (chartInstance) { chartInstance.destroy(); chartInstance = null; }
+      chartInstance = new Chart(ctx, {
+        type: 'line',
+        data: { labels: labels.length ? labels : ['Bugun'], datasets: [{ label: 'Tushum', data: incomeData.length ? incomeData : [computeTotals().jamiTushum], borderColor: '#10b981', backgroundColor: 'rgba(16,185,129,0.1)', fill: true, tension: 0.4 }, { label: 'Xarajat', data: expenseData.length ? expenseData : [computeTotals().umumiyXarajat], borderColor: '#ef4444', backgroundColor: 'rgba(239,68,68,0.1)', fill: true, tension: 0.4 }] },
+        options: { responsive: true, maintainAspectRatio: false, animation: false, plugins: { legend: { position: 'bottom', labels: { boxWidth: 12, font: { size: 10 } } } }, scales: { y: { beginAtZero: true, grid: { display: false } }, x: { grid: { display: false } } } }
+      });
+    }
+
+    function renderCategoryChart() {
+      const ctx = document.getElementById('category-chart');
+      if (!ctx) return;
+      const byCat = {};
+      appData.groups.forEach(g => {
+        const studentsInGroup = appData.students.filter(s => s.groupId == g.id && s.status === 'active').length;
+        const cat = g.category || 'Boshqa';
+        const daromad = g.price * studentsInGroup;
+        const oylik = (daromad * g.percent) / 100;
+        byCat[cat] = (byCat[cat] || 0) + (daromad - oylik);
+      });
+      const labels = Object.keys(byCat);
+      const data = Object.values(byCat);
+      const colors = labels.map(l => CATEGORY_COLORS[l] || '#64748b');
+      if (categoryChartInstance) { categoryChartInstance.destroy(); categoryChartInstance = null; }
+      categoryChartInstance = new Chart(ctx, {
+        type: 'bar',
+        data: { labels: labels.length ? labels : ['Ma\'lumot yo\'q'], datasets: [{ label: "Markaz foydasi", data: data.length ? data : [0], backgroundColor: colors.length ? colors : ['#cbd5e1'], borderRadius: 6 }] },
+        options: { responsive: true, maintainAspectRatio: false, animation: false, plugins: { legend: { display: false } }, scales: { y: { beginAtZero: true, grid: { display: false } }, x: { grid: { display: false } } } }
+      });
+    }
+
+    function exportAllData() {
+      const exportData = { version: '4.2', exportedAt: new Date().toISOString(), ...appData };
+      const blob = new Blob([JSON.stringify(exportData, null, 2)], { type: 'application/json' });
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = `edu_center_backup_${new Date().toISOString().slice(0, 10)}.json`;
+      a.click();
+      showToast("Barcha ma'lumotlar eksport qilindi!");
+    }
+
+    function importData(input) {
+      const file = input.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        try {
+          const data = JSON.parse(e.target.result);
+          if (data.groups) appData.groups = data.groups;
+          if (data.students) appData.students = data.students;
+          if (data.staff) appData.staff = data.staff;
+          if (data.expenses) appData.expenses = data.expenses;
+          if (data.payments) appData.payments = data.payments;
+          if (data.attendance) appData.attendance = data.attendance;
+          persistData();
+          showToast("Ma'lumotlar import qilindi!");
+        } catch (err) { showToast("Xatolik! Noto'g'ri fayl formati", 'error'); }
+      };
+      reader.readAsText(file);
+      input.value = '';
+    }
+
+    function printReport(type) {
+      const totals = computeTotals();
+      let html = '';
+      if (type === 'financial') {
+        html += `<div style="margin-bottom:30px;"><h2>Moliyaviy xulosa</h2><table style="width:100%; border-collapse:collapse;"><tr><td><b>Jami tushum:</b></td><td style="text-align:right;">${totals.jamiTushum.toLocaleString()} so'm</td></tr><tr><td><b>O'qituvchilar oyligi:</b></td><td style="text-align:right; color:#ef4444;">${totals.jamiOqituvchi.toLocaleString()} so'm</td></tr><tr><td><b>Xodimlar maoshi:</b></td><td style="text-align:right; color:#ef4444;">${totals.staffSalaries.toLocaleString()} so'm</td></tr><tr><td><b>Boshqa xarajatlar:</b></td><td style="text-align:right; color:#ef4444;">${totals.jamiXarajat.toLocaleString()} so'm</td></tr><tr style="background:#f0fdf4;"><td><b>Sof foyda:</b></td><td style="text-align:right; color:#10b981; font-weight:bold;">${totals.sofFoyda.toLocaleString()} so'm</td></tr></table></div>`;
+      }
+      document.getElementById('print-date').innerText = `Hisobot sanasi: ${new Date().toLocaleDateString('uz-UZ')}`;
+      document.getElementById('print-content').innerHTML = html;
+      window.print();
+    }
+
+    function resetAllData() {
+      showModal("Barcha ma'lumotlarni o'chirish", "Bu amal qaytarib bo'lmaydi. Ishonchingiz komilmi?", async () => {
+        appData = { groups: [], students: [], staff: [], expenses: [], payments: [], attendance: [] };
+        for (const store of ['groups', 'students', 'staff', 'expenses', 'payments', 'attendance', 'history']) {
+          try { await clearStore(store); } catch (e) {}
+        }
+        localStorage.removeItem('edu_center_db');
+        populateFilters();
+        renderAll();
+        if (chartInstance) { chartInstance.destroy(); chartInstance = null; }
+        if (categoryChartInstance) { categoryChartInstance.destroy(); categoryChartInstance = null; }
+        if (attendanceChartInstance) { attendanceChartInstance.destroy(); attendanceChartInstance = null; }
+        if (paymentChartInstance) { paymentChartInstance.destroy(); paymentChartInstance = null; }
+        renderChart(); renderCategoryChart();
+        showToast("Barcha ma'lumotlar tozalandi");
+      });
+    }
+
+    function updateStorageInfo() {
+      let size = 0;
+      for (let key in localStorage) if (localStorage.hasOwnProperty(key)) size += localStorage[key].length * 2;
+      document.getElementById('storage-info').innerText = `LocalStorage: ${(size / 1024).toFixed(2)} KB ishlatilgan`;
+    }
+
+    window.addEventListener('online', () => { document.getElementById('offline-bar').classList.add('hidden'); });
+    window.addEventListener('offline', () => { document.getElementById('offline-bar').classList.remove('hidden'); });
+
+    (async function init() {
+      const savedTheme = localStorage.getItem('theme');
+      if (savedTheme === 'dark' || (!savedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        document.documentElement.classList.add('dark');
+        document.getElementById('theme-icon').innerText = '☀️';
+      }
+      await openDB();
+      await loadData();
+      switchTab('dashboard');
+      document.getElementById('att-date').value = new Date().toISOString().slice(0, 10);
+    })();
+  </script>
 </body>
 </html>
