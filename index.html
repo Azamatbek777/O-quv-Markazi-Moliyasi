@@ -1,331 +1,325 @@
 <!DOCTYPE html>
 <html lang="uz">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-  <meta name="theme-color" content="#3b82f6">
-  <title>O'quv Markazi - Barcha Boshqaruv</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
-  <script>
-    tailwind.config = {
-      darkMode: 'class',
-      theme: {
-        extend: {
-          colors: {
-            primary: '#3b82f6',
-            success: '#10b981',
-            danger: '#ef4444',
-            warning: '#f59e0b',
-            info: '#06b6d4'
-          }
-        }
-      }
-    }
-  </script>
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
-    * { font-family: 'Inter', sans-serif; box-sizing: border-box; }
-    body { -webkit-tap-highlight-color: transparent; overscroll-behavior-y: none; }
-    .glass { background: rgba(255,255,255,0.85); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
-    .dark .glass { background: rgba(30,41,59,0.85); }
-    .card-hover { transition: all 0.2s ease; }
-    .card-hover:active { transform: scale(0.98); }
-    .slide-up { animation: slideUp 0.3s ease-out; }
-    @keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-    .pulse-ring { animation: pulse-ring 2s cubic-bezier(0.215, 0.61, 0.355, 1) infinite; }
-    @keyframes pulse-ring { 0% { box-shadow: 0 0 0 0 rgba(239,68,68,0.5); } 70% { box-shadow: 0 0 0 10px rgba(239,68,68,0); } 100% { box-shadow: 0 0 0 0 rgba(239,68,68,0); } }
-    ::-webkit-scrollbar { width: 4px; } ::-webkit-scrollbar-track { background: transparent; } ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; } .dark ::-webkit-scrollbar-thumb { background: #475569; }
-    .chart-box { position: relative; width: 100%; height: 220px; }
-    .chart-box canvas { position: absolute !important; left:0; top:0; width: 100% !important; height: 100% !important; }
-    .tab-pill { transition: all .15s ease; }
-    .tag { display:inline-block; font-size:10px; font-weight:700; padding:2px 8px; border-radius:9999px; }
-    .status-dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; }
-    .status-active { background: #10b981; }
-    .status-inactive { background: #ef4444; }
-    .status-pending { background: #f59e0b; }
-    .input-field { width:100%; padding:0.75rem; border:1px solid #e5e7eb; border-radius:0.75rem; outline:none; transition:all 0.2s; font-size:0.875rem; }
-    .dark .input-field { background:#374151; border-color:#4b5563; color:#f3f4f6; }
-    .input-field:focus { ring:2px; ring-color:#3b82f6; }
-    .btn-primary { background:#3b82f6; color:white; padding:0.75rem; border-radius:0.75rem; font-weight:700; transition:all 0.2s; width:100%; border:none; cursor:pointer; }
-    .btn-primary:hover { background:#2563eb; } .btn-primary:active { transform:scale(0.95); }
-    .btn-danger { background:#ef4444; color:white; padding:0.75rem; border-radius:0.75rem; font-weight:700; transition:all 0.2s; width:100%; border:none; cursor:pointer; }
-    .btn-danger:hover { background:#dc2626; } .btn-danger:active { transform:scale(0.95); }
-    .btn-success { background:#10b981; color:white; padding:0.75rem; border-radius:0.75rem; font-weight:700; transition:all 0.2s; width:100%; border:none; cursor:pointer; }
-    .btn-success:hover { background:#059669; } .btn-success:active { transform:scale(0.95); }
-    .btn-secondary { background:#e5e7eb; color:#1f2937; padding:0.75rem; border-radius:0.75rem; font-weight:700; transition:all 0.2s; border:none; cursor:pointer; }
-    .dark .btn-secondary { background:#374151; color:#f3f4f6; }
-    .section-card { background:white; padding:1rem; border-radius:1rem; box-shadow:0 1px 3px rgba(0,0,0,0.1); border:1px solid #f3f4f6; }
-    .dark .section-card { background:#1f2937; border-color:#374151; }
-    @media print { .no-print { display: none !important; } body { background: white !important; color: black !important; } .print-only { display: block !important; } }
-    .print-only { display: none; }
-    .attendance-present { background: #10b981 !important; color: white !important; }
-    .attendance-absent { background: #ef4444 !important; color: white !important; }
-    .attendance-late { background: #f59e0b !important; color: white !important; }
-    .attendance-excused { background: #3b82f6 !important; color: white !important; }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<meta name="theme-color" content="#1e40af">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<title>EduCenter Pro – Boshqaruv Tizimi</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+body{font-family:'Inter',sans-serif;overscroll-behavior-y:none;background:#0f172a;color:#f1f5f9}
+::-webkit-scrollbar{width:4px;height:4px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:#334155;border-radius:4px}
+
+/* Layout */
+#app{display:flex;height:100dvh;overflow:hidden}
+#sidebar{width:240px;min-width:240px;background:#0f172a;border-right:1px solid #1e293b;display:flex;flex-direction:column;transition:all .3s;z-index:100}
+#sidebar.collapsed{width:72px;min-width:72px}
+#main{flex:1;display:flex;flex-direction:column;overflow:hidden;background:#0f172a}
+#content{flex:1;overflow-y:auto;padding:24px}
+
+/* Glass cards */
+.card{background:#1e293b;border:1px solid #334155;border-radius:16px;padding:20px}
+.card-sm{background:#1e293b;border:1px solid #334155;border-radius:12px;padding:14px}
+.card-xs{background:#1e293b;border:1px solid #334155;border-radius:10px;padding:10px}
+
+/* Stat cards */
+.stat-card{border-radius:16px;padding:20px;position:relative;overflow:hidden}
+.stat-card::before{content:'';position:absolute;top:-20px;right:-20px;width:80px;height:80px;border-radius:50%;opacity:.08}
+
+/* Nav items */
+.nav-item{display:flex;align-items:center;gap:12px;padding:10px 16px;border-radius:10px;cursor:pointer;transition:all .2s;color:#94a3b8;font-size:14px;font-weight:500;text-decoration:none;border:none;background:none;width:100%;text-align:left}
+.nav-item:hover{background:#1e293b;color:#f1f5f9}
+.nav-item.active{background:#1d4ed8;color:#fff}
+.nav-item .icon{font-size:18px;min-width:24px;text-align:center}
+.nav-label{white-space:nowrap;overflow:hidden}
+#sidebar.collapsed .nav-label{display:none}
+#sidebar.collapsed .nav-item{justify-content:center;padding:10px}
+
+/* Top bar */
+#topbar{background:#0f172a;border-bottom:1px solid #1e293b;padding:16px 24px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+
+/* Inputs */
+.inp{width:100%;background:#0f172a;border:1px solid #334155;border-radius:10px;padding:10px 14px;color:#f1f5f9;font-size:14px;outline:none;transition:all .2s}
+.inp:focus{border-color:#3b82f6;box-shadow:0 0 0 3px rgba(59,130,246,.15)}
+.inp::placeholder{color:#64748b}
+select.inp option{background:#1e293b}
+.inp-label{display:block;font-size:12px;font-weight:600;color:#64748b;margin-bottom:6px;text-transform:uppercase;letter-spacing:.5px}
+
+/* Buttons */
+.btn{display:inline-flex;align-items:center;gap:6px;padding:10px 18px;border-radius:10px;font-size:14px;font-weight:600;cursor:pointer;transition:all .2s;border:none;outline:none}
+.btn:active{transform:scale(.97)}
+.btn-primary{background:#1d4ed8;color:#fff}
+.btn-primary:hover{background:#1e40af}
+.btn-success{background:#059669;color:#fff}
+.btn-success:hover{background:#047857}
+.btn-danger{background:#dc2626;color:#fff}
+.btn-danger:hover{background:#b91c1c}
+.btn-warning{background:#d97706;color:#fff}
+.btn-warning:hover{background:#b45309}
+.btn-ghost{background:#1e293b;color:#94a3b8;border:1px solid #334155}
+.btn-ghost:hover{background:#334155;color:#f1f5f9}
+.btn-sm{padding:7px 12px;font-size:12px;border-radius:8px}
+.btn-full{width:100%;justify-content:center}
+
+/* Tags & badges */
+.badge{display:inline-flex;align-items:center;gap:4px;font-size:11px;font-weight:700;padding:3px 8px;border-radius:6px;white-space:nowrap}
+.badge-green{background:rgba(16,185,129,.15);color:#10b981}
+.badge-red{background:rgba(239,68,68,.15);color:#ef4444}
+.badge-yellow{background:rgba(245,158,11,.15);color:#f59e0b}
+.badge-blue{background:rgba(59,130,246,.15);color:#3b82f6}
+.badge-purple{background:rgba(139,92,246,.15);color:#8b5cf6}
+.badge-gray{background:rgba(100,116,139,.15);color:#94a3b8}
+
+/* Tables */
+.tbl{width:100%;border-collapse:collapse}
+.tbl th{background:#0f172a;color:#64748b;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;padding:10px 14px;text-align:left;border-bottom:1px solid #1e293b}
+.tbl td{padding:12px 14px;border-bottom:1px solid #1e293b;font-size:13px;vertical-align:middle}
+.tbl tr:hover td{background:rgba(255,255,255,.02)}
+
+/* Modals */
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:1000;display:flex;align-items:center;justify-content:center;padding:16px;backdrop-filter:blur(4px)}
+.modal-box{background:#1e293b;border:1px solid #334155;border-radius:20px;padding:24px;max-width:520px;width:100%;max-height:90vh;overflow-y:auto}
+
+/* Toast */
+#toast{position:fixed;top:20px;left:50%;transform:translateX(-50%) translateY(-80px);z-index:2000;background:#1e293b;border:1px solid #334155;color:#f1f5f9;padding:12px 20px;border-radius:12px;font-size:14px;font-weight:500;transition:all .3s;pointer-events:none;white-space:nowrap;box-shadow:0 8px 32px rgba(0,0,0,.5)}
+#toast.show{transform:translateX(-50%) translateY(0)}
+#toast.success{border-color:#059669;background:#022c22}
+#toast.error{border-color:#dc2626;background:#2d0a0a}
+
+/* Charts */
+.chart-wrap{position:relative;width:100%}
+.chart-wrap canvas{display:block}
+
+/* Progress bar */
+.progress-bar{height:6px;background:#0f172a;border-radius:4px;overflow:hidden}
+.progress-fill{height:100%;border-radius:4px;transition:width .4s}
+
+/* Attendance buttons */
+.att-btn{padding:5px 10px;border-radius:8px;font-size:11px;font-weight:700;border:1px solid #334155;background:#0f172a;color:#64748b;cursor:pointer;transition:all .15s}
+.att-btn.att-present{background:rgba(16,185,129,.2);border-color:#059669;color:#10b981}
+.att-btn.att-absent{background:rgba(239,68,68,.2);border-color:#dc2626;color:#ef4444}
+.att-btn.att-late{background:rgba(245,158,11,.2);border-color:#d97706;color:#f59e0b}
+.att-btn.att-excused{background:rgba(59,130,246,.2);border-color:#2563eb;color:#3b82f6}
+
+/* Scrollable list */
+.scroll-list{max-height:400px;overflow-y:auto}
+
+/* Empty state */
+.empty{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:48px 20px;color:#475569;text-align:center}
+.empty .empty-icon{font-size:48px;margin-bottom:12px;opacity:.5}
+
+/* Grid helpers */
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.grid-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
+.grid-4{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:12px}
+
+/* Mobile responsive */
+@media(max-width:768px){
+  #sidebar{position:fixed;height:100dvh;transform:translateX(-100%)}
+  #sidebar.mobile-open{transform:translateX(0)}
+  #content{padding:16px}
+  .grid-4{grid-template-columns:1fr 1fr}
+  .grid-3{grid-template-columns:1fr 1fr}
+}
+
+/* Animations */
+.fade-in{animation:fadeIn .25s ease}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+
+/* Pulse for danger */
+@keyframes pulse-danger{0%,100%{box-shadow:0 0 0 0 rgba(239,68,68,.4)}50%{box-shadow:0 0 0 8px rgba(239,68,68,0)}}
+.pulse-danger{animation:pulse-danger 2s infinite}
+
+/* Scrollbar for modals */
+.modal-box::-webkit-scrollbar{width:4px}
+.modal-box::-webkit-scrollbar-thumb{background:#334155;border-radius:4px}
+</style>
 </head>
-<body class="bg-gray-50 text-gray-900 dark:bg-gray-900 dark:text-gray-100 transition-colors duration-300 pb-28">
+<body>
 
-  <div id="offline-bar" class="hidden fixed top-0 left-0 right-0 bg-amber-500 text-white text-center text-xs py-1 z-50">⚠️ Offline rejim - ma'lumotlar keyin sinxronlanadi</div>
+<div id="app">
 
-  <div class="max-w-lg mx-auto p-4 space-y-4">
-
-    <!-- HEADER -->
-    <div class="glass sticky top-0 z-40 p-4 rounded-2xl shadow-sm border border-gray-200 dark:border-gray-700 flex justify-between items-center">
-      <div>
-        <h1 class="text-xs text-gray-400 dark:text-gray-500 font-medium tracking-wider">O'QUV MARKAZI BOSHQARUVI</h1>
-        <p id="user-name" class="text-base font-bold">Direktor</p>
-      </div>
-      <div class="flex items-center gap-2">
-        <button onclick="toggleTheme()" class="p-2 rounded-xl hover:bg-gray-100 dark:hover:bg-gray-700 transition">
-          <span id="theme-icon">🌙</span>
-        </button>
-        <span class="bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 text-xs px-2.5 py-1 rounded-full font-semibold">v4.2</span>
+  <!-- SIDEBAR -->
+  <aside id="sidebar">
+    <div style="padding:20px 16px;border-bottom:1px solid #1e293b">
+      <div style="display:flex;align-items:center;gap:10px">
+        <div style="width:36px;height:36px;background:#1d4ed8;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0">🎓</div>
+        <div class="nav-label">
+          <div style="font-weight:800;font-size:14px;color:#f1f5f9">EduCenter</div>
+          <div style="font-size:11px;color:#64748b">Pro Boshqaruv</div>
+        </div>
       </div>
     </div>
 
-    <!-- ===== DASHBOARD ===== -->
-    <div id="page-dashboard" class="space-y-4 slide-up">
-      <div class="grid grid-cols-2 gap-3">
-        <div class="bg-emerald-50 dark:bg-emerald-900/20 border border-emerald-100 dark:border-emerald-800 p-4 rounded-2xl card-hover">
-          <span class="text-xs text-emerald-600 dark:text-emerald-400 font-medium block">Umumiy Tushum</span>
-          <span id="dash-income" class="text-xl font-black text-emerald-700 dark:text-emerald-300">0 so'm</span>
-        </div>
-        <div class="bg-rose-50 dark:bg-rose-900/20 border border-rose-100 dark:border-rose-800 p-4 rounded-2xl card-hover">
-          <span class="text-xs text-rose-600 dark:text-rose-400 font-medium block">Jami Xarajatlar</span>
-          <span id="dash-expense" class="text-xl font-black text-rose-700 dark:text-rose-300">0 so'm</span>
-        </div>
-      </div>
+    <nav style="flex:1;padding:12px 8px;overflow-y:auto;display:flex;flex-direction:column;gap:2px">
+      <button class="nav-item active" id="nav-dashboard" onclick="goTo('dashboard')"><span class="icon">📊</span><span class="nav-label">Dashboard</span></button>
+      <button class="nav-item" id="nav-students" onclick="goTo('students')"><span class="icon">👨‍🎓</span><span class="nav-label">O'quvchilar</span></button>
+      <button class="nav-item" id="nav-groups" onclick="goTo('groups')"><span class="icon">🏫</span><span class="nav-label">Guruhlar</span></button>
+      <button class="nav-item" id="nav-staff" onclick="goTo('staff')"><span class="icon">👥</span><span class="nav-label">Xodimlar</span></button>
+      <button class="nav-item" id="nav-attendance" onclick="goTo('attendance')"><span class="icon">📋</span><span class="nav-label">Davomat</span></button>
+      <button class="nav-item" id="nav-payments" onclick="goTo('payments')"><span class="icon">💰</span><span class="nav-label">To'lovlar</span></button>
+      <button class="nav-item" id="nav-kassa" onclick="goTo('kassa')"><span class="icon">💸</span><span class="nav-label">Kassa / Xarajat</span></button>
+      <button class="nav-item" id="nav-reports" onclick="goTo('reports')"><span class="icon">📈</span><span class="nav-label">Hisobotlar</span></button>
+      <div style="flex:1"></div>
+      <button class="nav-item" id="nav-settings" onclick="goTo('settings')"><span class="icon">⚙️</span><span class="nav-label">Sozlamalar</span></button>
+    </nav>
 
-      <div id="dash-profit-card" class="p-5 rounded-2xl border flex justify-between items-center card-hover">
+    <div style="padding:12px 8px;border-top:1px solid #1e293b" class="nav-label">
+      <div style="font-size:11px;color:#475569;text-align:center">v5.0 Production · IndexedDB</div>
+    </div>
+  </aside>
+
+  <!-- MAIN -->
+  <div id="main">
+
+    <!-- TOP BAR -->
+    <div id="topbar">
+      <div style="display:flex;align-items:center;gap:12px">
+        <button onclick="toggleSidebar()" class="btn btn-ghost btn-sm" style="padding:8px;border-radius:8px">☰</button>
         <div>
-          <span class="text-xs font-medium block opacity-75">Sof Foyda / Zarar</span>
-          <span id="dash-profit" class="text-3xl font-black">0 so'm</span>
-          <span id="profit-margin" class="text-xs block mt-1 opacity-75"></span>
-        </div>
-        <span id="dash-status" class="text-xs px-4 py-2 rounded-full font-bold">Hisoblanmoqda...</span>
-      </div>
-
-      <div class="grid grid-cols-4 gap-2">
-        <div class="bg-white dark:bg-gray-800 p-3 rounded-xl border border-gray-100 dark:border-gray-700 text-center card-hover cursor-pointer" onclick="switchTab('groups')">
-          <span id="stat-groups" class="text-lg font-bold text-blue-600 dark:text-blue-400 block">0</span>
-          <span class="text-[10px] text-gray-500">Guruhlar</span>
-        </div>
-        <div class="bg-white dark:bg-gray-800 p-3 rounded-xl border border-gray-100 dark:border-gray-700 text-center card-hover cursor-pointer" onclick="switchTab('students')">
-          <span id="stat-students" class="text-lg font-bold text-emerald-600 dark:text-emerald-400 block">0</span>
-          <span class="text-[10px] text-gray-500">O'quvchilar</span>
-        </div>
-        <div class="bg-white dark:bg-gray-800 p-3 rounded-xl border border-gray-100 dark:border-gray-700 text-center card-hover cursor-pointer" onclick="switchTab('staff')">
-          <span id="stat-staff" class="text-lg font-bold text-purple-600 dark:text-purple-400 block">0</span>
-          <span class="text-[10px] text-gray-500">Xodimlar</span>
-        </div>
-        <div class="bg-white dark:bg-gray-800 p-3 rounded-xl border border-gray-100 dark:border-gray-700 text-center card-hover cursor-pointer" onclick="switchTab('attendance')">
-          <span id="stat-attendance" class="text-lg font-bold text-amber-600 dark:text-amber-400 block">0%</span>
-          <span class="text-[10px] text-gray-500">Davomat</span>
+          <div style="font-size:16px;font-weight:700" id="page-title">Dashboard</div>
+          <div style="font-size:11px;color:#64748b" id="page-subtitle">Umumiy ko'rinish</div>
         </div>
       </div>
-
-      <div class="section-card">
-        <h3 class="text-sm font-bold mb-3">📈 Moliyaviy dinamika</h3>
-        <div class="chart-box"><canvas id="finance-chart"></canvas></div>
-      </div>
-
-      <div class="section-card">
-        <h3 class="text-sm font-bold mb-3">📚 Fanlar bo'yicha taqsimot</h3>
-        <div class="chart-box" style="height:200px"><canvas id="category-chart"></canvas></div>
-      </div>
-
-      <div class="section-card">
-        <h3 class="text-sm font-bold text-gray-800 dark:text-gray-200 mb-3 flex items-center gap-2">⚠️ Zarar ko'rayotgan guruhlar</h3>
-        <div id="dashboard-danger-groups" class="space-y-2 text-xs"></div>
-      </div>
-
-      <div class="section-card">
-        <h3 class="text-sm font-bold mb-3">💰 To'lov kechiktirgan o'quvchilar</h3>
-        <div id="dashboard-debtors" class="space-y-2 text-xs"></div>
+      <div style="display:flex;align-items:center;gap:10px">
+        <div id="db-status" style="display:flex;align-items:center;gap:6px;font-size:12px;color:#64748b">
+          <span style="width:8px;height:8px;background:#10b981;border-radius:50%;display:inline-block" id="db-dot"></span>
+          <span id="db-label">Tayyor</span>
+        </div>
+        <div style="font-size:13px;color:#94a3b8" id="topbar-date"></div>
       </div>
     </div>
 
-    <!-- ===== STUDENTS ===== -->
-    <div id="page-students" class="space-y-4 hidden">
-      <div class="section-card">
-        <h2 id="student-form-title" class="text-base font-bold mb-3">➕ Yangi o'quvchi qo'shish</h2>
-        <div class="space-y-3 text-sm">
-          <input type="hidden" id="s-edit-id" value="">
-          <div class="grid grid-cols-2 gap-2">
-            <input type="text" id="s-name" placeholder="F.I.O" class="input-field">
-            <input type="tel" id="s-phone" placeholder="Telefon raqam" class="input-field">
+    <!-- CONTENT AREA -->
+    <div id="content">
+
+      <!-- ===== DASHBOARD ===== -->
+      <div id="page-dashboard" class="fade-in">
+        <div class="grid-4" style="gap:16px;margin-bottom:20px">
+          <div class="stat-card" style="background:linear-gradient(135deg,#1d4ed8,#1e40af);border:1px solid #2563eb">
+            <div style="font-size:11px;color:#93c5fd;font-weight:700;text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px">Jami Tushum</div>
+            <div style="font-size:22px;font-weight:900;color:#fff" id="d-income">0 so'm</div>
+            <div style="font-size:11px;color:#93c5fd;margin-top:4px" id="d-income-sub">—</div>
           </div>
-          <div class="grid grid-cols-2 gap-2">
-            <select id="s-group" class="input-field"><option value="">Guruh tanlang</option></select>
-            <select id="s-status" class="input-field">
+          <div class="stat-card" style="background:linear-gradient(135deg,#dc2626,#b91c1c);border:1px solid #ef4444">
+            <div style="font-size:11px;color:#fca5a5;font-weight:700;text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px">Jami Xarajat</div>
+            <div style="font-size:22px;font-weight:900;color:#fff" id="d-expense">0 so'm</div>
+            <div style="font-size:11px;color:#fca5a5;margin-top:4px" id="d-expense-sub">—</div>
+          </div>
+          <div class="stat-card" id="d-profit-card" style="background:linear-gradient(135deg,#059669,#047857);border:1px solid #10b981">
+            <div style="font-size:11px;color:#6ee7b7;font-weight:700;text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px">Sof Foyda</div>
+            <div style="font-size:22px;font-weight:900;color:#fff" id="d-profit">0 so'm</div>
+            <div style="font-size:11px;color:#6ee7b7;margin-top:4px" id="d-profit-sub">Marja: —</div>
+          </div>
+          <div class="stat-card" style="background:linear-gradient(135deg,#7c3aed,#6d28d9);border:1px solid #8b5cf6">
+            <div style="font-size:11px;color:#c4b5fd;font-weight:700;text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px">O'quvchilar</div>
+            <div style="font-size:22px;font-weight:900;color:#fff" id="d-students">0</div>
+            <div style="font-size:11px;color:#c4b5fd;margin-top:4px" id="d-students-sub">Faol / Jami</div>
+          </div>
+        </div>
+
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-bottom:20px">
+          <div class="card-sm" style="text-align:center;cursor:pointer" onclick="goTo('groups')">
+            <div style="font-size:28px;font-weight:900;color:#3b82f6" id="d-groups">0</div>
+            <div style="font-size:12px;color:#64748b;margin-top:2px">Guruhlar</div>
+          </div>
+          <div class="card-sm" style="text-align:center;cursor:pointer" onclick="goTo('staff')">
+            <div style="font-size:28px;font-weight:900;color:#8b5cf6" id="d-staff">0</div>
+            <div style="font-size:12px;color:#64748b;margin-top:2px">Xodimlar</div>
+          </div>
+          <div class="card-sm" style="text-align:center">
+            <div style="font-size:28px;font-weight:900;color:#f59e0b" id="d-att-pct">0%</div>
+            <div style="font-size:12px;color:#64748b;margin-top:2px">Bugun davomat</div>
+          </div>
+        </div>
+
+        <div style="display:grid;grid-template-columns:2fr 1fr;gap:16px;margin-bottom:20px">
+          <div class="card">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px">
+              <div style="font-weight:700">📈 Moliyaviy dinamika (30 kun)</div>
+              <select id="chart-mode" class="inp" style="width:auto;padding:6px 10px;font-size:12px" onchange="renderFinanceChart()">
+                <option value="30">30 kun</option>
+                <option value="14">14 kun</option>
+                <option value="7">7 kun</option>
+              </select>
+            </div>
+            <div class="chart-wrap" style="height:220px"><canvas id="finance-chart"></canvas></div>
+          </div>
+          <div class="card">
+            <div style="font-weight:700;margin-bottom:16px">🍩 Daromad taqsimoti</div>
+            <div class="chart-wrap" style="height:180px"><canvas id="cat-chart"></canvas></div>
+          </div>
+        </div>
+
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+          <div class="card">
+            <div style="font-weight:700;margin-bottom:12px">⚠️ Zarar ko'rayotgan guruhlar</div>
+            <div id="d-danger-groups"></div>
+          </div>
+          <div class="card">
+            <div style="font-weight:700;margin-bottom:12px">💳 Qarzkor o'quvchilar</div>
+            <div id="d-debtors"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== STUDENTS ===== -->
+      <div id="page-students" class="fade-in hidden">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;gap:12px">
+          <div style="display:flex;align-items:center;gap:12px;flex:1">
+            <input type="text" class="inp" id="s-search" placeholder="🔍 F.I.O yoki telefon qidirish..." oninput="renderStudents()" style="max-width:300px">
+            <select class="inp" id="s-flt-group" onchange="renderStudents()" style="max-width:200px">
+              <option value="">Barcha guruhlar</option>
+            </select>
+            <select class="inp" id="s-flt-status" onchange="renderStudents()" style="max-width:160px">
+              <option value="">Barcha holat</option>
               <option value="active">Faol</option>
               <option value="inactive">Chiqib ketgan</option>
               <option value="pending">Kutilmoqda</option>
             </select>
           </div>
-          <div class="grid grid-cols-2 gap-2">
-            <input type="date" id="s-start" class="input-field">
-            <input type="number" id="s-fee" placeholder="Oylik to'lov (so'm)" class="input-field">
-          </div>
-          <input type="text" id="s-parent" placeholder="Ota-ona F.I.O va telefon" class="input-field">
-          <textarea id="s-notes" placeholder="Qo'shimcha izohlar" class="input-field" rows="2"></textarea>
-          <div class="flex gap-2">
-            <button type="button" id="s-submit-btn" onclick="saveStudent()" class="flex-1 btn-primary">Saqlash</button>
-            <button type="button" id="s-cancel-btn" onclick="cancelEditStudent()" class="hidden px-4 btn-secondary text-sm">Bekor</button>
+          <button class="btn btn-primary" onclick="openStudentModal()">+ Yangi o'quvchi</button>
+        </div>
+        <div class="card" style="padding:0;overflow:hidden">
+          <div style="overflow-x:auto">
+            <table class="tbl" id="students-tbl">
+              <thead><tr>
+                <th>F.I.O</th><th>Telefon</th><th>Guruh</th><th>Holat</th><th>Oylik</th><th>To'langan</th><th>Qarz</th><th>Amallar</th>
+              </tr></thead>
+              <tbody id="students-tbody"></tbody>
+            </table>
           </div>
         </div>
       </div>
 
-      <div class="space-y-3">
-        <div class="flex justify-between items-center gap-2">
-          <input id="student-search" oninput="renderStudents()" type="text" placeholder="🔍 Qidirish (F.I.O yoki telefon)" class="flex-1 p-2.5 text-sm border dark:border-gray-600 dark:bg-gray-700 rounded-xl outline-none focus:ring-2 focus:ring-blue-500">
-          <button onclick="exportStudents()" class="text-xs bg-gray-100 dark:bg-gray-700 px-3 py-2.5 rounded-xl hover:bg-gray-200 transition whitespace-nowrap">📥 Export</button>
-        </div>
-        <select id="student-filter-group" onchange="renderStudents()" class="w-full p-2.5 text-sm border dark:border-gray-600 dark:bg-gray-700 rounded-xl outline-none">
-          <option value="">Barcha guruhlar</option>
-        </select>
-        <select id="student-filter-status" onchange="renderStudents()" class="w-full p-2.5 text-sm border dark:border-gray-600 dark:bg-gray-700 rounded-xl outline-none">
-          <option value="">Barcha holatlar</option>
-          <option value="active">Faol</option>
-          <option value="inactive">Chiqib ketgan</option>
-          <option value="pending">Kutilmoqda</option>
-        </select>
-        <div id="students-list" class="space-y-3"></div>
-      </div>
-    </div>
-
-    <!-- ===== GROUPS ===== -->
-    <div id="page-groups" class="space-y-4 hidden">
-      <div class="section-card">
-        <h2 id="group-form-title" class="text-base font-bold mb-3">➕ Yangi guruh qo'shish</h2>
-        <div class="space-y-3 text-sm">
-          <input type="hidden" id="g-edit-id" value="">
-          <div class="grid grid-cols-2 gap-2">
-            <input type="text" id="g-name" placeholder="Guruh nomi (IELTS 1)" class="input-field">
-            <select id="g-category" class="input-field">
-              <option value="IELTS">IELTS</option>
-              <option value="Matematika">Matematika</option>
-              <option value="Fizika">Fizika</option>
-              <option value="Kimyo">Kimyo</option>
-              <option value="Ingliz tili">Ingliz tili</option>
-              <option value="Rus tili">Rus tili</option>
-              <option value="Matematika (DTM)">DTM Matematika</option>
-              <option value="Fizika (DTM)">DTM Fizika</option>
-              <option value="Ona tili">Ona tili</option>
-              <option value="Tarix">Tarix</option>
-              <option value="Boshqa">Boshqa</option>
+      <!-- ===== GROUPS ===== -->
+      <div id="page-groups" class="fade-in hidden">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;gap:12px">
+          <div style="display:flex;align-items:center;gap:12px;flex:1">
+            <input type="text" class="inp" id="g-search" placeholder="🔍 Guruh nomi yoki fan..." oninput="renderGroups()" style="max-width:300px">
+            <select class="inp" id="g-flt-cat" onchange="renderGroups()" style="max-width:200px">
+              <option value="">Barcha fanlar</option>
             </select>
           </div>
-          <div class="grid grid-cols-2 gap-2">
-            <input type="number" min="0" id="g-price" placeholder="Kurs narxi (so'm)" class="input-field">
-            <input type="number" min="0" max="100" id="g-percent" placeholder="O'qituvchi %" class="input-field">
-          </div>
-          <div class="grid grid-cols-2 gap-2">
-            <input type="number" min="0" id="g-max" placeholder="Maks. o'quvchi" class="input-field">
-            <input type="number" min="0" id="g-min" placeholder="Min. rentabel o'quvchi" class="input-field">
-          </div>
-          <select id="g-teacher" class="input-field"><option value="">O'qituvchi tanlang</option></select>
-          <div class="grid grid-cols-2 gap-2">
-            <input type="time" id="g-time" class="input-field">
-            <select id="g-days" class="input-field">
-              <option value="Du-Cho-Ju">Du-Cho-Ju</option>
-              <option value="Se-Pa-Sha">Se-Pa-Sha</option>
-              <option value="Har kuni">Har kuni</option>
-              <option value="Shanba">Shanba</option>
-              <option value="Yakshanba">Yakshanba</option>
-            </select>
-          </div>
-          <div class="flex gap-2">
-            <button type="button" id="g-submit-btn" onclick="saveGroup()" class="flex-1 btn-primary">Guruhni saqlash</button>
-            <button type="button" id="g-cancel-btn" onclick="cancelEditGroup()" class="hidden px-4 btn-secondary text-sm">Bekor</button>
-          </div>
+          <button class="btn btn-primary" onclick="openGroupModal()">+ Yangi guruh</button>
         </div>
+        <div id="groups-grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:16px"></div>
       </div>
 
-      <div class="space-y-3">
-        <div class="flex justify-between items-center gap-2">
-          <input id="group-search" oninput="renderGroups()" type="text" placeholder="🔍 Qidirish (nomi yoki fan)" class="flex-1 p-2.5 text-sm border dark:border-gray-600 dark:bg-gray-700 rounded-xl outline-none focus:ring-2 focus:ring-blue-500">
-          <button onclick="exportGroups()" class="text-xs bg-gray-100 dark:bg-gray-700 px-3 py-2.5 rounded-xl hover:bg-gray-200 transition whitespace-nowrap">📥 Export</button>
-        </div>
-        <select id="group-filter-cat" onchange="renderGroups()" class="w-full p-2.5 text-sm border dark:border-gray-600 dark:bg-gray-700 rounded-xl outline-none">
-          <option value="">Barcha fanlar</option>
-        </select>
-        <div id="groups-list" class="space-y-3"></div>
-      </div>
-    </div>
-
-    <!-- ===== ATTENDANCE ===== -->
-    <div id="page-attendance" class="space-y-4 hidden">
-      <div class="section-card">
-        <h2 class="text-base font-bold mb-3">📋 Davomat olish</h2>
-        <div class="space-y-3 text-sm">
-          <select id="att-group" onchange="loadAttendance()" class="input-field"><option value="">Guruh tanlang</option></select>
-          <input type="date" id="att-date" onchange="loadAttendance()" class="input-field">
-          <div id="attendance-list" class="space-y-2"></div>
-          <button onclick="saveAttendance()" class="w-full btn-primary">Davomatni saqlash</button>
-        </div>
-      </div>
-
-      <div class="section-card">
-        <h3 class="text-sm font-bold mb-3">📊 Davomat statistikasi</h3>
-        <div class="chart-box" style="height:180px"><canvas id="attendance-chart"></canvas></div>
-        <div id="attendance-stats" class="mt-3 space-y-2 text-xs"></div>
-      </div>
-    </div>
-
-    <!-- ===== PAYMENTS ===== -->
-    <div id="page-payments" class="space-y-4 hidden">
-      <div class="section-card">
-        <h2 class="text-base font-bold mb-3">💰 To'lov qabul qilish</h2>
-        <div class="space-y-3 text-sm">
-          <select id="pay-student" class="input-field"><option value="">O'quvchi tanlang</option></select>
-          <div class="grid grid-cols-2 gap-2">
-            <input type="number" id="pay-amount" placeholder="Summa (so'm)" class="input-field">
-            <select id="pay-month" class="input-field">
-              <option value="Yanvar">Yanvar</option><option value="Fevral">Fevral</option><option value="Mart">Mart</option>
-              <option value="Aprel">Aprel</option><option value="May">May</option><option value="Iyun">Iyun</option>
-              <option value="Iyul">Iyul</option><option value="Avgust">Avgust</option><option value="Sentabr">Sentabr</option>
-              <option value="Oktabr">Oktabr</option><option value="Noyabr">Noyabr</option><option value="Dekabr">Dekabr</option>
-            </select>
-          </div>
-          <select id="pay-type" class="input-field">
-            <option value="cash">Naqd</option>
-            <option value="card">Karta</option>
-            <option value="transfer">O'tkazma</option>
-          </select>
-          <input type="text" id="pay-desc" placeholder="Izoh (ixtiyoriy)" class="input-field">
-          <button onclick="savePayment()" class="w-full btn-success">To'lovni qayd etish</button>
-        </div>
-      </div>
-
-      <div class="section-card">
-        <div class="flex justify-between items-center mb-3">
-          <h3 class="text-sm font-bold">Oxirgi to'lovlar</h3>
-          <button onclick="clearAllPayments()" class="text-xs text-rose-500 hover:text-rose-600">Tozalash</button>
-        </div>
-        <div id="payments-list" class="space-y-2 text-xs max-h-96 overflow-y-auto"></div>
-      </div>
-
-      <div class="section-card">
-        <h3 class="text-sm font-bold mb-3">📊 To'lovlar statistikasi</h3>
-        <div class="chart-box" style="height:180px"><canvas id="payment-chart"></canvas></div>
-      </div>
-    </div>
-
-    <!-- ===== STAFF ===== -->
-    <div id="page-staff" class="space-y-4 hidden">
-      <div class="section-card">
-        <h2 id="staff-form-title" class="text-base font-bold mb-3">➕ Yangi xodim qo'shish</h2>
-        <div class="space-y-3 text-sm">
-          <input type="hidden" id="st-edit-id" value="">
-          <div class="grid grid-cols-2 gap-2">
-            <input type="text" id="st-name" placeholder="F.I.O" class="input-field">
-            <input type="tel" id="st-phone" placeholder="Telefon raqam" class="input-field">
-          </div>
-          <div class="grid grid-cols-2 gap-2">
-            <select id="st-role" class="input-field">
+      <!-- ===== STAFF ===== -->
+      <div id="page-staff" class="fade-in hidden">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;gap:12px">
+          <div style="display:flex;align-items:center;gap:12px;flex:1">
+            <input type="text" class="inp" id="st-search" placeholder="🔍 F.I.O qidirish..." oninput="renderStaff()" style="max-width:300px">
+            <select class="inp" id="st-flt-role" onchange="renderStaff()" style="max-width:200px">
+              <option value="">Barcha lavozim</option>
               <option value="teacher">O'qituvchi</option>
               <option value="admin">Administrator</option>
               <option value="director">Direktor</option>
@@ -333,1214 +327,1213 @@
               <option value="guard">Qorovul</option>
               <option value="other">Boshqa</option>
             </select>
-            <input type="number" id="st-salary" placeholder="Oylik maosh (so'm)" class="input-field">
           </div>
-          <select id="st-status" class="input-field">
-            <option value="active">Faol</option>
-            <option value="inactive">Faol emas</option>
-          </select>
-          <input type="date" id="st-start" class="input-field">
-          <textarea id="st-notes" placeholder="Qo'shimcha izohlar" class="input-field" rows="2"></textarea>
-          <div class="flex gap-2">
-            <button type="button" id="st-submit-btn" onclick="saveStaff()" class="flex-1 btn-primary">Xodimni saqlash</button>
-            <button type="button" id="st-cancel-btn" onclick="cancelEditStaff()" class="hidden px-4 btn-secondary text-sm">Bekor</button>
+          <button class="btn btn-primary" onclick="openStaffModal()">+ Yangi xodim</button>
+        </div>
+        <div class="card" style="padding:0;overflow:hidden">
+          <div style="overflow-x:auto">
+            <table class="tbl">
+              <thead><tr>
+                <th>Xodim</th><th>Lavozim</th><th>Telefon</th><th>Maosh</th><th>Guruhlar</th><th>Holat</th><th>Amallar</th>
+              </tr></thead>
+              <tbody id="staff-tbody"></tbody>
+            </table>
           </div>
         </div>
       </div>
 
-      <div class="space-y-3">
-        <div class="flex justify-between items-center gap-2">
-          <input id="staff-search" oninput="renderStaff()" type="text" placeholder="🔍 Qidirish (F.I.O)" class="flex-1 p-2.5 text-sm border dark:border-gray-600 dark:bg-gray-700 rounded-xl outline-none focus:ring-2 focus:ring-blue-500">
-          <button onclick="exportStaff()" class="text-xs bg-gray-100 dark:bg-gray-700 px-3 py-2.5 rounded-xl hover:bg-gray-200 transition whitespace-nowrap">📥 Export</button>
-        </div>
-        <select id="staff-filter-role" onchange="renderStaff()" class="w-full p-2.5 text-sm border dark:border-gray-600 dark:bg-gray-700 rounded-xl outline-none">
-          <option value="">Barcha lavozimlar</option>
-          <option value="teacher">O'qituvchi</option>
-          <option value="admin">Administrator</option>
-          <option value="director">Direktor</option>
-          <option value="cleaner">Tozalovchi</option>
-          <option value="guard">Qorovul</option>
-          <option value="other">Boshqa</option>
-        </select>
-        <div id="staff-list" class="space-y-3"></div>
-      </div>
-    </div>
-
-    <!-- ===== KASSA ===== -->
-    <div id="page-kassa" class="space-y-4 hidden">
-      <div class="section-card">
-        <h2 class="text-base font-bold mb-3">💸 Xarajat kiritish</h2>
-        <div class="space-y-3 text-sm">
-          <input type="number" min="0" id="e-amount" placeholder="Xarajat summasi (so'm)" class="input-field">
-          <select id="e-cat" class="input-field">
-            <option value="Rent">Xona ijarasi</option>
-            <option value="Marketing">Reklama va Marketing</option>
-            <option value="Taxes">Soliqlar</option>
-            <option value="Utilities">Kommunal xizmatlar</option>
-            <option value="Salary">Xodimlar maoshi</option>
-            <option value="Supplies">O'quv materiallari</option>
-            <option value="Repair">Ta'mirlash</option>
-            <option value="Other">Boshqa xarajatlar</option>
-          </select>
-          <input type="text" id="e-desc" placeholder="Izoh (ixtiyoriy)" class="input-field">
-          <button type="button" onclick="saveExpense()" class="w-full btn-danger">Xarajatni qayd etish</button>
-        </div>
-      </div>
-
-      <div class="section-card">
-        <div class="flex justify-between items-center mb-3">
-          <h3 class="text-sm font-bold">Oxirgi operatsiyalar</h3>
-          <button onclick="clearAllExpenses()" class="text-xs text-rose-500 hover:text-rose-600">Tozalash</button>
-        </div>
-        <div id="transactions-list" class="space-y-2 text-xs max-h-96 overflow-y-auto"></div>
-      </div>
-    </div>
-
-    <!-- ===== REPORTS ===== -->
-    <div id="page-reports" class="space-y-4 hidden">
-      <div class="section-card">
-        <h2 class="text-base font-bold mb-3">📊 Hisobotlar</h2>
-        <div class="space-y-3">
-          <button onclick="printReport('financial')" class="w-full p-3 bg-blue-50 dark:bg-blue-900/20 border border-blue-100 dark:border-blue-800 rounded-xl text-left card-hover">
-            <div class="flex items-center gap-3"><span class="text-2xl">💰</span><div><div class="font-bold text-sm">Moliyaviy hisobot</div><div class="text-xs text-gray-500">Tushum, xarajat, sof foyda</div></div></div>
-          </button>
-          <button onclick="printReport('students')" class="w-full p-3 bg-emerald-50 dark:bg-emerald-900/20 border border-emerald-100 dark:border-emerald-800 rounded-xl text-left card-hover">
-            <div class="flex items-center gap-3"><span class="text-2xl">👨‍🎓</span><div><div class="font-bold text-sm">O'quvchilar hisoboti</div><div class="text-xs text-gray-500">Barcha o'quvchilar ro'yxati</div></div></div>
-          </button>
-          <button onclick="printReport('attendance')" class="w-full p-3 bg-amber-50 dark:bg-amber-900/20 border border-amber-100 dark:border-amber-800 rounded-xl text-left card-hover">
-            <div class="flex items-center gap-3"><span class="text-2xl">📋</span><div><div class="font-bold text-sm">Davomat hisoboti</div><div class="text-xs text-gray-500">Davomat statistikasi</div></div></div>
-          </button>
-          <button onclick="printReport('payments')" class="w-full p-3 bg-purple-50 dark:bg-purple-900/20 border border-purple-100 dark:border-purple-800 rounded-xl text-left card-hover">
-            <div class="flex items-center gap-3"><span class="text-2xl">💳</span><div><div class="font-bold text-sm">To'lovlar hisoboti</div><div class="text-xs text-gray-500">Barcha to'lovlar tarixi</div></div></div>
-          </button>
-          <button onclick="printReport('staff')" class="w-full p-3 bg-cyan-50 dark:bg-cyan-900/20 border border-cyan-100 dark:border-cyan-800 rounded-xl text-left card-hover">
-            <div class="flex items-center gap-3"><span class="text-2xl">👥</span><div><div class="font-bold text-sm">Xodimlar hisoboti</div><div class="text-xs text-gray-500">Xodimlar ro'yxati va maoshlar</div></div></div>
-          </button>
-        </div>
-      </div>
-    </div>
-
-    <!-- ===== SETTINGS ===== -->
-    <div id="page-settings" class="space-y-4 hidden">
-      <div class="section-card space-y-4">
-        <h2 class="text-base font-bold">⚙️ Sozlamalar</h2>
-        <div class="space-y-3">
-          <div class="flex justify-between items-center p-3 bg-gray-50 dark:bg-gray-700 rounded-xl">
-            <span class="text-sm">Qorong'u rejim</span>
-            <button onclick="toggleTheme()" class="w-12 h-6 bg-gray-300 dark:bg-blue-600 rounded-full relative transition">
-              <span class="absolute left-1 top-1 w-4 h-4 bg-white rounded-full transition transform dark:translate-x-6"></span>
-            </button>
-          </div>
-          <div class="flex justify-between items-center p-3 bg-gray-50 dark:bg-gray-700 rounded-xl">
-            <span class="text-sm">Hisobot chiqarish</span>
-            <button onclick="printReport('financial')" class="bg-blue-600 text-white px-4 py-2 rounded-lg text-xs font-bold">Print</button>
-          </div>
-          <div class="flex justify-between items-center p-3 bg-gray-50 dark:bg-gray-700 rounded-xl">
-            <span class="text-sm">Ma'lumotlarni eksport</span>
-            <button onclick="exportAllData()" class="bg-emerald-600 text-white px-4 py-2 rounded-lg text-xs font-bold">JSON</button>
-          </div>
-          <div class="p-3 bg-gray-50 dark:bg-gray-700 rounded-xl space-y-2">
-            <span class="text-sm block">Ma'lumotlarni import</span>
-            <input type="file" id="import-file" accept=".json" onchange="importData(this)" class="text-xs w-full">
-          </div>
-          <div class="p-3 bg-rose-50 dark:bg-rose-900/20 border border-rose-100 dark:border-rose-800 rounded-xl">
-            <span class="text-sm block text-rose-700 dark:text-rose-400 font-medium mb-2">Xavfli zona</span>
-            <button onclick="resetAllData()" class="w-full bg-rose-600 text-white p-2 rounded-lg text-xs font-bold hover:bg-rose-700 transition">Barcha ma'lumotlarni o'chirish</button>
-          </div>
-        </div>
-        <div class="text-center text-xs text-gray-400 pt-4 border-t dark:border-gray-700">
-          <p>v4.2 Production | IndexedDB + PWA</p>
-          <p id="storage-info" class="mt-1"></p>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- PRINT REPORT -->
-  <div id="print-report" class="print-only">
-    <h1 style="text-align:center; font-size:24px; margin-bottom:20px;">O'QUV MARKAZI HISOBOTI</h1>
-    <p style="text-align:center; color:#666;" id="print-date"></p>
-    <hr style="margin:20px 0;">
-    <div id="print-content"></div>
-  </div>
-
-  <!-- BOTTOM NAV -->
-  <div class="fixed bottom-0 left-0 right-0 bg-white/90 dark:bg-gray-900/90 backdrop-blur-lg border-t border-gray-200 dark:border-gray-700 py-2 px-4 shadow-2xl flex justify-around max-w-lg mx-auto z-50 rounded-t-3xl no-print overflow-x-auto">
-    <button onclick="switchTab('dashboard')" class="tab-pill flex flex-col items-center gap-0.5 p-2 rounded-xl min-w-[60px]" id="btn-dashboard"><span class="text-xl">📊</span><span class="text-[10px] font-medium">Bosh</span></button>
-    <button onclick="switchTab('students')" class="tab-pill flex flex-col items-center gap-0.5 p-2 rounded-xl min-w-[60px]" id="btn-students"><span class="text-xl">👨‍🎓</span><span class="text-[10px] font-medium">O'quvchilar</span></button>
-    <button onclick="switchTab('groups')" class="tab-pill flex flex-col items-center gap-0.5 p-2 rounded-xl min-w-[60px]" id="btn-groups"><span class="text-xl">🏫</span><span class="text-[10px] font-medium">Guruhlar</span></button>
-    <button onclick="switchTab('attendance')" class="tab-pill flex flex-col items-center gap-0.5 p-2 rounded-xl min-w-[60px]" id="btn-attendance"><span class="text-xl">📋</span><span class="text-[10px] font-medium">Davomat</span></button>
-    <button onclick="switchTab('payments')" class="tab-pill flex flex-col items-center gap-0.5 p-2 rounded-xl min-w-[60px]" id="btn-payments"><span class="text-xl">💰</span><span class="text-[10px] font-medium">To'lov</span></button>
-    <button onclick="switchTab('staff')" class="tab-pill flex flex-col items-center gap-0.5 p-2 rounded-xl min-w-[60px]" id="btn-staff"><span class="text-xl">👥</span><span class="text-[10px] font-medium">Xodimlar</span></button>
-    <button onclick="switchTab('kassa')" class="tab-pill flex flex-col items-center gap-0.5 p-2 rounded-xl min-w-[60px]" id="btn-kassa"><span class="text-xl">💸</span><span class="text-[10px] font-medium">Kassa</span></button>
-    <button onclick="switchTab('reports')" class="tab-pill flex flex-col items-center gap-0.5 p-2 rounded-xl min-w-[60px]" id="btn-reports"><span class="text-xl">📈</span><span class="text-[10px] font-medium">Hisobot</span></button>
-    <button onclick="switchTab('settings')" class="tab-pill flex flex-col items-center gap-0.5 p-2 rounded-xl min-w-[60px]" id="btn-settings"><span class="text-xl">⚙️</span><span class="text-[10px] font-medium">Sozlamalar</span></button>
-  </div>
-
-  <!-- TOAST -->
-  <div id="toast" class="fixed top-20 left-1/2 transform -translate-x-1/2 bg-gray-800 dark:bg-gray-700 text-white px-6 py-3 rounded-xl shadow-xl z-50 transition-all duration-300 opacity-0 pointer-events-none translate-y-[-20px]">
-    <span id="toast-msg"></span>
-  </div>
-
-  <!-- MODAL -->
-  <div id="modal" class="fixed inset-0 bg-black/50 z-50 hidden flex items-center justify-center p-4" style="backdrop-filter:blur(4px);">
-    <div class="bg-white dark:bg-gray-800 rounded-2xl p-6 max-w-sm w-full shadow-2xl">
-      <h3 id="modal-title" class="text-lg font-bold mb-2">Tasdiqlash</h3>
-      <p id="modal-text" class="text-sm text-gray-600 dark:text-gray-300 mb-4"></p>
-      <div class="flex gap-2">
-        <button onclick="closeModal()" class="flex-1 py-2 rounded-xl border dark:border-gray-600 text-sm font-medium">Bekor</button>
-        <button id="modal-confirm" class="flex-1 py-2 rounded-xl bg-rose-600 text-white text-sm font-bold">O'chirish</button>
-      </div>
-    </div>
-  </div>
-
-  <script>
-    // ===================== TELEGRAM =====================
-    const tg = window.Telegram?.WebApp;
-    if (tg) {
-      try { tg.ready(); tg.expand(); tg.enableClosingConfirmation(); } catch (e) {}
-      if (tg.initDataUnsafe?.user) document.getElementById('user-name').innerText = tg.initDataUnsafe.user.first_name || 'Direktor';
-      if (tg.colorScheme === 'dark') document.documentElement.classList.add('dark');
-    }
-
-    // ===================== INDEXEDDB =====================
-    const DB_NAME = 'EduCenterDB';
-    const DB_VERSION = 1;
-    let db;
-
-    function openDB() {
-      return new Promise((resolve, reject) => {
-        const request = indexedDB.open(DB_NAME, DB_VERSION);
-        request.onerror = () => reject(request.error);
-        request.onsuccess = () => { db = request.result; resolve(db); };
-        request.onupgradeneeded = (e) => {
-          const database = e.target.result;
-          if (!database.objectStoreNames.contains('groups')) database.createObjectStore('groups', { keyPath: 'id' });
-          if (!database.objectStoreNames.contains('students')) database.createObjectStore('students', { keyPath: 'id' });
-          if (!database.objectStoreNames.contains('staff')) database.createObjectStore('staff', { keyPath: 'id' });
-          if (!database.objectStoreNames.contains('expenses')) database.createObjectStore('expenses', { keyPath: 'id' });
-          if (!database.objectStoreNames.contains('payments')) database.createObjectStore('payments', { keyPath: 'id' });
-          if (!database.objectStoreNames.contains('attendance')) database.createObjectStore('attendance', { keyPath: 'id' });
-          if (!database.objectStoreNames.contains('history')) database.createObjectStore('history', { keyPath: 'day' });
-        };
-      });
-    }
-
-    async function saveToStore(storeName, data) {
-      if (!db) await openDB();
-      return new Promise((resolve, reject) => {
-        const tx = db.transaction(storeName, 'readwrite');
-        const store = tx.objectStore(storeName);
-        const items = Array.isArray(data) ? data : [data];
-        items.forEach(item => store.put(item));
-        tx.oncomplete = () => resolve();
-        tx.onerror = () => reject(tx.error);
-      });
-    }
-
-    async function getAllFromStore(storeName) {
-      if (!db) await openDB();
-      return new Promise((resolve, reject) => {
-        const tx = db.transaction(storeName, 'readonly');
-        const request = tx.objectStore(storeName).getAll();
-        request.onsuccess = () => resolve(request.result || []);
-        request.onerror = () => reject(request.error);
-      });
-    }
-
-    async function clearStore(storeName) {
-      if (!db) await openDB();
-      return new Promise((resolve, reject) => {
-        const tx = db.transaction(storeName, 'readwrite');
-        tx.objectStore(storeName).clear();
-        tx.oncomplete = () => resolve();
-        tx.onerror = () => reject(tx.error);
-      });
-    }
-
-    // ===================== STATE =====================
-    let appData = { groups: [], students: [], staff: [], expenses: [], payments: [], attendance: [] };
-    let chartInstance = null, categoryChartInstance = null, attendanceChartInstance = null, paymentChartInstance = null;
-    const CATEGORY_COLORS = {
-      'IELTS': '#3b82f6', 'Matematika': '#f59e0b', 'Fizika': '#8b5cf6', 'Kimyo': '#10b981',
-      'Ingliz tili': '#ec4899', 'Rus tili': '#06b6d4', 'Matematika (DTM)': '#f97316',
-      'Fizika (DTM)': '#a855f7', 'Ona tili': '#14b8a6', 'Tarix': '#d946ef', 'Boshqa': '#64748b'
-    };
-    const ROLE_ICONS = { teacher: '👨‍🏫', admin: '👩‍💼', director: '👔', cleaner: '🧹', guard: '🛡️', other: '📦' };
-    const ROLE_LABELS = { teacher: "O'qituvchi", admin: 'Administrator', director: 'Direktor', cleaner: 'Tozalovchi', guard: 'Qorovul', other: 'Boshqa' };
-    const STATUS_LABELS = { active: 'Faol', inactive: 'Faol emas', pending: 'Kutilmoqda' };
-    const ATTENDANCE_TYPES = { present: 'Keldi', absent: 'Kelmadi', late: 'Kechikdi', excused: 'Sababli' };
-
-    async function loadData() {
-      try {
-        const groups = await getAllFromStore('groups');
-        const students = await getAllFromStore('students');
-        const staff = await getAllFromStore('staff');
-        const expenses = await getAllFromStore('expenses');
-        const payments = await getAllFromStore('payments');
-        const attendance = await getAllFromStore('attendance');
-        appData = { groups: groups || [], students: students || [], staff: staff || [], expenses: expenses || [], payments: payments || [], attendance: attendance || [] };
-      } catch (e) {
-        const saved = localStorage.getItem('edu_center_db');
-        if (saved) { try { appData = JSON.parse(saved); } catch (parseErr) {} }
-      }
-      populateFilters();
-      renderAll();
-    }
-
-    async function persistData() {
-      try {
-        for (const store of ['groups', 'students', 'staff', 'expenses', 'payments', 'attendance']) {
-          await clearStore(store);
-          await saveToStore(store, appData[store]);
-        }
-        localStorage.setItem('edu_center_db', JSON.stringify(appData));
-        const totals = computeTotals();
-        const today = new Date().toISOString().slice(0, 10);
-        await saveToStore('history', { day: today, date: new Date().toISOString(), income: totals.jamiTushum, expense: totals.umumiyXarajat });
-      } catch (e) {
-        localStorage.setItem('edu_center_db', JSON.stringify(appData));
-      }
-      populateFilters();
-      renderAll();
-    }
-
-    // ===================== UI HELPERS =====================
-    function showToast(msg, type = 'success') {
-      const toast = document.getElementById('toast');
-      const toastMsg = document.getElementById('toast-msg');
-      if (!toast || !toastMsg) return;
-      toastMsg.innerText = msg;
-      const bgClass = type === 'error' ? 'bg-rose-600' : 'bg-gray-800 dark:bg-gray-700';
-      toast.className = `fixed top-20 left-1/2 transform -translate-x-1/2 px-6 py-3 rounded-xl shadow-xl z-50 transition-all duration-300 text-white ${bgClass}`;
-      toast.style.opacity = '1';
-      toast.style.transform = 'translateX(-50%) translateY(0)';
-      clearTimeout(toast._timeout);
-      toast._timeout = setTimeout(() => {
-        toast.style.opacity = '0';
-        toast.style.transform = 'translateX(-50%) translateY(-20px)';
-      }, 2500);
-    }
-
-    function showModal(title, text, onConfirm) {
-      const modal = document.getElementById('modal');
-      const modalTitle = document.getElementById('modal-title');
-      const modalText = document.getElementById('modal-text');
-      const modalConfirm = document.getElementById('modal-confirm');
-      if (!modal || !modalTitle || !modalText || !modalConfirm) return;
-      modalTitle.innerText = title;
-      modalText.innerText = text;
-      modal.classList.remove('hidden');
-      modalConfirm.onclick = () => { onConfirm(); closeModal(); };
-    }
-    function closeModal() {
-      const modal = document.getElementById('modal');
-      if (modal) modal.classList.add('hidden');
-    }
-
-    function toggleTheme() {
-      document.documentElement.classList.toggle('dark');
-      const isDark = document.documentElement.classList.contains('dark');
-      const themeIcon = document.getElementById('theme-icon');
-      if (themeIcon) themeIcon.innerText = isDark ? '☀️' : '🌙';
-      localStorage.setItem('theme', isDark ? 'dark' : 'light');
-    }
-
-    // ===================== NAVIGATION =====================
-    function switchTab(tabName) {
-      const pages = ['dashboard', 'students', 'groups', 'attendance', 'payments', 'staff', 'kassa', 'reports', 'settings'];
-      pages.forEach(p => {
-        const page = document.getElementById(`page-${p}`);
-        if (page) page.classList.add('hidden');
-        const btn = document.getElementById(`btn-${p}`);
-        if (btn) {
-          btn.classList.remove('text-blue-600', 'dark:text-blue-400', 'bg-blue-50', 'dark:bg-blue-900/20');
-          btn.classList.add('text-gray-400');
-        }
-      });
-      const targetPage = document.getElementById(`page-${tabName}`);
-      if (targetPage) targetPage.classList.remove('hidden');
-      const activeBtn = document.getElementById(`btn-${tabName}`);
-      if (activeBtn) {
-        activeBtn.classList.remove('text-gray-400');
-        activeBtn.classList.add('text-blue-600', 'dark:text-blue-400', 'bg-blue-50', 'dark:bg-blue-900/20');
-      }
-      if (tabName === 'dashboard') { renderChart(); renderCategoryChart(); }
-      if (tabName === 'attendance') { loadAttendance(); renderAttendanceChart(); }
-      if (tabName === 'payments') { renderPaymentChart(); }
-      if (tabName === 'settings') updateStorageInfo();
-      if (tabName === 'students') populateStudentGroups();
-      if (tabName === 'groups') populateGroupTeachers();
-      if (tabName === 'payments') populatePaymentStudents();
-      if (tabName === 'attendance') populateAttendanceGroups();
-    }
-
-    // ===================== POPULATE FILTERS =====================
-    function populateFilters() {
-      populateCategoryFilter();
-      populateStudentGroups();
-      populateGroupTeachers();
-      populatePaymentStudents();
-      populateAttendanceGroups();
-    }
-
-    function populateCategoryFilter() {
-      const sel = document.getElementById('group-filter-cat');
-      if (!sel) return;
-      const current = sel.value;
-      const cats = [...new Set(appData.groups.map(g => g.category || 'Boshqa'))].sort();
-      sel.innerHTML = '<option value="">Barcha fanlar</option>' + cats.map(c => `<option value="${c}">${c}</option>`).join('');
-      sel.value = current && cats.includes(current) ? current : '';
-    }
-
-    function populateStudentGroups() {
-      const sel = document.getElementById('s-group');
-      const filter = document.getElementById('student-filter-group');
-      if (sel) {
-        const current = sel.value;
-        sel.innerHTML = '<option value="">Guruh tanlang</option>' + appData.groups.map(g => `<option value="${g.id}">${g.name} (${g.category})</option>`).join('');
-        sel.value = current;
-      }
-      if (filter) {
-        const current = filter.value;
-        filter.innerHTML = '<option value="">Barcha guruhlar</option>' + appData.groups.map(g => `<option value="${g.id}">${g.name}</option>`).join('');
-        filter.value = current;
-      }
-    }
-
-    function populateGroupTeachers() {
-      const sel = document.getElementById('g-teacher');
-      if (!sel) return;
-      const teachers = appData.staff.filter(s => s.role === 'teacher' && s.status === 'active');
-      sel.innerHTML = '<option value="">O\'qituvchi tanlang</option>' + teachers.map(t => `<option value="${t.id}">${t.name}</option>`).join('');
-    }
-
-    function populatePaymentStudents() {
-      const sel = document.getElementById('pay-student');
-      if (!sel) return;
-      const activeStudents = appData.students.filter(s => s.status === 'active');
-      sel.innerHTML = '<option value="">O\'quvchi tanlang</option>' + activeStudents.map(s => {
-        const group = appData.groups.find(g => g.id == s.groupId);
-        return `<option value="${s.id}">${s.name} ${group ? '(' + group.name + ')' : ''}</option>`;
-      }).join('');
-    }
-
-    function populateAttendanceGroups() {
-      const sel = document.getElementById('att-group');
-      if (!sel) return;
-      sel.innerHTML = '<option value="">Guruh tanlang</option>' + appData.groups.map(g => `<option value="${g.id}">${g.name} (${g.category})</option>`).join('');
-    }
-
-    // ===================== STUDENTS =====================
-    function saveStudent() {
-      const editId = document.getElementById('s-edit-id')?.value;
-      const name = document.getElementById('s-name')?.value?.trim() || '';
-      const phone = document.getElementById('s-phone')?.value?.trim() || '';
-      const groupId = document.getElementById('s-group')?.value || '';
-      const status = document.getElementById('s-status')?.value || 'active';
-      const startDate = document.getElementById('s-start')?.value || '';
-      const fee = parseFloat(document.getElementById('s-fee')?.value) || 0;
-      const parent = document.getElementById('s-parent')?.value?.trim() || '';
-      const notes = document.getElementById('s-notes')?.value?.trim() || '';
-
-      if (!name || !phone || !groupId) { showToast("Iltimos, barcha majburiy maydonlarni to'ldiring", 'error'); return; }
-
-      if (editId) {
-        const s = appData.students.find(x => String(x.id) === String(editId));
-        if (s) Object.assign(s, { name, phone, groupId, status, startDate, fee, parent, notes });
-        showToast("O'quvchi yangilandi!");
-      } else {
-        appData.students.push({ id: Date.now(), name, phone, groupId, status, startDate, fee, parent, notes, createdAt: new Date().toISOString() });
-        showToast("O'quvchi muvaffaqiyatli qo'shildi!");
-      }
-      persistData();
-      clearStudentInputs();
-      cancelEditStudent();
-    }
-
-    function clearStudentInputs() {
-      ['s-name', 's-phone', 's-start', 's-fee', 's-parent', 's-notes'].forEach(id => { const el = document.getElementById(id); if (el) el.value = ''; });
-      const g = document.getElementById('s-group'); if (g) g.selectedIndex = 0;
-      const st = document.getElementById('s-status'); if (st) st.selectedIndex = 0;
-    }
-
-    function deleteStudent(id) {
-      showModal("O'quvchini o'chirish", "Bu o'quvchini o'chirishni xohlaysizmi?", () => {
-        appData.students = appData.students.filter(s => s.id !== id);
-        appData.payments = appData.payments.filter(p => p.studentId !== id);
-        appData.attendance = appData.attendance.filter(a => a.studentId !== id);
-        persistData();
-        showToast("O'quvchi o'chirildi");
-      });
-    }
-
-    function editStudent(id) {
-      const s = appData.students.find(x => x.id === id);
-      if (!s) return;
-      document.getElementById('s-edit-id').value = s.id;
-      document.getElementById('s-name').value = s.name;
-      document.getElementById('s-phone').value = s.phone;
-      document.getElementById('s-group').value = s.groupId;
-      document.getElementById('s-status').value = s.status || 'active';
-      document.getElementById('s-start').value = s.startDate || '';
-      document.getElementById('s-fee').value = s.fee || '';
-      document.getElementById('s-parent').value = s.parent || '';
-      document.getElementById('s-notes').value = s.notes || '';
-      const formTitle = document.getElementById('student-form-title');
-      if (formTitle) formTitle.innerText = `✏️ "${s.name}" ni tahrirlash`;
-      const submitBtn = document.getElementById('s-submit-btn');
-      if (submitBtn) submitBtn.innerText = "Saqlash";
-      const cancelBtn = document.getElementById('s-cancel-btn');
-      if (cancelBtn) cancelBtn.classList.remove('hidden');
-      switchTab('students');
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-
-    function cancelEditStudent() {
-      document.getElementById('s-edit-id').value = '';
-      clearStudentInputs();
-      const formTitle = document.getElementById('student-form-title');
-      if (formTitle) formTitle.innerText = "➕ Yangi o'quvchi qo'shish";
-      const submitBtn = document.getElementById('s-submit-btn');
-      if (submitBtn) submitBtn.innerText = "Saqlash";
-      const cancelBtn = document.getElementById('s-cancel-btn');
-      if (cancelBtn) cancelBtn.classList.add('hidden');
-    }
-
-    function getFilteredStudents() {
-      const q = (document.getElementById('student-search')?.value || '').toLowerCase().trim();
-      const groupFilter = document.getElementById('student-filter-group')?.value || '';
-      const statusFilter = document.getElementById('student-filter-status')?.value || '';
-      return appData.students.filter(s => {
-        const matchQ = !q || s.name.toLowerCase().includes(q) || s.phone.includes(q);
-        const matchGroup = !groupFilter || String(s.groupId) === String(groupFilter);
-        const matchStatus = !statusFilter || s.status === statusFilter;
-        return matchQ && matchGroup && matchStatus;
-      });
-    }
-
-    function renderStudents() {
-      const listEl = document.getElementById('students-list');
-      if (!listEl) return;
-      const filtered = getFilteredStudents();
-      let html = '';
-      filtered.forEach(s => {
-        const group = appData.groups.find(g => g.id == s.groupId);
-        const payments = appData.payments.filter(p => p.studentId == s.id);
-        const totalPaid = payments.reduce((sum, p) => sum + p.amount, 0);
-        const statusColor = s.status === 'active' ? 'bg-emerald-100 text-emerald-700' : s.status === 'inactive' ? 'bg-gray-100 text-gray-600' : 'bg-amber-100 text-amber-700';
-        html += `
-          <div class="bg-white dark:bg-gray-800 p-4 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 card-hover">
-            <div class="flex justify-between items-start">
-              <div class="flex-1">
-                <div class="flex items-center gap-2">
-                  <h4 class="font-bold text-gray-800 dark:text-gray-200">${s.name}</h4>
-                  <span class="tag ${statusColor}">${STATUS_LABELS[s.status] || s.status}</span>
+      <!-- ===== ATTENDANCE ===== -->
+      <div id="page-attendance" class="fade-in hidden">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px">
+          <div>
+            <div class="card" style="margin-bottom:16px">
+              <div style="font-weight:700;margin-bottom:16px">📋 Davomat olish</div>
+              <div class="grid-2" style="margin-bottom:12px">
+                <div>
+                  <label class="inp-label">Guruh</label>
+                  <select class="inp" id="att-group" onchange="loadAttendanceList()">
+                    <option value="">Guruh tanlang</option>
+                  </select>
                 </div>
-                <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">📞 ${s.phone}</p>
-                <p class="text-xs text-gray-500 dark:text-gray-400">🏫 ${group ? group.name + ' (' + group.category + ')' : 'Guruh yo\'q'}</p>
-                ${s.parent ? `<p class="text-xs text-gray-500 dark:text-gray-400">👨‍👩‍👧 ${s.parent}</p>` : ''}
-                ${s.fee ? `<p class="text-xs text-gray-500 dark:text-gray-400">💰 Oylik: ${s.fee.toLocaleString()} so'm</p>` : ''}
+                <div>
+                  <label class="inp-label">Sana</label>
+                  <input type="date" class="inp" id="att-date" onchange="loadAttendanceList()">
+                </div>
               </div>
-              <div class="text-right">
-                <div class="text-xs font-bold ${totalPaid >= (s.fee || 0) ? 'text-emerald-600' : 'text-rose-600'}">
-                  ${totalPaid.toLocaleString()} / ${(s.fee || 0).toLocaleString()} so'm
+              <div id="att-list" style="display:flex;flex-direction:column;gap:8px;margin-bottom:12px"></div>
+              <button class="btn btn-success btn-full" onclick="saveAttendance()">✓ Davomatni saqlash</button>
+            </div>
+          </div>
+          <div>
+            <div class="card" style="margin-bottom:16px">
+              <div style="font-weight:700;margin-bottom:16px">📊 Haftalik statistika</div>
+              <div class="chart-wrap" style="height:200px"><canvas id="att-chart"></canvas></div>
+            </div>
+            <div class="card">
+              <div style="font-weight:700;margin-bottom:12px">📅 Guruh davomat xulosasi</div>
+              <div id="att-summary"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== PAYMENTS ===== -->
+      <div id="page-payments" class="fade-in hidden">
+        <div style="display:grid;grid-template-columns:380px 1fr;gap:20px">
+          <div>
+            <div class="card" style="margin-bottom:16px">
+              <div style="font-weight:700;margin-bottom:16px">💰 To'lov qabul qilish</div>
+              <div style="display:flex;flex-direction:column;gap:12px">
+                <div>
+                  <label class="inp-label">O'quvchi</label>
+                  <select class="inp" id="pay-student"><option value="">O'quvchi tanlang</option></select>
                 </div>
-                <div class="text-[10px] text-gray-400">To'langan</div>
+                <div class="grid-2">
+                  <div>
+                    <label class="inp-label">Summa (so'm)</label>
+                    <input type="number" class="inp" id="pay-amount" placeholder="0" min="0">
+                  </div>
+                  <div>
+                    <label class="inp-label">Oy</label>
+                    <select class="inp" id="pay-month">
+                      <option>Yanvar</option><option>Fevral</option><option>Mart</option><option>Aprel</option>
+                      <option>May</option><option>Iyun</option><option>Iyul</option><option>Avgust</option>
+                      <option>Sentabr</option><option>Oktabr</option><option>Noyabr</option><option>Dekabr</option>
+                    </select>
+                  </div>
+                </div>
+                <div>
+                  <label class="inp-label">To'lov turi</label>
+                  <select class="inp" id="pay-type">
+                    <option value="cash">💵 Naqd</option>
+                    <option value="card">💳 Karta</option>
+                    <option value="transfer">🏦 O'tkazma</option>
+                  </select>
+                </div>
+                <div>
+                  <label class="inp-label">Izoh (ixtiyoriy)</label>
+                  <input type="text" class="inp" id="pay-desc" placeholder="Qo'shimcha ma'lumot...">
+                </div>
+                <button class="btn btn-success btn-full" onclick="savePayment()">✓ To'lovni qayd etish</button>
               </div>
             </div>
-            <div class="mt-2 flex gap-2">
-              <button onclick="editStudent(${s.id})" class="text-xs bg-gray-100 dark:bg-gray-700 px-2 py-1 rounded-lg">✏️ Tahrirlash</button>
-              <button onclick="deleteStudent(${s.id})" class="text-xs bg-rose-50 dark:bg-rose-900/20 text-rose-600 px-2 py-1 rounded-lg">🗑️ O'chirish</button>
+            <div class="card">
+              <div style="font-weight:700;margin-bottom:12px">📊 Oylar bo'yicha</div>
+              <div class="chart-wrap" style="height:160px"><canvas id="pay-chart"></canvas></div>
             </div>
-          </div>`;
-      });
-      listEl.innerHTML = html || '<div class="text-center text-gray-400 py-8">👨‍🎓 Mos o\'quvchi topilmadi</div>';
-    }
+          </div>
+          <div class="card" style="padding:0;overflow:hidden">
+            <div style="padding:16px;border-bottom:1px solid #334155;display:flex;justify-content:space-between;align-items:center">
+              <div style="font-weight:700">To'lovlar tarixi</div>
+              <button class="btn btn-ghost btn-sm" onclick="clearPayments()">🗑 Tozalash</button>
+            </div>
+            <div style="overflow-x:auto">
+              <table class="tbl">
+                <thead><tr><th>O'quvchi</th><th>Summa</th><th>Oy</th><th>Tur</th><th>Sana</th><th>Izoh</th><th></th></tr></thead>
+                <tbody id="pay-tbody"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
 
-    function exportStudents() {
-      const blob = new Blob([JSON.stringify(appData.students, null, 2)], { type: 'application/json' });
-      const a = document.createElement('a');
-      a.href = URL.createObjectURL(blob);
-      a.download = `oquvchilar_${new Date().toISOString().slice(0, 10)}.json`;
-      a.click();
-      showToast('O\'quvchilar eksport qilindi!');
-    }
+      <!-- ===== KASSA ===== -->
+      <div id="page-kassa" class="fade-in hidden">
+        <div style="display:grid;grid-template-columns:380px 1fr;gap:20px">
+          <div>
+            <div class="card">
+              <div style="font-weight:700;margin-bottom:16px">💸 Xarajat kiritish</div>
+              <div style="display:flex;flex-direction:column;gap:12px">
+                <div>
+                  <label class="inp-label">Summa (so'm)</label>
+                  <input type="number" class="inp" id="e-amount" placeholder="0" min="0">
+                </div>
+                <div>
+                  <label class="inp-label">Kategoriya</label>
+                  <select class="inp" id="e-cat">
+                    <option value="Ijara">🏠 Xona ijarasi</option>
+                    <option value="Reklama">📣 Reklama / Marketing</option>
+                    <option value="Soliq">🏛 Soliqlar</option>
+                    <option value="Kommunal">💡 Kommunal xizmatlar</option>
+                    <option value="Maosh">👤 Xodim maoshi (qo'l bilan)</option>
+                    <option value="Material">📚 O'quv materiallari</option>
+                    <option value="Taʼmir">🔧 Ta'mirlash</option>
+                    <option value="Internet">🌐 Internet / Telefon</option>
+                    <option value="Boshqa">📦 Boshqa</option>
+                  </select>
+                </div>
+                <div>
+                  <label class="inp-label">Izoh</label>
+                  <input type="text" class="inp" id="e-desc" placeholder="Xarajat haqida...">
+                </div>
+                <button class="btn btn-danger btn-full" onclick="saveExpense()">− Xarajatni qayd etish</button>
+              </div>
+            </div>
+          </div>
+          <div class="card" style="padding:0;overflow:hidden">
+            <div style="padding:16px;border-bottom:1px solid #334155;display:flex;justify-content:space-between;align-items:center">
+              <div style="font-weight:700">Xarajatlar tarixi</div>
+              <button class="btn btn-ghost btn-sm" onclick="clearExpenses()">🗑 Tozalash</button>
+            </div>
+            <div style="overflow-x:auto">
+              <table class="tbl">
+                <thead><tr><th>Kategoriya</th><th>Summa</th><th>Izoh</th><th>Sana</th><th></th></tr></thead>
+                <tbody id="expense-tbody"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
 
-    // ===================== GROUPS =====================
-    function saveGroup() {
-      const editId = document.getElementById('g-edit-id')?.value;
-      const name = document.getElementById('g-name')?.value?.trim() || '';
-      const category = document.getElementById('g-category')?.value || 'Boshqa';
-      const price = parseFloat(document.getElementById('g-price')?.value) || 0;
-      const percent = Math.min(100, Math.max(0, parseFloat(document.getElementById('g-percent')?.value) || 0));
-      const maxStudents = parseInt(document.getElementById('g-max')?.value) || 0;
-      const minStudents = parseInt(document.getElementById('g-min')?.value) || 0;
-      const teacherId = document.getElementById('g-teacher')?.value || '';
-      const time = document.getElementById('g-time')?.value || '';
-      const days = document.getElementById('g-days')?.value || 'Du-Cho-Ju';
+      <!-- ===== REPORTS ===== -->
+      <div id="page-reports" class="fade-in hidden">
+        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px;margin-bottom:24px">
+          <div class="card" style="cursor:pointer;border:1px solid #2563eb" onclick="printReport('financial')">
+            <div style="font-size:32px;margin-bottom:12px">💰</div>
+            <div style="font-weight:700;margin-bottom:4px">Moliyaviy hisobot</div>
+            <div style="font-size:13px;color:#64748b">Tushum, xarajat, sof foyda</div>
+          </div>
+          <div class="card" style="cursor:pointer" onclick="printReport('students')">
+            <div style="font-size:32px;margin-bottom:12px">👨‍🎓</div>
+            <div style="font-weight:700;margin-bottom:4px">O'quvchilar hisoboti</div>
+            <div style="font-size:13px;color:#64748b">Barcha o'quvchilar ro'yxati</div>
+          </div>
+          <div class="card" style="cursor:pointer" onclick="printReport('attendance')">
+            <div style="font-size:32px;margin-bottom:12px">📋</div>
+            <div style="font-weight:700;margin-bottom:4px">Davomat hisoboti</div>
+            <div style="font-size:13px;color:#64748b">Davomat statistikasi</div>
+          </div>
+          <div class="card" style="cursor:pointer" onclick="printReport('payments')">
+            <div style="font-size:32px;margin-bottom:12px">💳</div>
+            <div style="font-weight:700;margin-bottom:4px">To'lovlar hisoboti</div>
+            <div style="font-size:13px;color:#64748b">Barcha to'lovlar tarixi</div>
+          </div>
+          <div class="card" style="cursor:pointer" onclick="printReport('staff')">
+            <div style="font-size:32px;margin-bottom:12px">👥</div>
+            <div style="font-weight:700;margin-bottom:4px">Xodimlar hisoboti</div>
+            <div style="font-size:13px;color:#64748b">Xodimlar va maoshlar</div>
+          </div>
+          <div class="card" style="cursor:pointer" onclick="printReport('groups')">
+            <div style="font-size:32px;margin-bottom:12px">🏫</div>
+            <div style="font-weight:700;margin-bottom:4px">Guruhlar hisoboti</div>
+            <div style="font-size:13px;color:#64748b">Guruhlar va daromad</div>
+          </div>
+        </div>
 
-      if (!name || price <= 0) { showToast("Iltimos, barcha maydonlarni to'g'ri to'ldiring", 'error'); return; }
+        <div class="card">
+          <div style="font-weight:700;margin-bottom:16px">📊 Tezkor moliyaviy xulosa</div>
+          <div id="quick-report"></div>
+        </div>
+      </div>
 
-      if (editId) {
-        const g = appData.groups.find(x => String(x.id) === String(editId));
-        if (g) Object.assign(g, { name, category, price, percent, maxStudents, minStudents, teacherId, time, days });
-        showToast("Guruh yangilandi!");
-      } else {
-        appData.groups.push({ id: Date.now(), name, category, price, percent, maxStudents, minStudents, teacherId, time, days, createdAt: new Date().toISOString() });
-        showToast("Guruh muvaffaqiyatli qo'shildi!");
-      }
-      persistData();
-      clearGroupInputs();
-      cancelEditGroup();
-    }
-
-    function clearGroupInputs() {
-      ['g-name', 'g-price', 'g-percent', 'g-max', 'g-min', 'g-time'].forEach(id => { const el = document.getElementById(id); if (el) el.value = ''; });
-      const cat = document.getElementById('g-category'); if (cat) cat.selectedIndex = 0;
-      const teach = document.getElementById('g-teacher'); if (teach) teach.selectedIndex = 0;
-      const days = document.getElementById('g-days'); if (days) days.selectedIndex = 0;
-    }
-
-    function deleteGroup(id) {
-      showModal("Guruhni o'chirish", "Bu guruhni o'chirishni xohlaysizmi? Barcha o'quvchilar va ma'lumotlar ham o'chiriladi.", () => {
-        appData.groups = appData.groups.filter(g => g.id !== id);
-        appData.students = appData.students.filter(s => s.groupId != id);
-        persistData();
-        showToast("Guruh o'chirildi");
-      });
-    }
-
-    function editGroup(id) {
-      const g = appData.groups.find(x => x.id === id);
-      if (!g) return;
-      document.getElementById('g-edit-id').value = g.id;
-      document.getElementById('g-name').value = g.name;
-      document.getElementById('g-category').value = g.category || 'Boshqa';
-      document.getElementById('g-price').value = g.price;
-      document.getElementById('g-percent').value = g.percent;
-      document.getElementById('g-max').value = g.maxStudents || '';
-      document.getElementById('g-min').value = g.minStudents || '';
-      document.getElementById('g-teacher').value = g.teacherId || '';
-      document.getElementById('g-time').value = g.time || '';
-      document.getElementById('g-days').value = g.days || 'Du-Cho-Ju';
-      const formTitle = document.getElementById('group-form-title');
-      if (formTitle) formTitle.innerText = `✏️ "${g.name}" guruhini tahrirlash`;
-      const submitBtn = document.getElementById('g-submit-btn');
-      if (submitBtn) submitBtn.innerText = "Saqlash";
-      const cancelBtn = document.getElementById('g-cancel-btn');
-      if (cancelBtn) cancelBtn.classList.remove('hidden');
-      switchTab('groups');
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-
-    function cancelEditGroup() {
-      document.getElementById('g-edit-id').value = '';
-      clearGroupInputs();
-      const formTitle = document.getElementById('group-form-title');
-      if (formTitle) formTitle.innerText = "➕ Yangi guruh qo'shish";
-      const submitBtn = document.getElementById('g-submit-btn');
-      if (submitBtn) submitBtn.innerText = "Guruhni saqlash";
-      const cancelBtn = document.getElementById('g-cancel-btn');
-      if (cancelBtn) cancelBtn.classList.add('hidden');
-    }
-
-    function getFilteredGroups() {
-      const q = (document.getElementById('group-search')?.value || '').toLowerCase().trim();
-      const cat = document.getElementById('group-filter-cat')?.value || '';
-      return appData.groups.filter(g => {
-        const matchQ = !q || g.name.toLowerCase().includes(q) || (g.category || '').toLowerCase().includes(q);
-        const matchCat = !cat || g.category === cat;
-        return matchQ && matchCat;
-      });
-    }
-
-    function renderGroups() {
-      const listEl = document.getElementById('groups-list');
-      if (!listEl) return;
-      const filtered = getFilteredGroups();
-      let html = '';
-      filtered.forEach(g => {
-        const studentsInGroup = appData.students.filter(s => s.groupId == g.id && s.status === 'active').length;
-        const teacher = appData.staff.find(s => s.id == g.teacherId);
-        const isFull = g.maxStudents > 0 && studentsInGroup >= g.maxStudents;
-        const isZarar = g.minStudents > 0 && studentsInGroup < g.minStudents;
-        const daromad = g.price * studentsInGroup;
-        const oylik = (daromad * g.percent) / 100;
-        const sof = daromad - oylik;
-        const color = CATEGORY_COLORS[g.category] || '#64748b';
-        html += `
-          <div class="bg-white dark:bg-gray-800 p-4 rounded-2xl shadow-sm border ${isZarar ? 'border-rose-200 dark:border-rose-800 bg-rose-50/20 dark:bg-rose-900/10' : 'border-gray-100 dark:border-gray-700'} card-hover">
-            <div class="flex justify-between items-start">
+      <!-- ===== SETTINGS ===== -->
+      <div id="page-settings" class="fade-in hidden">
+        <div style="max-width:600px;display:flex;flex-direction:column;gap:16px">
+          <div class="card">
+            <div style="font-weight:700;margin-bottom:16px">💾 Ma'lumotlar</div>
+            <div style="display:flex;flex-direction:column;gap:10px">
+              <button class="btn btn-ghost btn-full" onclick="exportAll()">📥 Barcha ma'lumotlarni eksport (JSON)</button>
               <div>
-                <div class="flex items-center gap-2">
-                  <h4 class="font-bold text-gray-800 dark:text-gray-200">${g.name}</h4>
-                  <span class="tag" style="background:${color}22; color:${color}">${g.category || 'Boshqa'}</span>
-                  ${isFull ? '<span class="tag bg-amber-100 text-amber-700">To\'la</span>' : ''}
-                </div>
-                <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">${studentsInGroup} / ${g.maxStudents || '∞'} o'quvchi · ${g.price.toLocaleString()} so'm</p>
-                ${teacher ? `<p class="text-xs text-gray-500 dark:text-gray-400">👨‍🏫 ${teacher.name}</p>` : ''}
-                ${g.time ? `<p class="text-xs text-gray-500 dark:text-gray-400">🕐 ${g.time} · ${g.days || ''}</p>` : ''}
-              </div>
-              <span class="text-xs font-bold px-2 py-0.5 rounded-full whitespace-nowrap ${isZarar ? 'bg-rose-100 dark:bg-rose-900/30 text-rose-700 dark:text-rose-400' : 'bg-emerald-100 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-400'}">
-                ${isZarar ? '🔴 Zararda' : '🟢 Rentabel'}
-              </span>
-            </div>
-            <div class="mt-3 pt-3 border-t border-gray-100 dark:border-gray-700 grid grid-cols-3 gap-2 text-xs">
-              <div><span class="text-gray-400 block">Daromad</span><b class="dark:text-gray-300">${daromad.toLocaleString()}</b></div>
-              <div><span class="text-gray-400 block">O'qituvchi</span><b class="dark:text-gray-300">${oylik.toLocaleString()}</b></div>
-              <div><span class="text-gray-400 block">Markaz</span><b class="dark:text-gray-300">${sof.toLocaleString()}</b></div>
-            </div>
-            <div class="mt-2 flex gap-2">
-              <button onclick="editGroup(${g.id})" class="text-xs bg-gray-100 dark:bg-gray-700 px-2 py-1 rounded-lg">✏️ Tahrirlash</button>
-              <button onclick="deleteGroup(${g.id})" class="text-xs bg-rose-50 dark:bg-rose-900/20 text-rose-600 px-2 py-1 rounded-lg">🗑️ O'chirish</button>
-            </div>
-          </div>`;
-      });
-      listEl.innerHTML = html || '<div class="text-center text-gray-400 py-8">🏫 Mos guruh topilmadi</div>';
-    }
-
-    function exportGroups() {
-      const blob = new Blob([JSON.stringify(appData.groups, null, 2)], { type: 'application/json' });
-      const a = document.createElement('a');
-      a.href = URL.createObjectURL(blob);
-      a.download = `guruhlar_${new Date().toISOString().slice(0, 10)}.json`;
-      a.click();
-      showToast('Guruhlar eksport qilindi!');
-    }
-
-    // ===================== STAFF =====================
-    function saveStaff() {
-      const editId = document.getElementById('st-edit-id')?.value;
-      const name = document.getElementById('st-name')?.value?.trim() || '';
-      const phone = document.getElementById('st-phone')?.value?.trim() || '';
-      const role = document.getElementById('st-role')?.value || 'teacher';
-      const salary = parseFloat(document.getElementById('st-salary')?.value) || 0;
-      const status = document.getElementById('st-status')?.value || 'active';
-      const startDate = document.getElementById('st-start')?.value || '';
-      const notes = document.getElementById('st-notes')?.value?.trim() || '';
-
-      if (!name || !phone) { showToast("Iltimos, F.I.O va telefon raqamni kiriting", 'error'); return; }
-
-      if (editId) {
-        const s = appData.staff.find(x => String(x.id) === String(editId));
-        if (s) Object.assign(s, { name, phone, role, salary, status, startDate, notes });
-        showToast("Xodim yangilandi!");
-      } else {
-        appData.staff.push({ id: Date.now(), name, phone, role, salary, status, startDate, notes, createdAt: new Date().toISOString() });
-        showToast("Xodim muvaffaqiyatli qo'shildi!");
-      }
-      persistData();
-      clearStaffInputs();
-      cancelEditStaff();
-    }
-
-    function clearStaffInputs() {
-      ['st-name', 'st-phone', 'st-salary', 'st-start', 'st-notes'].forEach(id => { const el = document.getElementById(id); if (el) el.value = ''; });
-      const role = document.getElementById('st-role'); if (role) role.selectedIndex = 0;
-      const status = document.getElementById('st-status'); if (status) status.selectedIndex = 0;
-    }
-
-    function deleteStaff(id) {
-      showModal("Xodimni o'chirish", "Bu xodimni o'chirishni xohlaysizmi?", () => {
-        appData.staff = appData.staff.filter(s => s.id !== id);
-        appData.groups.forEach(g => { if (g.teacherId == id) g.teacherId = ''; });
-        persistData();
-        showToast("Xodim o'chirildi");
-      });
-    }
-
-    function editStaff(id) {
-      const s = appData.staff.find(x => x.id === id);
-      if (!s) return;
-      document.getElementById('st-edit-id').value = s.id;
-      document.getElementById('st-name').value = s.name;
-      document.getElementById('st-phone').value = s.phone;
-      document.getElementById('st-role').value = s.role || 'teacher';
-      document.getElementById('st-salary').value = s.salary || '';
-      document.getElementById('st-status').value = s.status || 'active';
-      document.getElementById('st-start').value = s.startDate || '';
-      document.getElementById('st-notes').value = s.notes || '';
-      const formTitle = document.getElementById('staff-form-title');
-      if (formTitle) formTitle.innerText = `✏️ "${s.name}" ni tahrirlash`;
-      const submitBtn = document.getElementById('st-submit-btn');
-      if (submitBtn) submitBtn.innerText = "Saqlash";
-      const cancelBtn = document.getElementById('st-cancel-btn');
-      if (cancelBtn) cancelBtn.classList.remove('hidden');
-      switchTab('staff');
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-
-    function cancelEditStaff() {
-      document.getElementById('st-edit-id').value = '';
-      clearStaffInputs();
-      const formTitle = document.getElementById('staff-form-title');
-      if (formTitle) formTitle.innerText = "➕ Yangi xodim qo'shish";
-      const submitBtn = document.getElementById('st-submit-btn');
-      if (submitBtn) submitBtn.innerText = "Xodimni saqlash";
-      const cancelBtn = document.getElementById('st-cancel-btn');
-      if (cancelBtn) cancelBtn.classList.add('hidden');
-    }
-
-    function getFilteredStaff() {
-      const q = (document.getElementById('staff-search')?.value || '').toLowerCase().trim();
-      const roleFilter = document.getElementById('staff-filter-role')?.value || '';
-      return appData.staff.filter(s => {
-        const matchQ = !q || s.name.toLowerCase().includes(q) || s.phone.includes(q);
-        const matchRole = !roleFilter || s.role === roleFilter;
-        return matchQ && matchRole;
-      });
-    }
-
-    function renderStaff() {
-      const listEl = document.getElementById('staff-list');
-      if (!listEl) return;
-      const filtered = getFilteredStaff();
-      let html = '';
-      filtered.forEach(s => {
-        const statusColor = s.status === 'active' ? 'bg-emerald-100 text-emerald-700' : 'bg-gray-100 text-gray-600';
-        html += `
-          <div class="bg-white dark:bg-gray-800 p-4 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 card-hover">
-            <div class="flex justify-between items-start">
-              <div class="flex-1">
-                <div class="flex items-center gap-2">
-                  <h4 class="font-bold text-gray-800 dark:text-gray-200">${s.name}</h4>
-                  <span class="tag ${statusColor}">${STATUS_LABELS[s.status] || s.status}</span>
-                </div>
-                <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">📞 ${s.phone}</p>
-                <p class="text-xs text-gray-500 dark:text-gray-400">${ROLE_ICONS[s.role] || '📦'} ${ROLE_LABELS[s.role] || s.role}</p>
-                ${s.salary ? `<p class="text-xs text-gray-500 dark:text-gray-400">💰 ${s.salary.toLocaleString()} so'm/oy</p>` : ''}
-                ${s.startDate ? `<p class="text-xs text-gray-500 dark:text-gray-400">📅 ${s.startDate}</p>` : ''}
+                <label class="inp-label">Ma'lumot import qilish</label>
+                <input type="file" class="inp" accept=".json" id="import-file" onchange="importAll(this)">
               </div>
             </div>
-            <div class="mt-2 flex gap-2">
-              <button onclick="editStaff(${s.id})" class="text-xs bg-gray-100 dark:bg-gray-700 px-2 py-1 rounded-lg">✏️ Tahrirlash</button>
-              <button onclick="deleteStaff(${s.id})" class="text-xs bg-rose-50 dark:bg-rose-900/20 text-rose-600 px-2 py-1 rounded-lg">🗑️ O'chirish</button>
+          </div>
+          <div class="card">
+            <div style="font-weight:700;margin-bottom:16px">⚙️ Tizim</div>
+            <div style="display:flex;flex-direction:column;gap:10px">
+              <div class="card-xs" style="display:flex;justify-content:space-between;align-items:center">
+                <span style="font-size:14px">Databaza turi</span>
+                <span class="badge badge-green">IndexedDB</span>
+              </div>
+              <div class="card-xs" style="display:flex;justify-content:space-between;align-items:center">
+                <span style="font-size:14px">Versiya</span>
+                <span class="badge badge-blue">v5.0 Production</span>
+              </div>
+              <div class="card-xs" id="storage-stats" style="font-size:13px;color:#94a3b8"></div>
             </div>
-          </div>`;
-      });
-      listEl.innerHTML = html || '<div class="text-center text-gray-400 py-8">👥 Mos xodim topilmadi</div>';
+          </div>
+          <div class="card" style="border-color:#dc2626">
+            <div style="font-weight:700;color:#ef4444;margin-bottom:12px">⚠️ Xavfli zona</div>
+            <button class="btn btn-danger btn-full" onclick="resetAll()">Barcha ma'lumotlarni o'chirish</button>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /content -->
+  </div><!-- /main -->
+</div><!-- /app -->
+
+<!-- TOAST -->
+<div id="toast"></div>
+
+<!-- MODALS (injected dynamically) -->
+<div id="modal-overlay" class="modal-overlay hidden" onclick="closeModal(event)">
+  <div class="modal-box" id="modal-box" onclick="event.stopPropagation()">
+    <div id="modal-content"></div>
+  </div>
+</div>
+
+<!-- PRINT AREA -->
+<div id="print-area" style="display:none"></div>
+<style>
+@media print{
+  body>*:not(#print-area){display:none!important}
+  #print-area{display:block!important;color:#000;font-family:sans-serif;padding:20px}
+  #print-area table{width:100%;border-collapse:collapse}
+  #print-area td,#print-area th{border:1px solid #ccc;padding:8px;font-size:12px}
+}
+</style>
+
+<script>
+// ==================== DATABASE ====================
+const DB_NAME = 'EduCenterProDB';
+const DB_VER  = 2;
+const STORES  = ['groups','students','staff','payments','expenses','attendance','history'];
+let db = null;
+
+function openDB(){
+  return new Promise((res,rej)=>{
+    const req = indexedDB.open(DB_NAME, DB_VER);
+    req.onerror = ()=>rej(req.error);
+    req.onsuccess = ()=>{ db=req.result; res(db); };
+    req.onupgradeneeded = e=>{
+      const d = e.target.result;
+      STORES.forEach(s=>{ if(!d.objectStoreNames.contains(s)) d.createObjectStore(s,{keyPath:'id'}); });
+    };
+  });
+}
+
+function txGet(store){
+  return new Promise((res,rej)=>{
+    const tx = db.transaction(store,'readonly');
+    const r  = tx.objectStore(store).getAll();
+    r.onsuccess=()=>res(r.result||[]);
+    r.onerror=()=>rej(r.error);
+  });
+}
+
+function txPut(store, items){
+  return new Promise((res,rej)=>{
+    const tx = db.transaction(store,'readwrite');
+    const os = tx.objectStore(store);
+    (Array.isArray(items)?items:[items]).forEach(i=>os.put(i));
+    tx.oncomplete=()=>res();
+    tx.onerror=()=>rej(tx.error);
+  });
+}
+
+function txClear(store){
+  return new Promise((res,rej)=>{
+    const tx = db.transaction(store,'readwrite');
+    tx.objectStore(store).clear();
+    tx.oncomplete=()=>res();
+    tx.onerror=()=>rej(tx.error);
+  });
+}
+
+function txDelete(store, id){
+  return new Promise((res,rej)=>{
+    const tx = db.transaction(store,'readwrite');
+    tx.objectStore(store).delete(id);
+    tx.oncomplete=()=>res();
+    tx.onerror=()=>rej(tx.error);
+  });
+}
+
+// ==================== STATE ====================
+const D = { groups:[], students:[], staff:[], payments:[], expenses:[], attendance:[], history:[] };
+
+async function loadAll(){
+  for(const s of STORES) D[s] = await txGet(s);
+}
+
+async function save(store){
+  await txClear(store);
+  if(D[store].length) await txPut(store, D[store]);
+  // snapshot for history chart
+  if(['payments','expenses','groups','students'].includes(store)){
+    const today = new Date().toISOString().slice(0,10);
+    const t = computeTotals();
+    const snap = { id:today, day:today, income:t.income, expense:t.expense, profit:t.profit, date:new Date().toISOString() };
+    await txPut('history',[snap]);
+    D.history = await txGet('history');
+  }
+}
+
+// ==================== HELPERS ====================
+const fmt = n => (Math.round(n)||0).toLocaleString('uz-UZ') + " so'm";
+const uid  = ()=> Date.now() + Math.floor(Math.random()*10000);
+
+const CATS = ['IELTS','Matematika','Fizika','Kimyo','Ingliz tili','Rus tili','Ona tili','Tarix','DTM Matematika','DTM Fizika','Boshqa'];
+const CAT_COLORS = {'IELTS':'#3b82f6','Matematika':'#f59e0b','Fizika':'#8b5cf6','Kimyo':'#10b981','Ingliz tili':'#ec4899','Rus tili':'#06b6d4','Ona tili':'#14b8a6','Tarix':'#d946ef','DTM Matematika':'#f97316','DTM Fizika':'#a855f7','Boshqa':'#64748b'};
+const ROLES = {teacher:"O'qituvchi",admin:'Administrator',director:'Direktor',cleaner:'Tozalovchi',guard:'Qorovul',other:'Boshqa'};
+const ROLE_ICONS = {teacher:'👨‍🏫',admin:'👩‍💼',director:'👔',cleaner:'🧹',guard:'🛡️',other:'📦'};
+const MONTHS = ['Yanvar','Fevral','Mart','Aprel','May','Iyun','Iyul','Avgust','Sentabr','Oktabr','Noyabr','Dekabr'];
+const DAYS_OPT = ['Du-Cho-Ju','Se-Pa-Sha','Har kuni','Shanba-Yakshanba','Shanba','Yakshanba'];
+
+let CHARTS = {};
+
+function destroyChart(id){ if(CHARTS[id]){ CHARTS[id].destroy(); delete CHARTS[id]; } }
+
+function toast(msg, type='success'){
+  const el = document.getElementById('toast');
+  el.textContent = msg;
+  el.className = 'show ' + type;
+  clearTimeout(toast._t);
+  toast._t = setTimeout(()=>{ el.className=''; },2800);
+}
+
+function confirm2(title, msg, cb){
+  const html = `
+    <div style="margin-bottom:8px;font-size:18px">⚠️</div>
+    <div style="font-weight:700;font-size:16px;margin-bottom:8px">${title}</div>
+    <div style="color:#94a3b8;font-size:14px;margin-bottom:20px">${msg}</div>
+    <div style="display:flex;gap:10px">
+      <button class="btn btn-ghost" style="flex:1" onclick="closeModal()">Bekor</button>
+      <button class="btn btn-danger" style="flex:1" onclick="(${cb.toString()})();closeModal()">Ha, o'chirish</button>
+    </div>`;
+  openModal(html);
+}
+
+function openModal(html){ document.getElementById('modal-content').innerHTML=html; document.getElementById('modal-overlay').classList.remove('hidden'); }
+function closeModal(e){ if(!e||e.target===document.getElementById('modal-overlay')) document.getElementById('modal-overlay').classList.add('hidden'); }
+
+// ==================== NAVIGATION ====================
+const PAGE_TITLES = {
+  dashboard:{title:'Dashboard',sub:'Umumiy ko\'rinish'},
+  students:{title:"O'quvchilar",sub:"Ro'yxat va boshqaruv"},
+  groups:{title:'Guruhlar',sub:'Kurslar va jadvallar'},
+  staff:{title:'Xodimlar',sub:'Jamoa va maoshlar'},
+  attendance:{title:'Davomat',sub:'Kunlik qatnashuv'},
+  payments:{title:"To'lovlar",sub:"Moliyaviy hisob-kitob"},
+  kassa:{title:'Kassa',sub:'Xarajatlar boshqaruvi'},
+  reports:{title:'Hisobotlar',sub:'Tahlil va chop etish'},
+  settings:{title:'Sozlamalar',sub:"Tizim va ma'lumotlar"}
+};
+
+function goTo(page){
+  document.querySelectorAll('[id^="page-"]').forEach(el=>el.classList.add('hidden'));
+  document.querySelectorAll('.nav-item').forEach(el=>el.classList.remove('active'));
+  const p = document.getElementById('page-'+page);
+  if(p){ p.classList.remove('hidden'); p.classList.add('fade-in'); }
+  const n = document.getElementById('nav-'+page);
+  if(n) n.classList.add('active');
+  const info = PAGE_TITLES[page]||{title:page,sub:''};
+  document.getElementById('page-title').textContent = info.title;
+  document.getElementById('page-subtitle').textContent = info.sub;
+  // close mobile sidebar
+  if(window.innerWidth<=768) document.getElementById('sidebar').classList.remove('mobile-open');
+  // page-specific renders
+  if(page==='dashboard'){ renderDashboard(); renderFinanceChart(); renderCatChart(); }
+  if(page==='students'){ populateSFilters(); renderStudents(); }
+  if(page==='groups'){ populateGFilters(); renderGroups(); }
+  if(page==='staff'){ renderStaff(); }
+  if(page==='attendance'){ populateAttGroups(); renderAttChart(); renderAttSummary(); }
+  if(page==='payments'){ populatePayStudents(); renderPayments(); renderPayChart(); }
+  if(page==='kassa'){ renderExpenses(); }
+  if(page==='reports'){ renderQuickReport(); }
+  if(page==='settings'){ renderStorageStats(); }
+}
+
+function toggleSidebar(){
+  const s = document.getElementById('sidebar');
+  if(window.innerWidth<=768) s.classList.toggle('mobile-open');
+  else s.classList.toggle('collapsed');
+}
+
+// ==================== COMPUTE ====================
+function computeTotals(){
+  let income=0, teacherPay=0, staffSalary=0, expenses=0;
+  D.students.filter(s=>s.status==='active').forEach(s=>{
+    const g = D.groups.find(x=>x.id==s.groupId);
+    if(g){ income += g.price||0; teacherPay += ((g.price||0)*(g.percent||0))/100; }
+  });
+  // also include manual payments as income basis
+  const manualIncome = D.payments.reduce((a,p)=>a+p.amount,0);
+  income = Math.max(income, manualIncome);
+  D.staff.filter(s=>s.status==='active').forEach(s=>staffSalary += s.salary||0);
+  D.expenses.forEach(e=>expenses += e.amount||0);
+  const expense = teacherPay + staffSalary + expenses;
+  return { income, teacherPay, staffSalary, expenses, expense, profit:income-expense };
+}
+
+// ==================== DASHBOARD ====================
+function renderDashboard(){
+  const t = computeTotals();
+  const margin = t.income>0 ? ((t.profit/t.income)*100).toFixed(1) : 0;
+
+  document.getElementById('d-income').textContent = fmt(t.income);
+  document.getElementById('d-income-sub').textContent = `To'lovlar: ${fmt(D.payments.reduce((a,p)=>a+p.amount,0))}`;
+  document.getElementById('d-expense').textContent = fmt(t.expense);
+  document.getElementById('d-expense-sub').textContent = `O'qit: ${fmt(t.teacherPay)} | Xodim: ${fmt(t.staffSalary)}`;
+  document.getElementById('d-profit').textContent = fmt(t.profit);
+  document.getElementById('d-profit-sub').textContent = `Marja: ${margin}%`;
+
+  const pc = document.getElementById('d-profit-card');
+  if(t.profit<0){
+    pc.style.background='linear-gradient(135deg,#dc2626,#b91c1c)';
+    pc.style.borderColor='#ef4444';
+    pc.classList.add('pulse-danger');
+  } else {
+    pc.style.background='linear-gradient(135deg,#059669,#047857)';
+    pc.style.borderColor='#10b981';
+    pc.classList.remove('pulse-danger');
+  }
+
+  const activeStudents = D.students.filter(s=>s.status==='active').length;
+  document.getElementById('d-students').textContent = activeStudents;
+  document.getElementById('d-students-sub').textContent = `Faol / Jami: ${D.students.length}`;
+  document.getElementById('d-groups').textContent = D.groups.length;
+  document.getElementById('d-staff').textContent = D.staff.filter(s=>s.status==='active').length;
+
+  const today = new Date().toISOString().slice(0,10);
+  const todayAtt = D.attendance.filter(a=>a.date===today);
+  const pct = todayAtt.length>0 ? Math.round((todayAtt.filter(a=>a.status==='present').length/todayAtt.length)*100) : 0;
+  document.getElementById('d-att-pct').textContent = pct+'%';
+
+  // Danger groups
+  let dg = '';
+  D.groups.forEach(g=>{
+    const cnt = D.students.filter(s=>s.groupId==g.id&&s.status==='active').length;
+    if(g.minStudents>0 && cnt<g.minStudents){
+      dg+=`<div class="card-xs" style="border-color:#dc2626;display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+        <span style="font-size:13px;color:#f1f5f9">📉 ${g.name} <span style="color:#64748b">(${g.category})</span></span>
+        <span class="badge badge-red">-${g.minStudents-cnt} ta</span></div>`;
     }
+  });
+  document.getElementById('d-danger-groups').innerHTML = dg || '<div class="empty" style="padding:20px"><span style="color:#10b981">✅ Hamma guruhlar rentabel!</span></div>';
 
-    function exportStaff() {
-      const blob = new Blob([JSON.stringify(appData.staff, null, 2)], { type: 'application/json' });
-      const a = document.createElement('a');
-      a.href = URL.createObjectURL(blob);
-      a.download = `xodimlar_${new Date().toISOString().slice(0, 10)}.json`;
-      a.click();
-      showToast('Xodimlar eksport qilindi!');
-    }
+  // Debtors
+  const debtors = D.students.filter(s=>s.status==='active').map(s=>{
+    const paid = D.payments.filter(p=>p.studentId==s.id).reduce((a,p)=>a+p.amount,0);
+    return {...s, paid, debt:(s.fee||0)-paid};
+  }).filter(s=>s.debt>0).sort((a,b)=>b.debt-a.debt);
+  let dd='';
+  debtors.slice(0,6).forEach(s=>{
+    const g=D.groups.find(x=>x.id==s.groupId);
+    dd+=`<div class="card-xs" style="border-color:#d97706;display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+      <span style="font-size:13px;color:#f1f5f9">💳 ${s.name} <span style="color:#64748b">${g?g.name:''}</span></span>
+      <span class="badge badge-yellow">${fmt(s.debt)}</span></div>`;
+  });
+  document.getElementById('d-debtors').innerHTML = dd || '<div class="empty" style="padding:20px"><span style="color:#10b981">✅ Hamma to\'lovlar to\'liq!</span></div>';
+}
 
-    // ===================== ATTENDANCE =====================
-    function loadAttendance() {
-      const listEl = document.getElementById('attendance-list');
-      if (!listEl) return;
-      const groupId = document.getElementById('att-group')?.value;
-      const date = document.getElementById('att-date')?.value;
-      if (!groupId || !date) { listEl.innerHTML = ''; return; }
+// Finance chart
+async function renderFinanceChart(){
+  const days = parseInt(document.getElementById('chart-mode')?.value||'30');
+  const list = [];
+  for(let i=days-1;i>=0;i--){
+    const d=new Date(); d.setDate(d.getDate()-i);
+    list.push(d.toISOString().slice(0,10));
+  }
+  const hMap={};
+  D.history.forEach(h=>{ if(h.day) hMap[h.day]=h; });
+  const labels=list.map(d=>{const dt=new Date(d); return dt.getDate()+'/'+(dt.getMonth()+1);});
+  const inc=list.map(d=>hMap[d]?hMap[d].income:0);
+  const exp=list.map(d=>hMap[d]?hMap[d].expense:0);
 
-      const studentsInGroup = appData.students.filter(s => s.groupId == groupId && s.status === 'active');
-      if (studentsInGroup.length === 0) {
-        listEl.innerHTML = '<div class="text-center text-gray-400 py-4">Bu guruhda faol o\'quvchilar yo\'q</div>';
-        return;
+  destroyChart('finance');
+  const ctx=document.getElementById('finance-chart');
+  if(!ctx)return;
+  CHARTS.finance = new Chart(ctx,{
+    type:'line',
+    data:{labels,datasets:[
+      {label:'Tushum',data:inc,borderColor:'#3b82f6',backgroundColor:'rgba(59,130,246,.1)',fill:true,tension:.4,pointRadius:3,pointBackgroundColor:'#3b82f6'},
+      {label:'Xarajat',data:exp,borderColor:'#ef4444',backgroundColor:'rgba(239,68,68,.1)',fill:true,tension:.4,pointRadius:3,pointBackgroundColor:'#ef4444'}
+    ]},
+    options:{responsive:true,maintainAspectRatio:false,animation:{duration:400},plugins:{legend:{position:'bottom',labels:{color:'#94a3b8',boxWidth:10,font:{size:11}}}},scales:{y:{beginAtZero:true,grid:{color:'#1e293b'},ticks:{color:'#64748b',font:{size:10},callback:v=>v>=1000000?Math.round(v/1000000)+'M':v>=1000?Math.round(v/1000)+'K':v}},x:{grid:{display:false},ticks:{color:'#64748b',font:{size:10}}}}}
+  });
+}
+
+function renderCatChart(){
+  const byCat={};
+  D.groups.forEach(g=>{
+    const cnt=D.students.filter(s=>s.groupId==g.id&&s.status==='active').length;
+    const profit=(g.price||0)*cnt - (((g.price||0)*cnt*(g.percent||0))/100);
+    const cat=g.category||'Boshqa';
+    byCat[cat]=(byCat[cat]||0)+profit;
+  });
+  const labels=Object.keys(byCat);
+  const data=Object.values(byCat);
+  const colors=labels.map(l=>CAT_COLORS[l]||'#64748b');
+
+  destroyChart('cat');
+  const ctx=document.getElementById('cat-chart');
+  if(!ctx)return;
+  if(!labels.length){
+    CHARTS.cat=new Chart(ctx,{type:'doughnut',data:{labels:["Ma'lumot yo'q"],datasets:[{data:[1],backgroundColor:['#1e293b']}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}}}});
+    return;
+  }
+  CHARTS.cat=new Chart(ctx,{
+    type:'doughnut',
+    data:{labels,datasets:[{data,backgroundColor:colors,borderWidth:0,hoverOffset:4}]},
+    options:{responsive:true,maintainAspectRatio:false,animation:{duration:400},plugins:{legend:{position:'bottom',labels:{color:'#94a3b8',boxWidth:10,font:{size:10}}}}}
+  });
+}
+
+// ==================== STUDENTS ====================
+function populateSFilters(){
+  const gSel=document.getElementById('s-flt-group');
+  if(gSel){ const cv=gSel.value; gSel.innerHTML='<option value="">Barcha guruhlar</option>'+D.groups.map(g=>`<option value="${g.id}">${g.name}</option>`).join(''); gSel.value=cv; }
+}
+
+function renderStudents(){
+  const q=(document.getElementById('s-search')?.value||'').toLowerCase();
+  const gf=document.getElementById('s-flt-group')?.value||'';
+  const sf=document.getElementById('s-flt-status')?.value||'';
+  const list=D.students.filter(s=>{
+    if(q && !s.name.toLowerCase().includes(q) && !(s.phone||'').includes(q)) return false;
+    if(gf && String(s.groupId)!==String(gf)) return false;
+    if(sf && s.status!==sf) return false;
+    return true;
+  });
+  const tb=document.getElementById('students-tbody');
+  if(!tb)return;
+  if(!list.length){ tb.innerHTML=`<tr><td colspan="8"><div class="empty"><span class="empty-icon">👨‍🎓</span><div>O'quvchilar topilmadi</div></div></td></tr>`; return; }
+  tb.innerHTML=list.map(s=>{
+    const g=D.groups.find(x=>x.id==s.groupId);
+    const paid=D.payments.filter(p=>p.studentId==s.id).reduce((a,p)=>a+p.amount,0);
+    const debt=(s.fee||0)-paid;
+    const statusBadge=s.status==='active'?'badge-green':s.status==='inactive'?'badge-gray':'badge-yellow';
+    const statusLabel=s.status==='active'?'Faol':s.status==='inactive'?'Chiqib ketgan':'Kutilmoqda';
+    return `<tr>
+      <td><div style="font-weight:600">${s.name}</div><div style="font-size:11px;color:#64748b">${s.phone||''}</div></td>
+      <td>${s.phone||'—'}</td>
+      <td>${g?`<span class="badge" style="background:${CAT_COLORS[g.category]||'#64748b'}22;color:${CAT_COLORS[g.category]||'#94a3b8'}">${g.name}</span>`:'—'}</td>
+      <td><span class="badge ${statusBadge}">${statusLabel}</span></td>
+      <td>${s.fee?fmt(s.fee):'—'}</td>
+      <td style="color:#10b981;font-weight:600">${fmt(paid)}</td>
+      <td>${debt>0?`<span style="color:#ef4444;font-weight:600">${fmt(debt)}</span>`:'<span style="color:#10b981">✓</span>'}</td>
+      <td>
+        <div style="display:flex;gap:6px">
+          <button class="btn btn-ghost btn-sm" onclick="openStudentModal(${s.id})">✏️</button>
+          <button class="btn btn-ghost btn-sm" style="color:#ef4444" onclick="delStudent(${s.id})">🗑</button>
+        </div>
+      </td>
+    </tr>`;
+  }).join('');
+}
+
+function openStudentModal(id=null){
+  const s=id?D.students.find(x=>x.id===id):{};
+  const gOptions=D.groups.map(g=>`<option value="${g.id}" ${s.groupId==g.id?'selected':''}>${g.name} (${g.category})</option>`).join('');
+  const curMonth = MONTHS[new Date().getMonth()];
+  const html=`
+    <div style="font-weight:700;font-size:16px;margin-bottom:20px">${id?"✏️ O'quvchini tahrirlash":"➕ Yangi o'quvchi"}</div>
+    <div style="display:flex;flex-direction:column;gap:12px">
+      <div class="grid-2">
+        <div><label class="inp-label">F.I.O *</label><input class="inp" id="m-s-name" value="${s.name||''}" placeholder="To'liq ismi"></div>
+        <div><label class="inp-label">Telefon *</label><input class="inp" id="m-s-phone" value="${s.phone||''}" placeholder="+998 ..."></div>
+      </div>
+      <div class="grid-2">
+        <div><label class="inp-label">Guruh *</label><select class="inp" id="m-s-group"><option value="">Guruh tanlang</option>${gOptions}</select></div>
+        <div><label class="inp-label">Holat</label><select class="inp" id="m-s-status">
+          <option value="active" ${(s.status||'active')==='active'?'selected':''}>Faol</option>
+          <option value="pending" ${s.status==='pending'?'selected':''}>Kutilmoqda</option>
+          <option value="inactive" ${s.status==='inactive'?'selected':''}>Chiqib ketgan</option>
+        </select></div>
+      </div>
+      <div class="grid-2">
+        <div><label class="inp-label">Boshlanish sanasi</label><input type="date" class="inp" id="m-s-start" value="${s.startDate||''}"></div>
+        <div><label class="inp-label">Oylik to'lov (so'm)</label><input type="number" class="inp" id="m-s-fee" value="${s.fee||''}" min="0" placeholder="0"></div>
+      </div>
+      <div><label class="inp-label">Ota-ona F.I.O va telefon</label><input class="inp" id="m-s-parent" value="${s.parent||''}" placeholder="Ota-ona ma'lumotlari"></div>
+      <div><label class="inp-label">Izoh</label><textarea class="inp" id="m-s-notes" rows="2" placeholder="Qo'shimcha ma'lumot...">${s.notes||''}</textarea></div>
+      <div style="display:flex;gap:10px;margin-top:8px">
+        <button class="btn btn-ghost" style="flex:1" onclick="closeModal()">Bekor</button>
+        <button class="btn btn-primary" style="flex:1" onclick="saveStudent(${id||0})">Saqlash</button>
+      </div>
+    </div>`;
+  openModal(html);
+}
+
+async function saveStudent(id){
+  const name=document.getElementById('m-s-name')?.value?.trim();
+  const phone=document.getElementById('m-s-phone')?.value?.trim();
+  const groupId=document.getElementById('m-s-group')?.value;
+  const status=document.getElementById('m-s-status')?.value||'active';
+  const startDate=document.getElementById('m-s-start')?.value||'';
+  const fee=parseFloat(document.getElementById('m-s-fee')?.value)||0;
+  const parent=document.getElementById('m-s-parent')?.value?.trim()||'';
+  const notes=document.getElementById('m-s-notes')?.value?.trim()||'';
+  if(!name||!phone||!groupId){ toast("Majburiy maydonlarni to'ldiring",'error'); return; }
+  if(id){ const s=D.students.find(x=>x.id===id); if(s) Object.assign(s,{name,phone,groupId,status,startDate,fee,parent,notes}); }
+  else D.students.push({id:uid(),name,phone,groupId,status,startDate,fee,parent,notes,createdAt:new Date().toISOString()});
+  await save('students');
+  closeModal();
+  renderStudents();
+  renderDashboard();
+  toast(id?"O'quvchi yangilandi!":"O'quvchi qo'shildi!");
+}
+
+function delStudent(id){
+  confirm2("O'quvchini o'chirish","Bu o'quvchi barcha to'lovlari bilan o'chiriladi. Davom etasizmi?", async ()=>{
+    D.students=D.students.filter(s=>s.id!==id);
+    D.payments=D.payments.filter(p=>p.studentId!==id);
+    D.attendance=D.attendance.filter(a=>a.studentId!==id);
+    await save('students'); await save('payments'); await save('attendance');
+    renderStudents(); renderDashboard();
+    toast("O'quvchi o'chirildi");
+  });
+}
+
+// ==================== GROUPS ====================
+function populateGFilters(){
+  const sel=document.getElementById('g-flt-cat');
+  if(sel){ const cv=sel.value; const cats=[...new Set(D.groups.map(g=>g.category||'Boshqa'))].sort(); sel.innerHTML='<option value="">Barcha fanlar</option>'+cats.map(c=>`<option value="${c}">${c}</option>`).join(''); sel.value=cv; }
+}
+
+function renderGroups(){
+  const q=(document.getElementById('g-search')?.value||'').toLowerCase();
+  const cf=document.getElementById('g-flt-cat')?.value||'';
+  const list=D.groups.filter(g=>{
+    if(q && !g.name.toLowerCase().includes(q) && !(g.category||'').toLowerCase().includes(q)) return false;
+    if(cf && g.category!==cf) return false;
+    return true;
+  });
+  const grid=document.getElementById('groups-grid');
+  if(!grid)return;
+  if(!list.length){ grid.innerHTML=`<div class="card empty"><span class="empty-icon">🏫</span><div>Guruh topilmadi</div></div>`; return; }
+  grid.innerHTML=list.map(g=>{
+    const cnt=D.students.filter(s=>s.groupId==g.id&&s.status==='active').length;
+    const teacher=D.staff.find(s=>s.id==g.teacherId);
+    const daromad=(g.price||0)*cnt;
+    const oylik=(daromad*(g.percent||0))/100;
+    const sof=daromad-oylik;
+    const isZarar=g.minStudents>0&&cnt<g.minStudents;
+    const isFull=g.maxStudents>0&&cnt>=g.maxStudents;
+    const fillPct=g.maxStudents>0?Math.min(100,Math.round((cnt/g.maxStudents)*100)):0;
+    const color=CAT_COLORS[g.category]||'#64748b';
+    return `<div class="card" style="${isZarar?'border-color:#ef4444;':''}">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:12px">
+        <div>
+          <div style="font-weight:700;font-size:15px">${g.name}</div>
+          <span class="badge" style="background:${color}22;color:${color};margin-top:4px">${g.category||'Boshqa'}</span>
+          ${isFull?'<span class="badge badge-yellow" style="margin-left:4px">To\'la</span>':''}
+        </div>
+        <span class="badge ${isZarar?'badge-red':'badge-green'}">${isZarar?'⬇ Zararda':'✓ Rentabel'}</span>
+      </div>
+      <div style="font-size:13px;color:#94a3b8;margin-bottom:4px">${teacher?ROLE_ICONS.teacher+' '+teacher.name:'O\'qituvchi tayinlanmagan'}</div>
+      ${g.time?`<div style="font-size:12px;color:#64748b;margin-bottom:8px">🕐 ${g.time} · ${g.days||''}</div>`:''}
+      <div style="margin-bottom:10px">
+        <div style="display:flex;justify-content:space-between;font-size:12px;color:#64748b;margin-bottom:4px">
+          <span>${cnt} o'quvchi</span>
+          <span>${g.maxStudents?`${cnt}/${g.maxStudents}`:'Cheksiz'}</span>
+        </div>
+        ${g.maxStudents?`<div class="progress-bar"><div class="progress-fill" style="width:${fillPct}%;background:${isZarar?'#ef4444':'#10b981'}"></div></div>`:''}
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;padding:10px;background:#0f172a;border-radius:8px;margin-bottom:12px">
+        <div style="text-align:center"><div style="font-size:11px;color:#64748b">Daromad</div><div style="font-weight:700;font-size:13px">${fmt(daromad)}</div></div>
+        <div style="text-align:center"><div style="font-size:11px;color:#64748b">O'qituvchi</div><div style="font-weight:700;font-size:13px;color:#f59e0b">${fmt(oylik)}</div></div>
+        <div style="text-align:center"><div style="font-size:11px;color:#64748b">Markaz</div><div style="font-weight:700;font-size:13px;color:${sof>=0?'#10b981':'#ef4444'}">${fmt(sof)}</div></div>
+      </div>
+      <div style="display:flex;gap:8px">
+        <button class="btn btn-ghost btn-sm" style="flex:1" onclick="openGroupModal(${g.id})">✏️ Tahrirlash</button>
+        <button class="btn btn-ghost btn-sm" style="color:#ef4444" onclick="delGroup(${g.id})">🗑</button>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function openGroupModal(id=null){
+  const g=id?D.groups.find(x=>x.id===id):{};
+  const teachers=D.staff.filter(s=>s.role==='teacher'&&s.status==='active');
+  const tOpts=teachers.map(t=>`<option value="${t.id}" ${g.teacherId==t.id?'selected':''}>${t.name}</option>`).join('');
+  const catOpts=CATS.map(c=>`<option value="${c}" ${(g.category||'Boshqa')===c?'selected':''}>${c}</option>`).join('');
+  const dOpts=DAYS_OPT.map(d=>`<option value="${d}" ${g.days===d?'selected':''}>${d}</option>`).join('');
+  const html=`
+    <div style="font-weight:700;font-size:16px;margin-bottom:20px">${id?'✏️ Guruhni tahrirlash':'➕ Yangi guruh'}</div>
+    <div style="display:flex;flex-direction:column;gap:12px">
+      <div class="grid-2">
+        <div><label class="inp-label">Guruh nomi *</label><input class="inp" id="m-g-name" value="${g.name||''}" placeholder="IELTS A1"></div>
+        <div><label class="inp-label">Fan *</label><select class="inp" id="m-g-cat">${catOpts}</select></div>
+      </div>
+      <div class="grid-2">
+        <div><label class="inp-label">Oylik narx (so'm) *</label><input type="number" class="inp" id="m-g-price" value="${g.price||''}" min="0" placeholder="0"></div>
+        <div><label class="inp-label">O'qituvchi % *</label><input type="number" class="inp" id="m-g-pct" value="${g.percent||''}" min="0" max="100" placeholder="0"></div>
+      </div>
+      <div class="grid-2">
+        <div><label class="inp-label">Maks. o'quvchi</label><input type="number" class="inp" id="m-g-max" value="${g.maxStudents||''}" min="0" placeholder="Cheksiz"></div>
+        <div><label class="inp-label">Min. rentabel o'quvchi</label><input type="number" class="inp" id="m-g-min" value="${g.minStudents||''}" min="0" placeholder="0"></div>
+      </div>
+      <div><label class="inp-label">O'qituvchi</label><select class="inp" id="m-g-teacher"><option value="">O'qituvchi tanlang</option>${tOpts}</select></div>
+      <div class="grid-2">
+        <div><label class="inp-label">Vaqt</label><input type="time" class="inp" id="m-g-time" value="${g.time||''}"></div>
+        <div><label class="inp-label">Kunlar</label><select class="inp" id="m-g-days">${dOpts}</select></div>
+      </div>
+      <div style="display:flex;gap:10px;margin-top:8px">
+        <button class="btn btn-ghost" style="flex:1" onclick="closeModal()">Bekor</button>
+        <button class="btn btn-primary" style="flex:1" onclick="saveGroup(${id||0})">Saqlash</button>
+      </div>
+    </div>`;
+  openModal(html);
+}
+
+async function saveGroup(id){
+  const name=document.getElementById('m-g-name')?.value?.trim();
+  const category=document.getElementById('m-g-cat')?.value||'Boshqa';
+  const price=parseFloat(document.getElementById('m-g-price')?.value)||0;
+  const percent=parseFloat(document.getElementById('m-g-pct')?.value)||0;
+  const maxStudents=parseInt(document.getElementById('m-g-max')?.value)||0;
+  const minStudents=parseInt(document.getElementById('m-g-min')?.value)||0;
+  const teacherId=document.getElementById('m-g-teacher')?.value||'';
+  const time=document.getElementById('m-g-time')?.value||'';
+  const days=document.getElementById('m-g-days')?.value||DAYS_OPT[0];
+  if(!name||price<=0){ toast("Nom va narxni to'ldiring",'error'); return; }
+  if(id){ const g=D.groups.find(x=>x.id===id); if(g) Object.assign(g,{name,category,price,percent,maxStudents,minStudents,teacherId,time,days}); }
+  else D.groups.push({id:uid(),name,category,price,percent,maxStudents,minStudents,teacherId,time,days,createdAt:new Date().toISOString()});
+  await save('groups');
+  closeModal();
+  populateGFilters();
+  renderGroups();
+  renderDashboard();
+  toast(id?'Guruh yangilandi!':'Guruh qo\'shildi!');
+}
+
+function delGroup(id){
+  const g=D.groups.find(x=>x.id===id);
+  confirm2('Guruhni o\'chirish',`"${g?.name||''}" guruhi va undagi barcha o'quvchilar o'chiriladi.`, async ()=>{
+    D.groups=D.groups.filter(x=>x.id!==id);
+    D.students=D.students.filter(s=>s.groupId!=id);
+    await save('groups'); await save('students');
+    populateGFilters();
+    renderGroups(); renderDashboard();
+    toast('Guruh o\'chirildi');
+  });
+}
+
+// ==================== STAFF ====================
+function renderStaff(){
+  const q=(document.getElementById('st-search')?.value||'').toLowerCase();
+  const rf=document.getElementById('st-flt-role')?.value||'';
+  const list=D.staff.filter(s=>{
+    if(q && !s.name.toLowerCase().includes(q) && !(s.phone||'').includes(q)) return false;
+    if(rf && s.role!==rf) return false;
+    return true;
+  });
+  const tb=document.getElementById('staff-tbody');
+  if(!tb)return;
+  if(!list.length){ tb.innerHTML=`<tr><td colspan="7"><div class="empty"><span class="empty-icon">👥</span><div>Xodim topilmadi</div></div></td></tr>`; return; }
+  tb.innerHTML=list.map(s=>{
+    const myGroups=D.groups.filter(g=>g.teacherId==s.id);
+    const statusBadge=s.status==='active'?'badge-green':'badge-gray';
+    return `<tr>
+      <td><div style="font-weight:600">${ROLE_ICONS[s.role]||'📦'} ${s.name}</div><div style="font-size:11px;color:#64748b">${s.startDate?'📅 '+s.startDate:''}</div></td>
+      <td><span class="badge badge-purple">${ROLES[s.role]||s.role}</span></td>
+      <td>${s.phone||'—'}</td>
+      <td style="font-weight:600;color:#f59e0b">${s.salary?fmt(s.salary):'—'}</td>
+      <td>${myGroups.length?myGroups.map(g=>`<span class="badge badge-blue" style="margin:2px">${g.name}</span>`).join(''):'—'}</td>
+      <td><span class="badge ${statusBadge}">${s.status==='active'?'Faol':'Faol emas'}</span></td>
+      <td>
+        <div style="display:flex;gap:6px">
+          <button class="btn btn-ghost btn-sm" onclick="openStaffModal(${s.id})">✏️</button>
+          <button class="btn btn-ghost btn-sm" style="color:#ef4444" onclick="delStaff(${s.id})">🗑</button>
+        </div>
+      </td>
+    </tr>`;
+  }).join('');
+}
+
+function openStaffModal(id=null){
+  const s=id?D.staff.find(x=>x.id===id):{};
+  const roleOpts=Object.entries(ROLES).map(([v,l])=>`<option value="${v}" ${(s.role||'teacher')===v?'selected':''}>${ROLE_ICONS[v]} ${l}</option>`).join('');
+  const html=`
+    <div style="font-weight:700;font-size:16px;margin-bottom:20px">${id?'✏️ Xodimni tahrirlash':'➕ Yangi xodim'}</div>
+    <div style="display:flex;flex-direction:column;gap:12px">
+      <div class="grid-2">
+        <div><label class="inp-label">F.I.O *</label><input class="inp" id="m-st-name" value="${s.name||''}" placeholder="To'liq ismi"></div>
+        <div><label class="inp-label">Telefon *</label><input class="inp" id="m-st-phone" value="${s.phone||''}" placeholder="+998 ..."></div>
+      </div>
+      <div class="grid-2">
+        <div><label class="inp-label">Lavozim</label><select class="inp" id="m-st-role">${roleOpts}</select></div>
+        <div><label class="inp-label">Oylik maosh (so'm)</label><input type="number" class="inp" id="m-st-salary" value="${s.salary||''}" min="0" placeholder="0"></div>
+      </div>
+      <div class="grid-2">
+        <div><label class="inp-label">Holat</label><select class="inp" id="m-st-status">
+          <option value="active" ${(s.status||'active')==='active'?'selected':''}>Faol</option>
+          <option value="inactive" ${s.status==='inactive'?'selected':''}>Faol emas</option>
+        </select></div>
+        <div><label class="inp-label">Boshlanish sanasi</label><input type="date" class="inp" id="m-st-start" value="${s.startDate||''}"></div>
+      </div>
+      <div><label class="inp-label">Izoh</label><textarea class="inp" id="m-st-notes" rows="2" placeholder="Qo'shimcha ma'lumot...">${s.notes||''}</textarea></div>
+      <div style="display:flex;gap:10px;margin-top:8px">
+        <button class="btn btn-ghost" style="flex:1" onclick="closeModal()">Bekor</button>
+        <button class="btn btn-primary" style="flex:1" onclick="saveStaff(${id||0})">Saqlash</button>
+      </div>
+    </div>`;
+  openModal(html);
+}
+
+async function saveStaff(id){
+  const name=document.getElementById('m-st-name')?.value?.trim();
+  const phone=document.getElementById('m-st-phone')?.value?.trim();
+  const role=document.getElementById('m-st-role')?.value||'teacher';
+  const salary=parseFloat(document.getElementById('m-st-salary')?.value)||0;
+  const status=document.getElementById('m-st-status')?.value||'active';
+  const startDate=document.getElementById('m-st-start')?.value||'';
+  const notes=document.getElementById('m-st-notes')?.value?.trim()||'';
+  if(!name||!phone){ toast("F.I.O va telefon majburiy",'error'); return; }
+  if(id){ const s=D.staff.find(x=>x.id===id); if(s) Object.assign(s,{name,phone,role,salary,status,startDate,notes}); }
+  else D.staff.push({id:uid(),name,phone,role,salary,status,startDate,notes,createdAt:new Date().toISOString()});
+  await save('staff');
+  closeModal();
+  renderStaff(); renderDashboard();
+  toast(id?'Xodim yangilandi!':'Xodim qo\'shildi!');
+}
+
+function delStaff(id){
+  const s=D.staff.find(x=>x.id===id);
+  confirm2('Xodimni o\'chirish',`"${s?.name||''}" o'chiriladi. Davom etasizmi?`, async ()=>{
+    D.staff=D.staff.filter(x=>x.id!==id);
+    D.groups.forEach(g=>{ if(g.teacherId==id) g.teacherId=''; });
+    await save('staff'); await save('groups');
+    renderStaff(); renderDashboard();
+    toast('Xodim o\'chirildi');
+  });
+}
+
+// ==================== ATTENDANCE ====================
+function populateAttGroups(){
+  const sel=document.getElementById('att-group');
+  if(!sel)return;
+  sel.innerHTML='<option value="">Guruh tanlang</option>'+D.groups.map(g=>`<option value="${g.id}">${g.name} (${g.category})</option>`).join('');
+}
+
+function loadAttendanceList(){
+  const gid=document.getElementById('att-group')?.value;
+  const date=document.getElementById('att-date')?.value;
+  const el=document.getElementById('att-list');
+  if(!el)return;
+  if(!gid||!date){ el.innerHTML=''; return; }
+  const students=D.students.filter(s=>s.groupId==gid&&s.status==='active');
+  if(!students.length){ el.innerHTML='<div style="color:#64748b;font-size:13px;text-align:center;padding:16px">Bu guruhda faol o\'quvchilar yo\'q</div>'; return; }
+  el.innerHTML=students.map(s=>{
+    const existing=D.attendance.find(a=>a.studentId==s.id&&a.date===date&&a.groupId==gid);
+    const cur=existing?.status||'present';
+    return `<div style="display:flex;align-items:center;justify-content:space-between;padding:10px;background:#0f172a;border-radius:10px" data-sid="${s.id}">
+      <span style="font-size:13px;font-weight:500">${s.name}</span>
+      <div style="display:flex;gap:4px">
+        <button class="att-btn ${cur==='present'?'att-present':''}" onclick="setAtt('${s.id}','present','${gid}','${date}',this)">Keldi</button>
+        <button class="att-btn ${cur==='absent'?'att-absent':''}" onclick="setAtt('${s.id}','absent','${gid}','${date}',this)">Kelmadi</button>
+        <button class="att-btn ${cur==='late'?'att-late':''}" onclick="setAtt('${s.id}','late','${gid}','${date}',this)">Kechikdi</button>
+        <button class="att-btn ${cur==='excused'?'att-excused':''}" onclick="setAtt('${s.id}','excused','${gid}','${date}',this)">Sababli</button>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function setAtt(sid, status, gid, date, btn){
+  const row=btn.closest('[data-sid]');
+  row.querySelectorAll('.att-btn').forEach(b=>{ b.className='att-btn'; });
+  btn.classList.add('att-'+status);
+  const idx=D.attendance.findIndex(a=>a.studentId==sid&&a.date===date&&a.groupId==gid);
+  if(idx>=0) D.attendance[idx].status=status;
+  else D.attendance.push({id:uid(),studentId:parseInt(sid),groupId:parseInt(gid),date,status,ts:Date.now()});
+}
+
+async function saveAttendance(){
+  await save('attendance');
+  renderAttChart();
+  renderAttSummary();
+  renderDashboard();
+  toast('Davomat saqlandi!');
+}
+
+function renderAttChart(){
+  const days=[];
+  for(let i=6;i>=0;i--){ const d=new Date(); d.setDate(d.getDate()-i); days.push(d.toISOString().slice(0,10)); }
+  const labels=days.map(d=>{const dt=new Date(d);return dt.getDate()+'/'+(dt.getMonth()+1);});
+  const pres=days.map(d=>D.attendance.filter(a=>a.date===d&&a.status==='present').length);
+  const abs=days.map(d=>D.attendance.filter(a=>a.date===d&&a.status==='absent').length);
+  destroyChart('att');
+  const ctx=document.getElementById('att-chart');
+  if(!ctx)return;
+  CHARTS.att=new Chart(ctx,{
+    type:'bar',
+    data:{labels,datasets:[
+      {label:'Keldi',data:pres,backgroundColor:'#059669',borderRadius:4},
+      {label:'Kelmadi',data:abs,backgroundColor:'#dc2626',borderRadius:4}
+    ]},
+    options:{responsive:true,maintainAspectRatio:false,animation:{duration:300},plugins:{legend:{position:'bottom',labels:{color:'#94a3b8',boxWidth:10,font:{size:10}}}},scales:{y:{beginAtZero:true,grid:{color:'#1e293b'},ticks:{color:'#64748b',font:{size:10}}},x:{grid:{display:false},ticks:{color:'#64748b',font:{size:10}}},stacked:false}}
+  });
+}
+
+function renderAttSummary(){
+  const el=document.getElementById('att-summary');
+  if(!el)return;
+  const gid=document.getElementById('att-group')?.value;
+  const grpAtt=gid?D.attendance.filter(a=>a.groupId==gid):D.attendance;
+  const pres=grpAtt.filter(a=>a.status==='present').length;
+  const abs=grpAtt.filter(a=>a.status==='absent').length;
+  const late=grpAtt.filter(a=>a.status==='late').length;
+  const excused=grpAtt.filter(a=>a.status==='excused').length;
+  const total=pres+abs+late+excused;
+  el.innerHTML=total?`<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+    <div class="card-xs" style="text-align:center"><div style="font-size:20px;font-weight:700;color:#10b981">${pres}</div><div style="font-size:11px;color:#64748b">Keldi</div></div>
+    <div class="card-xs" style="text-align:center"><div style="font-size:20px;font-weight:700;color:#ef4444">${abs}</div><div style="font-size:11px;color:#64748b">Kelmadi</div></div>
+    <div class="card-xs" style="text-align:center"><div style="font-size:20px;font-weight:700;color:#f59e0b">${late}</div><div style="font-size:11px;color:#64748b">Kechikdi</div></div>
+    <div class="card-xs" style="text-align:center"><div style="font-size:20px;font-weight:700;color:#3b82f6">${excused}</div><div style="font-size:11px;color:#64748b">Sababli</div></div>
+  </div><div style="margin-top:10px;font-size:12px;color:#64748b;text-align:center">Jami: ${total} yozuv</div>`
+  :'<div class="empty" style="padding:16px"><span style="color:#64748b">Ma\'lumot yo\'q</span></div>';
+}
+
+// ==================== PAYMENTS ====================
+function populatePayStudents(){
+  const sel=document.getElementById('pay-student');
+  if(!sel)return;
+  sel.innerHTML='<option value="">O\'quvchi tanlang</option>'+D.students.filter(s=>s.status==='active').map(s=>{
+    const g=D.groups.find(x=>x.id==s.groupId);
+    return `<option value="${s.id}">${s.name}${g?' ('+g.name+')':''}`;
+  }).join('');
+  // set current month
+  const ms=document.getElementById('pay-month');
+  if(ms) ms.selectedIndex=new Date().getMonth();
+}
+
+async function savePayment(){
+  const sid=parseInt(document.getElementById('pay-student')?.value);
+  const amount=parseFloat(document.getElementById('pay-amount')?.value)||0;
+  const month=document.getElementById('pay-month')?.value||MONTHS[0];
+  const type=document.getElementById('pay-type')?.value||'cash';
+  const desc=document.getElementById('pay-desc')?.value?.trim()||'';
+  if(!sid||amount<=0){ toast("O'quvchi va summani kiriting",'error'); return; }
+  D.payments.push({id:uid(),studentId:sid,amount,month,type,description:desc,date:new Date().toLocaleDateString('uz-UZ'),ts:Date.now()});
+  await save('payments');
+  document.getElementById('pay-amount').value='';
+  document.getElementById('pay-desc').value='';
+  renderPayments(); renderDashboard(); renderPayChart();
+  toast('To\'lov qayd etildi!');
+}
+
+function renderPayments(){
+  const tb=document.getElementById('pay-tbody');
+  if(!tb)return;
+  const list=[...D.payments].sort((a,b)=>b.ts-a.ts);
+  if(!list.length){ tb.innerHTML=`<tr><td colspan="7"><div class="empty"><span class="empty-icon">💰</span><div>To'lovlar yo'q</div></div></td></tr>`; return; }
+  tb.innerHTML=list.map(p=>{
+    const s=D.students.find(x=>x.id==p.studentId);
+    const typeIcon=p.type==='cash'?'💵':p.type==='card'?'💳':'🏦';
+    return `<tr>
+      <td style="font-weight:600">${s?s.name:'Noma\'lum'}</td>
+      <td style="color:#10b981;font-weight:700">+${fmt(p.amount)}</td>
+      <td><span class="badge badge-blue">${p.month}</span></td>
+      <td>${typeIcon} ${p.type==='cash'?'Naqd':p.type==='card'?'Karta':'O\'tkazma'}</td>
+      <td style="color:#64748b">${p.date||''}</td>
+      <td style="color:#64748b">${p.description||'—'}</td>
+      <td><button class="btn btn-ghost btn-sm" style="color:#ef4444" onclick="delPayment(${p.id})">✕</button></td>
+    </tr>`;
+  }).join('');
+}
+
+function delPayment(id){ D.payments=D.payments.filter(p=>p.id!==id); save('payments'); renderPayments(); renderDashboard(); renderPayChart(); toast('To\'lov o\'chirildi'); }
+function clearPayments(){ confirm2("To'lovlarni tozalash","Barcha to'lovlar o'chiriladi.",async()=>{ D.payments=[]; await save('payments'); renderPayments(); renderDashboard(); renderPayChart(); toast('Tozalandi'); }); }
+
+function renderPayChart(){
+  const byMonth={};
+  D.payments.forEach(p=>{ byMonth[p.month]=(byMonth[p.month]||0)+p.amount; });
+  const labels=MONTHS.filter(m=>byMonth[m]);
+  const data=labels.map(m=>byMonth[m]);
+  destroyChart('pay');
+  const ctx=document.getElementById('pay-chart');
+  if(!ctx)return;
+  CHARTS.pay=new Chart(ctx,{
+    type:'bar',
+    data:{labels:labels.length?labels:["Ma'lumot yo'q"],datasets:[{label:"To'lovlar",data:data.length?data:[0],backgroundColor:'#059669',borderRadius:6,borderSkipped:false}]},
+    options:{responsive:true,maintainAspectRatio:false,animation:{duration:300},plugins:{legend:{display:false}},scales:{y:{beginAtZero:true,grid:{color:'#1e293b'},ticks:{color:'#64748b',font:{size:10}}},x:{grid:{display:false},ticks:{color:'#64748b',font:{size:10}}}}}
+  });
+}
+
+// ==================== EXPENSES ====================
+async function saveExpense(){
+  const amount=parseFloat(document.getElementById('e-amount')?.value)||0;
+  if(amount<=0){ toast("Summa kiriting",'error'); return; }
+  D.expenses.push({id:uid(),amount,category:document.getElementById('e-cat')?.value||'Boshqa',description:document.getElementById('e-desc')?.value?.trim()||'',date:new Date().toLocaleDateString('uz-UZ'),ts:Date.now()});
+  await save('expenses');
+  document.getElementById('e-amount').value='';
+  document.getElementById('e-desc').value='';
+  document.getElementById('e-cat').selectedIndex=0;
+  renderExpenses(); renderDashboard();
+  toast('Xarajat qayd etildi!');
+}
+
+function renderExpenses(){
+  const tb=document.getElementById('expense-tbody');
+  if(!tb)return;
+  const list=[...D.expenses].sort((a,b)=>b.ts-a.ts);
+  if(!list.length){ tb.innerHTML=`<tr><td colspan="5"><div class="empty"><span class="empty-icon">💸</span><div>Xarajatlar yo'q</div></div></td></tr>`; return; }
+  tb.innerHTML=list.map(e=>`<tr>
+    <td><span class="badge badge-red">${e.category}</span></td>
+    <td style="color:#ef4444;font-weight:700">-${fmt(e.amount)}</td>
+    <td style="color:#94a3b8">${e.description||'—'}</td>
+    <td style="color:#64748b">${e.date||''}</td>
+    <td><button class="btn btn-ghost btn-sm" style="color:#ef4444" onclick="delExpense(${e.id})">✕</button></td>
+  </tr>`).join('');
+}
+
+function delExpense(id){ D.expenses=D.expenses.filter(e=>e.id!==id); save('expenses'); renderExpenses(); renderDashboard(); toast('Xarajat o\'chirildi'); }
+function clearExpenses(){ confirm2('Xarajatlarni tozalash','Barcha xarajatlar o\'chiriladi.',async()=>{ D.expenses=[]; await save('expenses'); renderExpenses(); renderDashboard(); toast('Tozalandi'); }); }
+
+// ==================== REPORTS ====================
+function renderQuickReport(){
+  const t=computeTotals();
+  const el=document.getElementById('quick-report');
+  if(!el)return;
+  el.innerHTML=`
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px">
+      <div class="card-xs"><div style="font-size:11px;color:#64748b;margin-bottom:4px">Jami tushum</div><div style="font-weight:700;color:#10b981">${fmt(t.income)}</div></div>
+      <div class="card-xs"><div style="font-size:11px;color:#64748b;margin-bottom:4px">O'qituvchi oyligi</div><div style="font-weight:700;color:#f59e0b">${fmt(t.teacherPay)}</div></div>
+      <div class="card-xs"><div style="font-size:11px;color:#64748b;margin-bottom:4px">Xodim maoshi</div><div style="font-weight:700;color:#f59e0b">${fmt(t.staffSalary)}</div></div>
+      <div class="card-xs"><div style="font-size:11px;color:#64748b;margin-bottom:4px">Boshqa xarajatlar</div><div style="font-weight:700;color:#ef4444">${fmt(t.expenses)}</div></div>
+      <div class="card-xs"><div style="font-size:11px;color:#64748b;margin-bottom:4px">Jami xarajat</div><div style="font-weight:700;color:#ef4444">${fmt(t.expense)}</div></div>
+      <div class="card-xs" style="border-color:${t.profit>=0?'#059669':'#dc2626'}"><div style="font-size:11px;color:#64748b;margin-bottom:4px">Sof foyda</div><div style="font-weight:700;color:${t.profit>=0?'#10b981':'#ef4444'}">${fmt(t.profit)}</div></div>
+    </div>
+    <div style="margin-top:12px;padding:10px;background:#0f172a;border-radius:8px;font-size:12px;color:#64748b">
+      Guruhlar: ${D.groups.length} · Faol o'quvchilar: ${D.students.filter(s=>s.status==='active').length} · Xodimlar: ${D.staff.filter(s=>s.status==='active').length}
+    </div>`;
+}
+
+function printReport(type){
+  const t=computeTotals();
+  const date=new Date().toLocaleDateString('uz-UZ',{year:'numeric',month:'long',day:'numeric'});
+  let html=`<h1 style="text-align:center;font-size:20px;margin-bottom:4px">O'QUV MARKAZI HISOBOTI</h1>
+    <p style="text-align:center;color:#666;margin-bottom:20px">${date}</p><hr style="margin-bottom:20px">`;
+
+  if(type==='financial'){
+    html+=`<h2>Moliyaviy xulosa</h2>
+      <table><tr><th>Ko'rsatkich</th><th>Summa</th></tr>
+      <tr><td>Jami tushum</td><td>${fmt(t.income)}</td></tr>
+      <tr><td>O'qituvchi oyligi</td><td>${fmt(t.teacherPay)}</td></tr>
+      <tr><td>Xodimlar maoshi</td><td>${fmt(t.staffSalary)}</td></tr>
+      <tr><td>Boshqa xarajatlar</td><td>${fmt(t.expenses)}</td></tr>
+      <tr><td><b>Sof foyda</b></td><td><b>${fmt(t.profit)}</b></td></tr></table>`;
+  } else if(type==='students'){
+    html+=`<h2>O'quvchilar ro'yxati</h2><table><tr><th>F.I.O</th><th>Telefon</th><th>Guruh</th><th>Holat</th><th>Oylik</th><th>To'langan</th></tr>`;
+    D.students.forEach(s=>{
+      const g=D.groups.find(x=>x.id==s.groupId);
+      const paid=D.payments.filter(p=>p.studentId==s.id).reduce((a,p)=>a+p.amount,0);
+      html+=`<tr><td>${s.name}</td><td>${s.phone||'—'}</td><td>${g?g.name:'—'}</td><td>${s.status==='active'?'Faol':s.status==='inactive'?'Chiqib ketgan':'Kutilmoqda'}</td><td>${fmt(s.fee||0)}</td><td>${fmt(paid)}</td></tr>`;
+    });
+    html+='</table>';
+  } else if(type==='staff'){
+    html+=`<h2>Xodimlar ro'yxati</h2><table><tr><th>F.I.O</th><th>Lavozim</th><th>Telefon</th><th>Maosh</th><th>Holat</th></tr>`;
+    D.staff.forEach(s=>{
+      html+=`<tr><td>${s.name}</td><td>${ROLES[s.role]||s.role}</td><td>${s.phone||'—'}</td><td>${fmt(s.salary||0)}</td><td>${s.status==='active'?'Faol':'Faol emas'}</td></tr>`;
+    });
+    html+=`</table><p><b>Jami maosh: ${fmt(D.staff.filter(s=>s.status==='active').reduce((a,s)=>a+(s.salary||0),0))}</b></p>`;
+  } else if(type==='payments'){
+    html+=`<h2>To'lovlar tarixi</h2><table><tr><th>O'quvchi</th><th>Summa</th><th>Oy</th><th>Tur</th><th>Sana</th></tr>`;
+    [...D.payments].sort((a,b)=>b.ts-a.ts).forEach(p=>{
+      const s=D.students.find(x=>x.id==p.studentId);
+      html+=`<tr><td>${s?s.name:'—'}</td><td>${fmt(p.amount)}</td><td>${p.month}</td><td>${p.type==='cash'?'Naqd':p.type==='card'?'Karta':'O\'tkazma'}</td><td>${p.date||''}</td></tr>`;
+    });
+    html+=`</table><p><b>Jami to'lovlar: ${fmt(D.payments.reduce((a,p)=>a+p.amount,0))}</b></p>`;
+  } else if(type==='attendance'){
+    html+=`<h2>Davomat statistikasi</h2>`;
+    D.groups.forEach(g=>{
+      const att=D.attendance.filter(a=>a.groupId==g.id);
+      if(!att.length)return;
+      const pres=att.filter(a=>a.status==='present').length;
+      const total=att.length;
+      html+=`<p><b>${g.name}:</b> ${pres}/${total} (${Math.round(pres/total*100)}%)</p>`;
+    });
+  } else if(type==='groups'){
+    html+=`<h2>Guruhlar hisoboti</h2><table><tr><th>Guruh</th><th>Fan</th><th>O'quvchilar</th><th>Narx</th><th>Daromad</th></tr>`;
+    D.groups.forEach(g=>{
+      const cnt=D.students.filter(s=>s.groupId==g.id&&s.status==='active').length;
+      html+=`<tr><td>${g.name}</td><td>${g.category||'—'}</td><td>${cnt}</td><td>${fmt(g.price||0)}</td><td>${fmt((g.price||0)*cnt)}</td></tr>`;
+    });
+    html+='</table>';
+  }
+
+  const area=document.getElementById('print-area');
+  area.style.display='block';
+  area.innerHTML=html;
+  setTimeout(()=>{ window.print(); setTimeout(()=>{ area.style.display='none'; },500); },200);
+}
+
+// ==================== SETTINGS ====================
+function exportAll(){
+  const blob=new Blob([JSON.stringify({version:'5.0',exportedAt:new Date().toISOString(),...D},null,2)],{type:'application/json'});
+  const a=document.createElement('a'); a.href=URL.createObjectURL(blob);
+  a.download=`educenter_backup_${new Date().toISOString().slice(0,10)}.json`; a.click();
+  toast('Ma\'lumotlar eksport qilindi!');
+}
+
+async function importAll(input){
+  const file=input.files[0]; if(!file)return;
+  const reader=new FileReader();
+  reader.onload=async e=>{
+    try{
+      const data=JSON.parse(e.target.result);
+      for(const s of ['groups','students','staff','payments','expenses','attendance']){
+        if(data[s]){ D[s]=data[s]; await save(s); }
       }
+      goTo('dashboard');
+      toast('Ma\'lumotlar import qilindi!');
+    } catch(err){ toast('Xato fayl formati','error'); }
+  };
+  reader.readAsText(file);
+  input.value='';
+}
 
-      let html = '';
-      studentsInGroup.forEach(s => {
-        const existing = appData.attendance.find(a => a.studentId == s.id && a.date === date && a.groupId == groupId);
-        const status = existing ? existing.status : 'present';
-        html += `
-          <div class="flex items-center justify-between p-3 bg-gray-50 dark:bg-gray-700 rounded-lg" data-student="${s.id}">
-            <span class="font-medium text-sm">${s.name}</span>
-            <div class="flex gap-1">
-              <button onclick="setAttendance(${s.id}, 'present')" class="att-btn px-3 py-1 rounded-lg text-xs font-bold transition ${status === 'present' ? 'attendance-present' : 'bg-gray-200 dark:bg-gray-600'}" data-status="present">Keldi</button>
-              <button onclick="setAttendance(${s.id}, 'absent')" class="att-btn px-3 py-1 rounded-lg text-xs font-bold transition ${status === 'absent' ? 'attendance-absent' : 'bg-gray-200 dark:bg-gray-600'}" data-status="absent">Kelmadi</button>
-              <button onclick="setAttendance(${s.id}, 'late')" class="att-btn px-3 py-1 rounded-lg text-xs font-bold transition ${status === 'late' ? 'attendance-late' : 'bg-gray-200 dark:bg-gray-600'}" data-status="late">Kechikdi</button>
-              <button onclick="setAttendance(${s.id}, 'excused')" class="att-btn px-3 py-1 rounded-lg text-xs font-bold transition ${status === 'excused' ? 'attendance-excused' : 'bg-gray-200 dark:bg-gray-600'}" data-status="excused">Sababli</button>
-            </div>
-          </div>`;
-      });
-      listEl.innerHTML = html;
-    }
+function resetAll(){
+  confirm2('BARCHA MA\'LUMOTLARNI O\'CHIRISH','Bu amalni bekor qilib bo\'lmaydi. Barcha guruhlar, o\'quvchilar, to\'lovlar o\'chiriladi.',async()=>{
+    for(const s of STORES){ D[s]=[]; await txClear(s); }
+    Object.values(CHARTS).forEach(c=>c.destroy()); CHARTS={};
+    goTo('dashboard');
+    toast('Barcha ma\'lumotlar tozalandi');
+  });
+}
 
-    function setAttendance(studentId, status) {
-      const groupId = document.getElementById('att-group')?.value;
-      const date = document.getElementById('att-date')?.value;
-      if (!groupId || !date) return;
+function renderStorageStats(){
+  const el=document.getElementById('storage-stats');
+  if(!el)return;
+  el.innerHTML=`
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+      <span>Guruhlar: <b>${D.groups.length}</b></span>
+      <span>O'quvchilar: <b>${D.students.length}</b></span>
+      <span>Xodimlar: <b>${D.staff.length}</b></span>
+      <span>To'lovlar: <b>${D.payments.length}</b></span>
+      <span>Xarajatlar: <b>${D.expenses.length}</b></span>
+      <span>Davomat: <b>${D.attendance.length}</b></span>
+    </div>`;
+}
 
-      const existingIndex = appData.attendance.findIndex(a => a.studentId == studentId && a.date === date && a.groupId == groupId);
-      if (existingIndex >= 0) {
-        appData.attendance[existingIndex].status = status;
-      } else {
-        appData.attendance.push({ id: Date.now() + Math.random(), studentId, groupId, date, status, timestamp: Date.now() });
-      }
+// ==================== DATE / STATUS ====================
+function updateDate(){
+  const el=document.getElementById('topbar-date');
+  if(el){
+    const now=new Date();
+    el.textContent=now.toLocaleDateString('uz-UZ',{weekday:'short',year:'numeric',month:'short',day:'numeric'});
+  }
+}
 
-      const row = document.querySelector(`#attendance-list [data-student="${studentId}"]`);
-      if (row) {
-        row.querySelectorAll('.att-btn').forEach(btn => {
-          btn.className = 'att-btn px-3 py-1 rounded-lg text-xs font-bold transition bg-gray-200 dark:bg-gray-600';
-        });
-        const activeBtn = row.querySelector(`[data-status="${status}"]`);
-        if (activeBtn) {
-          activeBtn.classList.remove('bg-gray-200', 'dark:bg-gray-600');
-          activeBtn.classList.add(`attendance-${status}`);
-        }
-      }
-    }
-
-    function saveAttendance() {
-      persistData();
-      showToast("Davomat saqlandi!");
-      renderAttendanceChart();
-      renderAttendanceStats();
-    }
-
-    function renderAttendanceStats() {
-      const statsEl = document.getElementById('attendance-stats');
-      if (!statsEl) return;
-      const groupId = document.getElementById('att-group')?.value;
-      if (!groupId) { statsEl.innerHTML = ''; return; }
-      const groupAttendance = appData.attendance.filter(a => a.groupId == groupId);
-      const present = groupAttendance.filter(a => a.status === 'present').length;
-      const absent = groupAttendance.filter(a => a.status === 'absent').length;
-      const late = groupAttendance.filter(a => a.status === 'late').length;
-      const excused = groupAttendance.filter(a => a.status === 'excused').length;
-      statsEl.innerHTML = `
-        <div class="grid grid-cols-4 gap-2 text-center">
-          <div class="bg-emerald-50 dark:bg-emerald-900/20 p-2 rounded-lg"><div class="font-bold text-emerald-600">${present}</div><div class="text-[10px]">Keldi</div></div>
-          <div class="bg-rose-50 dark:bg-rose-900/20 p-2 rounded-lg"><div class="font-bold text-rose-600">${absent}</div><div class="text-[10px]">Kelmadi</div></div>
-          <div class="bg-amber-50 dark:bg-amber-900/20 p-2 rounded-lg"><div class="font-bold text-amber-600">${late}</div><div class="text-[10px]">Kechikdi</div></div>
-          <div class="bg-blue-50 dark:bg-blue-900/20 p-2 rounded-lg"><div class="font-bold text-blue-600">${excused}</div><div class="text-[10px]">Sababli</div></div>
-        </div>`;
-    }
-
-    function renderAttendanceChart() {
-      const ctx = document.getElementById('attendance-chart');
-      if (!ctx) return;
-      const last7Days = [];
-      for (let i = 6; i >= 0; i--) { const d = new Date(); d.setDate(d.getDate() - i); last7Days.push(d.toISOString().slice(0, 10)); }
-      const presentData = last7Days.map(day => appData.attendance.filter(a => a.date === day && a.status === 'present').length);
-      const absentData = last7Days.map(day => appData.attendance.filter(a => a.date === day && a.status === 'absent').length);
-      const labels = last7Days.map(d => new Date(d).toLocaleDateString('uz-UZ', { day: 'numeric', month: 'short' }));
-
-      if (attendanceChartInstance) { attendanceChartInstance.destroy(); attendanceChartInstance = null; }
-      attendanceChartInstance = new Chart(ctx, {
-        type: 'bar',
-        data: { labels, datasets: [{ label: 'Keldi', data: presentData, backgroundColor: '#10b981', borderRadius: 4 }, { label: 'Kelmadi', data: absentData, backgroundColor: '#ef4444', borderRadius: 4 }] },
-        options: { responsive: true, maintainAspectRatio: false, animation: false, plugins: { legend: { position: 'bottom', labels: { boxWidth: 12, font: { size: 10 } } } }, scales: { y: { beginAtZero: true, grid: { display: false } }, x: { grid: { display: false } } } }
-      });
-    }
-
-    // ===================== PAYMENTS =====================
-    function savePayment() {
-      const studentId = document.getElementById('pay-student')?.value;
-      const amount = parseFloat(document.getElementById('pay-amount')?.value) || 0;
-      const month = document.getElementById('pay-month')?.value || 'Yanvar';
-      const type = document.getElementById('pay-type')?.value || 'cash';
-      const desc = document.getElementById('pay-desc')?.value?.trim() || '';
-      if (!studentId || amount <= 0) { showToast("Iltimos, o'quvchi va summani kiriting", 'error'); return; }
-      appData.payments.push({ id: Date.now(), studentId, amount, month, type, description: desc, date: new Date().toLocaleDateString('uz-UZ'), timestamp: Date.now() });
-      persistData();
-      document.getElementById('pay-amount').value = '';
-      document.getElementById('pay-desc').value = '';
-      showToast("To'lov qayd etildi!");
-    }
-
-    function deletePayment(id) {
-      appData.payments = appData.payments.filter(p => p.id !== id);
-      persistData();
-      showToast("To'lov o'chirildi");
-    }
-
-    function clearAllPayments() {
-      showModal("To'lovlarni tozalash", "Barcha to'lovlar o'chiriladi. Davom etasizmi?", () => {
-        appData.payments = [];
-        persistData();
-        showToast('Barcha to\'lovlar tozalandi');
-      });
-    }
-
-    function renderPayments() {
-      const listEl = document.getElementById('payments-list');
-      if (!listEl) return;
-      let html = '';
-      [...appData.payments].sort((a, b) => b.timestamp - a.timestamp).forEach(p => {
-        const student = appData.students.find(s => s.id == p.studentId);
-        const typeIcon = p.type === 'cash' ? '💵' : p.type === 'card' ? '💳' : '🏦';
-        html += `
-          <div class="flex justify-between items-center p-3 bg-gray-50 dark:bg-gray-700 rounded-lg group">
-            <div><span class="font-medium">${student ? student.name : 'Noma\'lum'} ${typeIcon}</span><span class="text-gray-400 text-[10px] block">${p.month} · ${p.date} ${p.description ? '· ' + p.description : ''}</span></div>
-            <div class="flex items-center gap-2"><span class="text-emerald-600 font-bold">+${p.amount.toLocaleString()} so'm</span><button onclick="deletePayment(${p.id})" class="opacity-60 hover:opacity-100 text-rose-400 hover:text-rose-600 transition">✕</button></div>
-          </div>`;
-      });
-      listEl.innerHTML = html || '<div class="text-center text-gray-400 py-4">💰 To\'lovlar mavjud emas</div>';
-    }
-
-    function renderPaymentChart() {
-      const ctx = document.getElementById('payment-chart');
-      if (!ctx) return;
-      const byMonth = {};
-      appData.payments.forEach(p => { byMonth[p.month] = (byMonth[p.month] || 0) + p.amount; });
-      const months = ['Yanvar','Fevral','Mart','Aprel','May','Iyun','Iyul','Avgust','Sentabr','Oktabr','Noyabr','Dekabr'];
-      const labels = months.filter(m => byMonth[m]);
-      const data = labels.map(m => byMonth[m]);
-      if (paymentChartInstance) { paymentChartInstance.destroy(); paymentChartInstance = null; }
-      paymentChartInstance = new Chart(ctx, {
-        type: 'bar',
-        data: { labels: labels.length ? labels : ['Ma\'lumot yo\'q'], datasets: [{ label: "To'lovlar", data: data.length ? data : [0], backgroundColor: '#10b981', borderRadius: 6 }] },
-        options: { responsive: true, maintainAspectRatio: false, animation: false, plugins: { legend: { display: false } }, scales: { y: { beginAtZero: true, grid: { display: false } }, x: { grid: { display: false } } } }
-      });
-    }
-
-    // ===================== EXPENSES =====================
-    function saveExpense() {
-      const amount = parseFloat(document.getElementById('e-amount')?.value) || 0;
-      if (amount <= 0) { showToast("To'g'ri summa kiriting", 'error'); return; }
-      appData.expenses.push({ id: Date.now(), amount, category: document.getElementById('e-cat')?.value || 'Other', description: document.getElementById('e-desc')?.value?.trim() || '', date: new Date().toLocaleDateString('uz-UZ'), timestamp: Date.now() });
-      persistData();
-      document.getElementById('e-amount').value = '';
-      document.getElementById('e-desc').value = '';
-      document.getElementById('e-cat').selectedIndex = 0;
-      showToast("Xarajat qayd etildi!");
-    }
-
-    function deleteExpense(id) {
-      appData.expenses = appData.expenses.filter(e => e.id !== id);
-      persistData();
-      showToast("Xarajat o'chirildi");
-    }
-
-    function clearAllExpenses() {
-      showModal('Xarajatlarni tozalash', "Barcha xarajatlar o'chiriladi. Davom etasizmi?", () => {
-        appData.expenses = [];
-        persistData();
-        showToast('Barcha xarajatlar tozalandi');
-      });
-    }
-
-    function renderExpenses() {
-      const listEl = document.getElementById('transactions-list');
-      if (!listEl) return;
-      let html = '';
-      const totals = computeTotals();
-      if (totals.jamiOqituvchi > 0) {
-        html += `<div class="flex justify-between p-3 bg-gray-50 dark:bg-gray-700 rounded-lg"><span>👨‍🏫 O'qituvchilar oyligi (jami)</span><span class="text-rose-600 font-bold">-${totals.jamiOqituvchi.toLocaleString()} so'm</span></div>`;
-      }
-      [...appData.expenses].sort((a, b) => b.timestamp - a.timestamp).forEach(e => {
-        html += `
-          <div class="flex justify-between items-center p-3 bg-gray-50 dark:bg-gray-700 rounded-lg group">
-            <div><span class="font-medium">${e.category} ${e.description ? '- ' + e.description : ''}</span><span class="text-gray-400 text-[10px] block">${e.date}</span></div>
-            <div class="flex items-center gap-2"><span class="text-rose-600 font-bold">-${e.amount.toLocaleString()} so'm</span><button onclick="deleteExpense(${e.id})" class="opacity-60 hover:opacity-100 text-rose-400 hover:text-rose-600 transition">✕</button></div>
-          </div>`;
-      });
-      listEl.innerHTML = html || '<div class="text-center text-gray-400 py-4">💰 Xarajatlar mavjud emas</div>';
-    }
-
-    // ===================== CALCULATIONS =====================
-    function computeTotals() {
-      let jamiTushum = 0, jamiOqituvchi = 0, jamiXarajat = 0;
-      appData.students.filter(s => s.status === 'active').forEach(s => {
-        const group = appData.groups.find(g => g.id == s.groupId);
-        if (group) {
-          const daromad = group.price;
-          jamiTushum += daromad;
-          jamiOqituvchi += (daromad * group.percent) / 100;
-        }
-      });
-      const paymentIncome = appData.payments.reduce((sum, p) => sum + p.amount, 0);
-      jamiTushum = Math.max(jamiTushum, paymentIncome);
-      const staffSalaries = appData.staff.filter(s => s.status === 'active').reduce((sum, s) => sum + (s.salary || 0), 0);
-      appData.expenses.forEach(e => jamiXarajat += e.amount);
-      const umumiyXarajat = jamiOqituvchi + jamiXarajat + staffSalaries;
-      const sofFoyda = jamiTushum - umumiyXarajat;
-      return { jamiTushum, jamiOqituvchi, jamiXarajat, staffSalaries, umumiyXarajat, sofFoyda };
-    }
-
-    function getDebtors() {
-      return appData.students.filter(s => s.status === 'active').map(s => {
-        const payments = appData.payments.filter(p => p.studentId == s.id);
-        const totalPaid = payments.reduce((sum, p) => sum + p.amount, 0);
-        const debt = (s.fee || 0) - totalPaid;
-        return { ...s, totalPaid, debt };
-      }).filter(s => s.debt > 0);
-    }
-
-    // ===================== RENDER ALL =====================
-    function renderAll() {
-      const totals = computeTotals();
-      const margin = totals.jamiTushum > 0 ? ((totals.sofFoyda / totals.jamiTushum) * 100).toFixed(1) : 0;
-
-      document.getElementById('dash-income').innerText = totals.jamiTushum.toLocaleString() + " so'm";
-      document.getElementById('dash-expense').innerText = totals.umumiyXarajat.toLocaleString() + " so'm";
-      document.getElementById('dash-profit').innerText = totals.sofFoyda.toLocaleString() + " so'm";
-      document.getElementById('profit-margin').innerText = `Marja: ${margin}%`;
-
-      const profitCard = document.getElementById('dash-profit-card');
-      const statusLabel = document.getElementById('dash-status');
-      if (totals.sofFoyda >= 0) {
-        profitCard.className = "p-5 rounded-2xl border bg-emerald-600 border-emerald-700 text-white card-hover";
-        statusLabel.className = "text-xs px-4 py-2 rounded-full font-bold bg-white text-emerald-700";
-        statusLabel.innerText = "✅ Biznes Foydada";
-      } else {
-        profitCard.className = "p-5 rounded-2xl border bg-rose-600 border-rose-700 text-white card-hover pulse-ring";
-        statusLabel.className = "text-xs px-4 py-2 rounded-full font-bold bg-white text-rose-700";
-        statusLabel.innerText = "❌ Biznes Zararda";
-      }
-
-      document.getElementById('stat-groups').innerText = appData.groups.length;
-      document.getElementById('stat-students').innerText = appData.students.filter(s => s.status === 'active').length;
-      document.getElementById('stat-staff').innerText = appData.staff.filter(s => s.status === 'active').length;
-
-      const today = new Date().toISOString().slice(0, 10);
-      const todayAttendance = appData.attendance.filter(a => a.date === today);
-      const presentToday = todayAttendance.filter(a => a.status === 'present').length;
-      const totalToday = todayAttendance.length;
-      document.getElementById('stat-attendance').innerText = (totalToday > 0 ? Math.round((presentToday / totalToday) * 100) : 0) + '%';
-
-      let dangerHTML = '';
-      appData.groups.forEach(g => {
-        const studentsInGroup = appData.students.filter(s => s.groupId == g.id && s.status === 'active').length;
-        if (g.minStudents > 0 && studentsInGroup < g.minStudents) {
-          dangerHTML += `<div class="flex justify-between items-center bg-rose-50 dark:bg-rose-900/20 p-3 rounded-xl border border-rose-100 dark:border-rose-800"><span class="text-rose-800 dark:text-rose-400 font-medium text-xs">📉 ${g.name} <span class="opacity-60">(${g.category || ''})</span></span><span class="text-rose-600 text-xs font-bold">-${g.minStudents - studentsInGroup} ta yetishmayapti</span></div>`;
-        }
-      });
-      document.getElementById('dashboard-danger-groups').innerHTML = dangerHTML || '<div class="text-emerald-600 dark:text-emerald-400 text-center py-2">🟢 Hamma guruhlar yaxshi!</div>';
-
-      const debtors = getDebtors();
-      let debtHTML = '';
-      debtors.slice(0, 5).forEach(s => {
-        const group = appData.groups.find(g => g.id == s.groupId);
-        debtHTML += `<div class="flex justify-between items-center bg-amber-50 dark:bg-amber-900/20 p-3 rounded-xl border border-amber-100 dark:border-amber-800"><span class="text-amber-800 dark:text-amber-400 font-medium text-xs">💳 ${s.name} <span class="opacity-60">${group ? group.name : ''}</span></span><span class="text-amber-600 text-xs font-bold">${s.debt.toLocaleString()} so'm qarz</span></div>`;
-      });
-      document.getElementById('dashboard-debtors').innerHTML = debtHTML || '<div class="text-emerald-600 dark:text-emerald-400 text-center py-2">🟢 Hamma to\'lovlar o\'z vaqtida!</div>';
-
-      renderStudents();
-      renderGroups();
-      renderStaff();
-      renderPayments();
-      renderExpenses();
-      if (document.getElementById('attendance-stats')) renderAttendanceStats();
-    }
-
-    async function renderChart() {
-      const ctx = document.getElementById('finance-chart');
-      if (!ctx) return;
-      let history = [];
-      try { history = await getAllFromStore('history'); } catch (e) { history = []; }
-      const sorted = (history || []).sort((a, b) => (a.day || '').localeCompare(b.day || '')).slice(-14);
-      const labels = sorted.map(h => { try { return new Date(h.date).toLocaleDateString('uz-UZ', { day: 'numeric', month: 'short' }); } catch (e) { return h.day || ''; } });
-      const incomeData = sorted.map(h => h.income || 0);
-      const expenseData = sorted.map(h => h.expense || 0);
-      if (chartInstance) { chartInstance.destroy(); chartInstance = null; }
-      chartInstance = new Chart(ctx, {
-        type: 'line',
-        data: { labels: labels.length ? labels : ['Bugun'], datasets: [{ label: 'Tushum', data: incomeData.length ? incomeData : [computeTotals().jamiTushum], borderColor: '#10b981', backgroundColor: 'rgba(16,185,129,0.1)', fill: true, tension: 0.4 }, { label: 'Xarajat', data: expenseData.length ? expenseData : [computeTotals().umumiyXarajat], borderColor: '#ef4444', backgroundColor: 'rgba(239,68,68,0.1)', fill: true, tension: 0.4 }] },
-        options: { responsive: true, maintainAspectRatio: false, animation: false, plugins: { legend: { position: 'bottom', labels: { boxWidth: 12, font: { size: 10 } } } }, scales: { y: { beginAtZero: true, grid: { display: false } }, x: { grid: { display: false } } } }
-      });
-    }
-
-    function renderCategoryChart() {
-      const ctx = document.getElementById('category-chart');
-      if (!ctx) return;
-      const byCat = {};
-      appData.groups.forEach(g => {
-        const studentsInGroup = appData.students.filter(s => s.groupId == g.id && s.status === 'active').length;
-        const cat = g.category || 'Boshqa';
-        const daromad = g.price * studentsInGroup;
-        const oylik = (daromad * g.percent) / 100;
-        byCat[cat] = (byCat[cat] || 0) + (daromad - oylik);
-      });
-      const labels = Object.keys(byCat);
-      const data = Object.values(byCat);
-      const colors = labels.map(l => CATEGORY_COLORS[l] || '#64748b');
-      if (categoryChartInstance) { categoryChartInstance.destroy(); categoryChartInstance = null; }
-      categoryChartInstance = new Chart(ctx, {
-        type: 'bar',
-        data: { labels: labels.length ? labels : ['Ma\'lumot yo\'q'], datasets: [{ label: "Markaz foydasi", data: data.length ? data : [0], backgroundColor: colors.length ? colors : ['#cbd5e1'], borderRadius: 6 }] },
-        options: { responsive: true, maintainAspectRatio: false, animation: false, plugins: { legend: { display: false } }, scales: { y: { beginAtZero: true, grid: { display: false } }, x: { grid: { display: false } } } }
-      });
-    }
-
-    function exportAllData() {
-      const exportData = { version: '4.2', exportedAt: new Date().toISOString(), ...appData };
-      const blob = new Blob([JSON.stringify(exportData, null, 2)], { type: 'application/json' });
-      const a = document.createElement('a');
-      a.href = URL.createObjectURL(blob);
-      a.download = `edu_center_backup_${new Date().toISOString().slice(0, 10)}.json`;
-      a.click();
-      showToast("Barcha ma'lumotlar eksport qilindi!");
-    }
-
-    function importData(input) {
-      const file = input.files[0];
-      if (!file) return;
-      const reader = new FileReader();
-      reader.onload = (e) => {
-        try {
-          const data = JSON.parse(e.target.result);
-          if (data.groups) appData.groups = data.groups;
-          if (data.students) appData.students = data.students;
-          if (data.staff) appData.staff = data.staff;
-          if (data.expenses) appData.expenses = data.expenses;
-          if (data.payments) appData.payments = data.payments;
-          if (data.attendance) appData.attendance = data.attendance;
-          persistData();
-          showToast("Ma'lumotlar import qilindi!");
-        } catch (err) { showToast("Xatolik! Noto'g'ri fayl formati", 'error'); }
-      };
-      reader.readAsText(file);
-      input.value = '';
-    }
-
-    function printReport(type) {
-      const totals = computeTotals();
-      let html = '';
-      if (type === 'financial') {
-        html += `<div style="margin-bottom:30px;"><h2>Moliyaviy xulosa</h2><table style="width:100%; border-collapse:collapse;"><tr><td><b>Jami tushum:</b></td><td style="text-align:right;">${totals.jamiTushum.toLocaleString()} so'm</td></tr><tr><td><b>O'qituvchilar oyligi:</b></td><td style="text-align:right; color:#ef4444;">${totals.jamiOqituvchi.toLocaleString()} so'm</td></tr><tr><td><b>Xodimlar maoshi:</b></td><td style="text-align:right; color:#ef4444;">${totals.staffSalaries.toLocaleString()} so'm</td></tr><tr><td><b>Boshqa xarajatlar:</b></td><td style="text-align:right; color:#ef4444;">${totals.jamiXarajat.toLocaleString()} so'm</td></tr><tr style="background:#f0fdf4;"><td><b>Sof foyda:</b></td><td style="text-align:right; color:#10b981; font-weight:bold;">${totals.sofFoyda.toLocaleString()} so'm</td></tr></table></div>`;
-      }
-      document.getElementById('print-date').innerText = `Hisobot sanasi: ${new Date().toLocaleDateString('uz-UZ')}`;
-      document.getElementById('print-content').innerHTML = html;
-      window.print();
-    }
-
-    function resetAllData() {
-      showModal("Barcha ma'lumotlarni o'chirish", "Bu amal qaytarib bo'lmaydi. Ishonchingiz komilmi?", async () => {
-        appData = { groups: [], students: [], staff: [], expenses: [], payments: [], attendance: [] };
-        for (const store of ['groups', 'students', 'staff', 'expenses', 'payments', 'attendance', 'history']) {
-          try { await clearStore(store); } catch (e) {}
-        }
-        localStorage.removeItem('edu_center_db');
-        populateFilters();
-        renderAll();
-        if (chartInstance) { chartInstance.destroy(); chartInstance = null; }
-        if (categoryChartInstance) { categoryChartInstance.destroy(); categoryChartInstance = null; }
-        if (attendanceChartInstance) { attendanceChartInstance.destroy(); attendanceChartInstance = null; }
-        if (paymentChartInstance) { paymentChartInstance.destroy(); paymentChartInstance = null; }
-        renderChart(); renderCategoryChart();
-        showToast("Barcha ma'lumotlar tozalandi");
-      });
-    }
-
-    function updateStorageInfo() {
-      let size = 0;
-      for (let key in localStorage) if (localStorage.hasOwnProperty(key)) size += localStorage[key].length * 2;
-      document.getElementById('storage-info').innerText = `LocalStorage: ${(size / 1024).toFixed(2)} KB ishlatilgan`;
-    }
-
-    window.addEventListener('online', () => { document.getElementById('offline-bar').classList.add('hidden'); });
-    window.addEventListener('offline', () => { document.getElementById('offline-bar').classList.remove('hidden'); });
-
-    (async function init() {
-      const savedTheme = localStorage.getItem('theme');
-      if (savedTheme === 'dark' || (!savedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-        document.documentElement.classList.add('dark');
-        document.getElementById('theme-icon').innerText = '☀️';
-      }
-      await openDB();
-      await loadData();
-      switchTab('dashboard');
-      document.getElementById('att-date').value = new Date().toISOString().slice(0, 10);
-    })();
-  </script>
+// ==================== INIT ====================
+(async function init(){
+  try{
+    document.getElementById('db-dot').style.background='#f59e0b';
+    document.getElementById('db-label').textContent='Yuklanmoqda...';
+    await openDB();
+    await loadAll();
+    document.getElementById('db-dot').style.background='#10b981';
+    document.getElementById('db-label').textContent='Tayyor';
+    updateDate();
+    setInterval(updateDate, 60000);
+    // Set today's date for attendance
+    const attDate=document.getElementById('att-date');
+    if(attDate) attDate.value=new Date().toISOString().slice(0,10);
+    // Set current month for payments
+    const pm=document.getElementById('pay-month');
+    if(pm) pm.selectedIndex=new Date().getMonth();
+    goTo('dashboard');
+  } catch(err){
+    console.error('DB Error:',err);
+    document.getElementById('db-dot').style.background='#ef4444';
+    document.getElementById('db-label').textContent='Xato!';
+    toast('Databaza xatosi: '+err.message,'error');
+  }
+})();
+</script>
 </body>
 </html>
